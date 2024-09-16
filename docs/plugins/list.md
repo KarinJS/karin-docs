@@ -87,7 +87,8 @@ layout: home
 | 名称     | 作者                    | 仓库地址             | 镜像仓库 | 开源协议            | 简介                   |
 | -------- | ----------------------- | -------------------- | -------- | ------------------- | --------------------- |
 | wormhole | [Alcedo][HalcyonAlcedo] | [wormhole][wormhole] | -        | [MIT][wormhole-tab] | 用于Karin的渲染代理插件 |
-| bili-analysis | [Aliorpse][Aliorpse] | [biliAnylasis][bili] | - | [MIT][bili-tab] | Bilibili解析插件 |
+| bili-analysis | [Aliorpse][Aliorpse] | [alijs][bili] | -        | [MIT][alijs-tab] | Bilibili解析插件 |
+| fun.js | [Aliorpse][Aliorpse] | [alijs][fun_js] | -        | [MIT][alijs-tab] | 基础娱乐插件,赞我,今日运势等 |
 
 ## 🌐其他
 
@@ -124,5 +125,6 @@ layout: home
 [auto-command]: https://github.com/HalcyonAlcedo/karin-plugin-auto-command
 [auto-command-tab]: https://github.com/HalcyonAlcedo/karin-plugin-auto-command?tab=GPL-3.0-1-ov-file#readme
 [Aliorpse]: https://github.com/Aliorpse
-[bili]: https://github.com/Aliorpse/karin-plugin-bilibili
-[bili-tab]: https://github.com/Aliorpse/karin-plugin-bilibili?tab=MIT-1-ov-file#readme
+[alijs-tab]: https://github.com/Aliorpse/karin-plugins-alijs?tab=MIT-1-ov-file#readme
+[bili]: https://github.com/Aliorpse/karin-plugins-alijs/blob/main/js/bilibiliAnylasis.js
+[fun_js]: https://github.com/Aliorpse/karin-plugins-alijs/blob/main/js/fun.js
