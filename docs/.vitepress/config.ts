@@ -39,7 +39,7 @@ export default defineConfig({
   markdown: {
     math: true,
     // 全局代码块行号显示
-    lineNumbers: true,
+    lineNumbers: false,
     image: {
       // 开启图片懒加载
       lazyLoading: true,
@@ -111,6 +111,13 @@ export default defineConfig({
         isCustomElement: (tag) => customElements.includes(tag),
       },
     },
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern'
+      }
+    }
   },
   // 移除地址的.html
   cleanUrls: true,

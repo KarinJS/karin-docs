@@ -133,7 +133,7 @@ export default {
         h(NolebaseHighlightTargetedHeading),
       ],
       'home-hero-info-before': () => h(Announcement),
-      'layout-bottom': () => h(HomeFooter, { Footer_Data })
+      'layout-bottom': () => h(HomeFooter, { Footer_Data }),
     })
   },
 

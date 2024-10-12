@@ -1,6 +1,6 @@
 export const Footer_Data: FooterData = {
   // beian: { icp: '备案号', police: '公网安备号' },
-  author: { name: 'KarinJS', link: 'https://github.com/KarinJS', time: '2024' },
+  author: { name: 'KarinJS', link: 'https://github.com/KarinJS' },
   group: [
     {
       title: '解决方案',
@@ -8,8 +8,6 @@ export const Footer_Data: FooterData = {
       links: [
         { name: '外置渲染器', href: 'https://github.com/KarinJS/karin-puppeteer' },
         { name: 'Karin 渲染器核心', href: 'https://github.com/KarinJS/puppeteer-core' },
-        { name: '一站式 Karin 服务支持', href: 'https://github.com/KarinJS/karin-support' },
-        { name: 'Markdown 转 HTML', href: 'https://github.com/KarinJS/md-html' },
       ]
     },
     {
@@ -36,32 +34,47 @@ export const Footer_Data: FooterData = {
  */
 interface FooterData {
   /**
-   * 各个 section 的数据。
-   */
+     * 分组数据，每个分组包含以下属性。
+     */
   group: Array<{
     /**
-     * Section 的标题。
-     */
-    title: string
-
-    /**
-     * 图标的类名（Font Awesome 图标类名）。
+     * 图标（可选）。
      */
     icon?: string
 
     /**
-     * 该 section 下的链接。
+     * 图标样式（可选）。
+     */
+    style?: string
+
+    /**
+     * 分组标题。
+     */
+    title: string
+
+    /**
+     * 该组是否为内部链接，默认为 `false`（可选）。
+     */
+    internal?: boolean
+
+    /**
+     * 该分组下的链接列表。
      */
     links: Array<{
       /**
-       * 链接文本。
-       */
-      name: string
-
-      /**
-       * 链接的图标类名（Font Awesome 图标类名）。
+       * 链接图标（可选）。
        */
       icon?: string
+
+      /**
+       * 链接样式（可选）。
+       */
+      style?: string
+
+      /**
+       * 链接名称。
+       */
+      name: string
 
       /**
        * 链接地址。
@@ -69,43 +82,38 @@ interface FooterData {
       href: string
 
       /**
-       * 链接是否为内部链接。
+       * 是否为内部链接，默认为 `false`（可选）。
        */
       internal?: boolean
     }>
   }>
 
   /**
-   * 备案信息。
+   * 备案信息（可选）。
    */
   beian?: {
     /**
-     * ICP 备案号。
+     * ICP 备案号（可选）。
      */
     icp?: string
 
     /**
-     * 公安备案号。
+     * 公安备案号（可选）。
      */
     police?: string
   }
 
   /**
-   * 作者信息。
+   * 作者信息（可选）。
    */
   author?: {
     /**
-     * 作者名称。
+     * 作者姓名（可选）。
      */
     name?: string
 
     /**
-     * 版权年份。
-     */
-    time?: string
-
-    /**
-     * 作者的链接。
+     * 作者链接（可选）。
      */
     link?: string
   }

@@ -24,7 +24,7 @@ console.log(res)
 
 ```
 
-```js [主动调用]
+```js [主动调用] twoslash
 import { Bot } from 'node-karin'
 
 const self_id = 123456789
