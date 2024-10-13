@@ -104,6 +104,13 @@ export default defineConfig({
         '@nolebase/*',
       ],
     },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          api: 'modern'
+        }
+      }
+    },
   },
   vue: {
     template: {
@@ -111,13 +118,6 @@ export default defineConfig({
         isCustomElement: (tag) => customElements.includes(tag),
       },
     },
-  },
-  css: {
-    preprocessorOptions: {
-      scss: {
-        api: 'modern'
-      }
-    }
   },
   // 移除地址的.html
   cleanUrls: true,
