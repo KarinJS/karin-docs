@@ -37,7 +37,15 @@ const nav = [
     text: '开发工具',
     items: [
       { text: '目录', link: '/utils/index' },
-      { text: 'karin', link: '/utils/karin' },
+      {
+        text: 'karin', link: '/utils/karin', items: [
+          { text: 'karin.command', link: '/utils/karin/command' },
+          { text: 'karin.ctx', link: '/utils/karin/ctx' },
+          { text: 'karin.accept', link: '/utils/karin/accept' },
+          { text: 'karin.use', link: '/utils/karin/use' },
+          { text: 'karin.handler', link: '/utils/karin/handler' }
+        ]
+      },
       { text: 'segment', link: '/utils/segment' },
       { text: 'redis', link: '/utils/redis' },
       { text: 'update', link: '/utils/update' },

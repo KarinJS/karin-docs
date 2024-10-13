@@ -37,7 +37,15 @@ const sidebar = [
     text: '开发工具',
     collapsed: true,
     items: [
-      { text: 'karin', link: '/utils/karin' },
+      {
+        text: 'karin', link: '/utils/karin', items: [
+          { text: 'karin.command', link: '/utils/karin/command' },
+          { text: 'karin.ctx', link: '/utils/karin/ctx' },
+          { text: 'karin.accept', link: '/utils/karin/accept' },
+          { text: 'karin.use', link: '/utils/karin/use' },
+          { text: 'karin.handler', link: '/utils/karin/handler' }
+        ]
+      },
       { text: 'segment', link: '/utils/segment' },
       { text: 'logger', link: '/utils/logger' },
       { text: 'common', link: '/utils/common' },

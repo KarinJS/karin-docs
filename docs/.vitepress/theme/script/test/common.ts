@@ -1,6 +1,3 @@
-# common
-
-```js twoslash
 import { common, segment } from 'node-karin'
 import fs from 'node:fs'
 
@@ -76,4 +73,3 @@ common.urlToPath(import.meta.url)
 common.writeJson('./temp/test/1.json', { a: 1 })
 
 common.writeYaml('./temp/test/1.yaml', { a: 1 })
-```

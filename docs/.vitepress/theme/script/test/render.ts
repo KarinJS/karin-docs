@@ -1,7 +1,6 @@
-# Renderer
-
-```js twoslash
 import { render } from 'node-karin'
+
+render.App('xxx')
 
 const image = await render.render({
   /** 渲染文件路径或HTTP地址 与vue二选一 */
@@ -41,4 +40,3 @@ const image = await render.render({
 const image1 = await render.renderHtml('./test.html')
 
 const image2 = render.renderMultiHtml('./test.html', true)
-```
