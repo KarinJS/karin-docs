@@ -7,7 +7,7 @@ comment: false
 
 > 这里正确的名称是 `node-karin` ，是 `node_modules/node-karin/lib/index.js` 文件的别名，这是一个集中导出多个模块的入口文件。它是整个框架的核心入口，所有的开发工具都是基于 `node-karin` 进行使用  
 
-详情查看 [karin](./karin.md)
+详情查看 [karin](./karin/index.md)
 
 ## logger
 

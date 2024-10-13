@@ -37,6 +37,7 @@ const sidebar = [
     text: '开发工具',
     collapsed: true,
     items: [
+      { text: '目录', link: '/utils' },
       {
         text: 'karin', link: '/utils/karin', items: [
           { text: 'karin.command', link: '/utils/karin/command' },
