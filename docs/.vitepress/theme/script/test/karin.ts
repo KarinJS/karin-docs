@@ -1,9 +1,9 @@
 import karin from 'node-karin'
 
-// export const accept = karin.accept('notice.group_member_increase', async (e) => {
-//   await e.reply('\n欢迎━(*｀∀´*)ノ亻!', { at: true })
-//   return true
-// })
+karin.accept('notice.group_member_increase', async (e) => {
+  await e.reply('\n欢迎━(*｀∀´*)ノ亻!', { at: true })
+  return true
+})
 
 karin.use('forwardMsg', async (bot, contact, element, next, exit) => {
   /** 方法实现 */
@@ -26,3 +26,8 @@ karin.handler('handler', async (e) => {
 }, { adapter: ['ICQQ', 'OneBot11'], priority: 500 })
 
 karin.getBot('123456789')
+
+export const hello = karin.command(/^#你好$/, async (e) => {
+  await e.reply('hello')
+  return true
+})

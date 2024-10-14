@@ -10,14 +10,15 @@
 
 - <Badge type="warning" text="文本" />
 
-```js
+```js twoslash
 import karin, { segment } from 'node-karin'
 
 // 直接回复字符串
 export const hello = karin.command(/^#hello$/, 'hello')
 
 // 回调函数
-export const hello = karin.command(/^#你好$/, async (e) => {
+
+export const hello1 = karin.command(/^#你好$/, async (e) => {
   await e.reply(segment.text('hello'))
   return true
 })
@@ -40,7 +41,7 @@ export const image = karin.command(/^#动漫壁纸$/, async (e) => {
 
 - <Badge type="warning" text="at" />
 
-```js 
+```js twoslash
 import karin, { segment } from 'node-karin'
 
 export const at = karin.command(/^#at$/, async (e) => {
@@ -50,7 +51,7 @@ export const at = karin.command(/^#at$/, async (e) => {
 
 // or 上方代码等同于下方代码
 
-export const at = karin.command(/^#at$/, async (e) => {
+export const at1 = karin.command(/^#at$/, async (e) => {
   await e.reply([
     segment.at(e.user_id),
     '\n这是一个at元素',
@@ -62,7 +63,7 @@ export const at = karin.command(/^#at$/, async (e) => {
 
 - <Badge type="warning" text="引用回复" />
 
-```js
+```js twoslash
 import karin, { segment } from 'node-karin'
 
 export const reply = karin.command(/^#reply$/, async (e) => {
@@ -72,7 +73,7 @@ export const reply = karin.command(/^#reply$/, async (e) => {
 
 // or 上方代码等同于下方代码
 
-export const reply = karin.command(/^#reply$/, async (e) => {
+export const reply1 = karin.command(/^#reply$/, async (e) => {
   await e.reply([
     segment.reply(e.message_id),
     '这是一个引用回复',
