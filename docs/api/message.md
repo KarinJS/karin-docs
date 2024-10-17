@@ -15,7 +15,7 @@ Api: `SendMessage`
 |  请求参数  |                类型                | 必须  |   描述   |
 | :--------: | :--------------------------------: | :---: | :------: |
 | `contact`  |  [点击跳转](./contact.md#contact)  |  是   | 发送目标 |
-| `elements` | [elements](../plugins/elements.md) |  是   | 消息内容 |
+| `elements` | [elements](../utils/segment.md) |  是   | 消息内容 |
 
 ::: warning 注意
 请各位开发者尽量使用 `array` ，其他类型的值可能会在未来版本中被废弃

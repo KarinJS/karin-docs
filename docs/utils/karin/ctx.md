@@ -3,6 +3,8 @@
 介绍:
 
 ```js twoslash
+import karin from 'node-karin'
+
 export const context = karin.command(/^#上下文$/, async (e) => {
   /** 方法实现 */
   e.reply('请回复一条消息')

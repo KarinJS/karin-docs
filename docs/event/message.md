@@ -128,6 +128,7 @@ e.reply = (elements, options) => {
 ## bot
 
 > `e.bot`为上报事件bot的的适配器对象，开发者可以通过此对象调用Api接口
+> `e.bot`拥有 [**API总览**](../api/standard.md) 的所有
 
 ```js
 // 获取头像

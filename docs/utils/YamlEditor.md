@@ -14,7 +14,7 @@
 
 ### 导入和实例化
 
-```js twoslash
+```js twoslash include main
 import { YamlEditor } from 'node-karin'
 
 // 创建一个 YamlEditor 实例，指定文件路径
@@ -28,6 +28,8 @@ const yamlEditor = new YamlEditor('./path/to/your/file.yaml')
 ### 获取 YAML 中的值
 
 ```js twoslash
+// @include: main
+// ---cut---
 // 获取指定路径的值，路径用点号分隔
 const value = yamlEditor.get('root.child.key')
 
@@ -43,6 +45,8 @@ if (value === false) {
 ### 设置 YAML 中的值
 
 ```js twoslash
+// @include: main
+// ---cut---
 // 设置指定路径的值
 yamlEditor.set('root.child.key', 'newValue')
 ```
@@ -52,6 +56,8 @@ yamlEditor.set('root.child.key', 'newValue')
 ### 向 YAML 中添加新值
 
 ```js twoslash
+// @include: main
+// ---cut---
 // 向指定路径添加新值
 yamlEditor.add('root.newPath', 'newValue')
 ```
@@ -61,6 +67,8 @@ yamlEditor.add('root.newPath', 'newValue')
 ### 删除 YAML 中的值
 
 ```js twoslash
+// @include: main
+// ---cut---
 // 删除指定路径的值
 const success = yamlEditor.del('root.child.key')
 
@@ -76,6 +84,8 @@ if (success) {
 ### 向 YAML 中的数组添加新元素
 
 ```js twoslash
+// @include: main
+// ---cut---
 // 向指定路径的数组添加新元素
 yamlEditor.append('root.array', 'newElement', true) // 在数组开头添加
 
@@ -87,6 +97,8 @@ yamlEditor.append('root.array', 'newElement') // 在数组末尾添加
 ### 检查指定路径的键是否存在
 
 ```js twoslash
+// @include: main
+// ---cut---
 // 向指定路径的数组添加新元素
 yamlEditor.has('a.b.c') // true
 yamlEditor.has('x.y.z') // false
@@ -97,6 +109,8 @@ yamlEditor.has('x.y.z') // false
 ### 查询指定路径中是否包含指定的值
 
 ```js twoslash
+// @include: main
+// ---cut---
 // 查询指定路径中是否包含指定的值
 yamlEditor.hasVal('a.b.c', 'val') // true
 yamlEditor.hasVal('x.y.z', 'val') // false
@@ -107,6 +121,8 @@ yamlEditor.hasVal('x.y.z', 'val') // false
 ### 保存文件
 
 ```js twoslash
+// @include: main
+// ---cut---
 // 保存修改后的 YAML 文件
 yamlEditor.save()
 ```
@@ -121,8 +137,9 @@ yamlEditor.save()
 - **保存文件**：使用 `save()` 方法确保所做的修改被写入文件。
 
 ## 示例
+```js twoslash
+import { YamlEditor } from 'node-karin'
 
-```js
 // 创建 YamlEditor 实例
 const yamlEditor = new YamlEditor('./example.yaml')
 

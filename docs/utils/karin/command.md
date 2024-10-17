@@ -3,7 +3,7 @@
 介绍:
 
 ```js twoslash
-import karin from 'node-karin'
+import karin, { segment } from 'node-karin'
 
 // 回调函数
 export const hello = karin.command(/^#你好$/, async (e) => {

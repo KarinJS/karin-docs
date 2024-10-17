@@ -29,7 +29,7 @@ import { App } from 'node-karin'
 ```
 
 - ## `karin`
-`karin` 类拥有 [**标准API**](../../api/standard.md) 中的所有
+`karin` 类拥有 [**API总览**](../../api/standard.md) 中的所有
 
 常用方法：
 * [命令正则处理](./command.md)

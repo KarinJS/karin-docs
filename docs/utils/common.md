@@ -50,6 +50,15 @@ common.isDir('./temp/test')
 common.isPlugin('./plugins/karin-plugin-xxxxxx')
 
 common.makeForward([segment.at('114514')], '1919810', 'hello world')
+//         ^?
+
+
+
+
+
+
+
+
 
 common.makeMessage('hello world')
 
@@ -69,9 +78,9 @@ common.updateYaml('./temp/test/1.yaml', [{ key: 'service', val: true, comment: '
 
 common.uptime()
 
-// 在 plugins/karin-plugin-example/index.ts 中使用
+// @annotate: 在 plugins/karin-plugin-example/index.ts 中使用将返回 '../../'
+
 common.urlToPath(import.meta.url)
-// 返回 '../../'
 
 common.writeJson('./temp/test/1.json', { a: 1 })
 

@@ -1,3 +1,4 @@
+import type { EnhanceAppContext } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import mediumZoom from 'medium-zoom'
 import { type Plugin, onMounted, watch, nextTick, h } from 'vue'
@@ -64,7 +65,7 @@ import { Footer_Data } from '../data/fooertData'
 import 'virtual:group-icons.css'
 export default {
   extends: DefaultTheme,
-  enhanceApp ({ app }) {
+  enhanceApp ({ app }: EnhanceAppContext) {
     app.use(NolebaseEnhancedReadabilitiesPlugin, {
       spotlight: {
         disableHelp: true,
