@@ -15,7 +15,7 @@ export const Footer_Data: FooterData = {
       icon: 'fa-solid fa-puzzle-piece',
       links: [
         { name: 'ICQQ 适配器', href: 'https://github.com/KarinJS/karin-plugin-adapter-icqq' },
-        { name: 'QQBot 适配器', href: 'https://www.npmjs.com/package/axios' },
+        { name: 'QQBot 适配器', href: 'https://github.com/KarinJS/karin-plugin-adapter-QQBot' },
       ]
     },
     {
