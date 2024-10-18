@@ -36,7 +36,7 @@ const nav = [
     text: '开发工具',
     items: [
       { text: '目录', link: '/utils/index' },
-      { text: 'karin', link: '/utils/karin' },
+      { text: 'karin', link: '/utils/karin/index' },
       { text: 'segment', link: '/utils/segment' },
       { text: 'redis', link: '/utils/redis' },
       { text: 'update', link: '/utils/update' },

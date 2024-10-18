@@ -40,7 +40,7 @@ const sidebar = [
     items: [
       { text: '目录', link: '/utils' },
       {
-        text: 'karin', link: '/utils/karin', items: [
+        text: 'karin', link: '/utils/karin/index', items: [
           { text: 'karin.command', link: '/utils/karin/command' },
           { text: 'karin.ctx', link: '/utils/karin/ctx' },
           { text: 'karin.accept', link: '/utils/karin/accept' },
