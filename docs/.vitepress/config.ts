@@ -39,7 +39,7 @@ export default defineConfig({
   markdown: {
     math: true,
     // 全局代码块行号显示
-    lineNumbers: true,
+    lineNumbers: false,
     image: {
       // 开启图片懒加载
       lazyLoading: true,
@@ -103,6 +103,13 @@ export default defineConfig({
       noExternal: [
         '@nolebase/*',
       ],
+    },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          api: 'modern'
+        }
+      }
     },
   },
   vue: {

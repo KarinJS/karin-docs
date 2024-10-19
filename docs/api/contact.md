@@ -34,9 +34,9 @@ const contact = karin.contactFriend('123455678') // 好友
 - 在收到事件时，此属性必须存在
 - 此属性在调用大多数API时都会用到
 
-```js
+```js twoslash
 // 一个简单的例子，回复消息
-import { segment, Bot } from 'node-karin'
+import { karin, segment, Bot } from 'node-karin'
 
 const self_id = 123456789
 const contact = karin.contactGroup('123455678')

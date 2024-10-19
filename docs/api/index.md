@@ -4,6 +4,8 @@ comment: false
 # 目录
 
 > 正在编写中，咕咕咕~
+## API列表
+[点击跳转](./standard.md)
 
 ## 标准API
 

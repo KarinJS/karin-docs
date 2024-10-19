@@ -12,7 +12,7 @@
 以下所有的示例都假设你已经导入了 `segment` 模块。
 :::
 
-```js twoslash
+```js twoslash include main
 import { segment } from 'node-karin'
 ```
 
@@ -35,6 +35,8 @@ karin对于多媒体资源的标准化处理，遵循以下规则：
 ## 文本 text
 
 ```js twoslash
+// @include: main
+// ---cut---
 const text = segment.text('Hello, world!')
 console.log(text)
 ```
@@ -55,6 +57,8 @@ console.log(text)
 :::
 
 ```js twoslash
+// @include: main
+// ---cut---
 const face = segment.face(1)
 console.log(face)
 ```
@@ -74,12 +78,14 @@ console.log(face)
 遵循 [**多媒体资源标准**](#多媒体资源标准)
 :::
 
-```js
-const image = segment.image('https://example.com/image.png') // 网络图片
-const image = segment.image('base64://iVBORw0KGgoAAAANSUhEUgA...') // base64格式
-const image = segment.image('file://C:/Users/admin/Pictures/image.png') // Windows绝对路径
-const image = segment.image('file:///root/karin/image.png') // Linux绝对路径
-console.log(image)
+```js twoslash
+// @include: main
+// ---cut---
+const image1 = segment.image('https://example.com/image.png') // 网络图片
+const image2 = segment.image('base64://iVBORw0KGgoAAAANSUhEUgA...') // base64格式
+const image3 = segment.image('file://C:/Users/admin/Pictures/image.png') // Windows绝对路径
+const image4 = segment.image('file:///root/karin/image.png') // Linux绝对路径
+console.log(image1, image2, image3, image4)
 ```
 
 输出：
@@ -110,6 +116,8 @@ console.log(image)
 :::
 
 ```js twoslash
+// @include: main
+// ---cut---
 const record = segment.record('https://example.com/record.mp3')
 console.log(record)
 ```
@@ -130,6 +138,8 @@ console.log(record)
 :::
 
 ```js twoslash
+// @include: main
+// ---cut---
 const video = segment.video('https://example.com/video.mp4')
 console.log(video)
 ```
@@ -150,6 +160,8 @@ console.log(video)
 :::
 
 ```js twoslash
+// @include: main
+// ---cut---
 const at = segment.at('abc1234567890', '1234567890')
 console.log(at)
 ```
@@ -187,6 +199,8 @@ console.log(poke)
 ## 链接分享 share
 
 ```js twoslash
+// @include: main
+// ---cut---
 const share = segment.share('https://example.com/share', '分享标题', '分享描述', '图片 URL')
 console.log(share)
 ```
@@ -206,6 +220,8 @@ console.log(share)
 ## 推荐好友或群 contact
 
 ```js twoslash
+// @include: main
+// ---cut---
 const contact = segment.contact('qq', '12345')
 console.log(contact)
 ```
@@ -223,6 +239,8 @@ console.log(contact)
 ## 位置 location
 
 ```js twoslash
+// @include: main
+// ---cut---
 const location = segment.location('121.527328', '31.21515', '上海市浦东新区', '内容描述')
 console.log(location)
 ```
@@ -242,6 +260,8 @@ console.log(location)
 ## 音乐分享 music
 
 ```js twoslash
+// @include: main
+// ---cut---
 const music = segment.music('qq', '12345')
 console.log(music)
 ```
@@ -259,6 +279,8 @@ console.log(music)
 ## 自定义音乐分享 customMusic
 
 ```js twoslash
+// @include: main
+// ---cut---
 const customMusic = segment.customMusic('https://example.com/music.mp3', 'https://example.com/music.mp3', '标题', '内容描述', 'https://example.com/image.jpg')
 console.log(customMusic)
 ```
@@ -279,6 +301,8 @@ console.log(customMusic)
 ## 回复 reply
 
 ```js twoslash
+// @include: main
+// ---cut---
 const reply = segment.reply('1234567890')
 console.log(reply)
 ```
@@ -295,6 +319,8 @@ console.log(reply)
 ## 发送res_id合并转发 forward
 
 ```js twoslash
+// @include: main
+// ---cut---
 const forward = segment.forward('abs1234567890')
 console.log(forward)
 ```
@@ -311,6 +337,8 @@ console.log(forward)
 ## 合并转发自定义节点 node
 
 ```js twoslash
+// @include: main
+// ---cut---
 const node = segment.node('1234567890', 'karin', [segment.text('Hello, world!')])
 console.log(node)
 ```
@@ -334,6 +362,8 @@ console.log(node)
 ## xml
 
 ```js twoslash
+// @include: main
+// ---cut---
 const xml = segment.xml('<xml>...</xml>', 'id')
 console.log(xml)
 ```
@@ -351,6 +381,8 @@ console.log(xml)
 ## JSON
 
 ```js twoslash
+// @include: main
+// ---cut---
 const json = segment.json('JSON 内容')
 console.log(json)
 ```
@@ -366,19 +398,21 @@ console.log(json)
 
 ## markdown消息
 
-```js
+```js twoslash
+// @include: main
+// ---cut---
 // 原生markdown内容
 const markdown = segment.markdown('## 标题\n- 列表1\n- 列表2')
 
 // 模板markdown参数 此为QQBot官方字段，其他平台不可用
-const markdown = segment.markdown({
-  custom_template_id: '模板ID',
-  params: [
+const markdown1 = segment.markdown_tpl('模板ID',
+  [
     { key: 'title', values: ['标题'] },
     { key: 'list', values: ['列表1'] }
-  ]
-})
+  ])
+
 console.log(markdown)
+console.log(markdown1)
 ```
 
 输出：
@@ -401,103 +435,10 @@ console.log(markdown)
 }
 ```
 
-## rows按钮 QQBot官方格式
-
-::: tip 温馨提示
-rows和button的键入值一致，且比较复杂，请查看最下方的 [**构建方法**](#rows按钮button按钮构建方法)，这里只展示输出
-:::
-
-::: details 点我查看输出示例
-
-```js :line-numbers {1}
- {
-  type: 'rows',
-  rows: [
-    {
-      buttons: [
-        {
-          id: '1',
-          render_data: {
-            label: '⬅️上一页',
-            visited_label: '⬅️上一页'
-          },
-          action: {
-            type: 1,
-            permission: {
-              type: 1,
-              specify_role_ids: [
-                '1',
-                '2',
-                '3'
-              ]
-            },
-            click_limit: 10,
-            unsupport_tips: '兼容文本',
-            data: 'data',
-            at_bot_show_channel_list: true
-          }
-        },
-        {
-          id: '2',
-          render_data: {
-            label: '➡️下一页',
-            visited_label: '➡️下一页'
-          },
-          action: {
-            type: 1,
-            permission: {
-              type: 1,
-              specify_role_ids: [
-                '1',
-                '2',
-                '3'
-              ]
-            },
-            click_limit: 10,
-            unsupport_tips: '兼容文本',
-            data: 'data',
-            at_bot_show_channel_list: true
-          }
-        }
-      ]
-    },
-    {
-      buttons: [
-        {
-          id: '3',
-          render_data: {
-            label: '📅 打卡（5）',
-            visited_label: '📅 打卡（5）'
-          },
-          action: {
-            type: 1,
-            permission: {
-              type: 1,
-              specify_role_ids: [
-                '1',
-                '2',
-                '3'
-              ]
-            },
-            click_limit: 10,
-            unsupport_tips: '兼容文本',
-            data: 'data',
-            at_bot_show_channel_list: true
-          }
-        }
-      ]
-    }
-  ]
-}
-
-```
-
-:::
-
 ## button按钮
 
 ::: tip 温馨提示
-rows和button的键入值一致，且比较复杂，请查看最下方的 [**构建方法**](#rows按钮button按钮构建方法)，这里只展示输出
+button的键入值比较复杂，请查看最下方的 [**构建方法**](#rows按钮、button按钮构建方法)，这里只展示输出
 :::
 
 ::: details 点我查看输出示例
@@ -556,21 +497,30 @@ rows和button的键入值一致，且比较复杂，请查看最下方的 [**构
 
 :::
 
-## rows按钮、button按钮构建方法
+## button按钮构建方法
 
 ::: tip 温馨提示
-以下所有代码，`segment.rows` 和 `segment.button` 均可使用  
+`segment.button` 是karin的按钮结构 与qqbot的不同<br>
 所有未出现在快速构建方法中的参数，均为可选参数，可以根据需要选择是否传入
 :::
 
 ### 跳转按钮
 
-```js  twoslash
+```js twoslash
+// @include: main
+// ---cut---
 // 快速构建
-segment.rows({ link: 'https://example.com' })
+segment.button({ text: '菜单', show: '菜单' })
+//        ^?
+
+
+
+
+
+
 
 // 完整构建
-segment.rows({
+segment.button({
   text: '链接跳转', // 按钮默认显示的文本
   show: '链接跳转', // 按钮点击后显示的文本
   link: 'https://example.com',
@@ -585,11 +535,13 @@ segment.rows({
 ### 回调按钮
 
 ```js twoslash
+// @include: main
+// ---cut---
 // 快速构建
-segment.rows({ type: 1, text: '回调按钮'})
+segment.button({ type: 1, text: '回调按钮' })
 
 // 完整构建
-segment.rows({
+segment.button({
   type: 1, // 按钮类型 1 回调按钮
   text: '回调按钮', // 按钮默认显示的文本
   show: '回调按钮', // 按钮点击后显示的文本
@@ -605,11 +557,13 @@ segment.rows({
 ### 指令按钮
 
 ```js twoslash
+// @include: main
+// ---cut---
 // 快速构建
-segment.rows({ text: '指令按钮' })
+segment.button({ text: '指令按钮' })
 
 // 完整构建
-segment.rows({
+segment.button({
   type: 2, // 按钮类型 2 指令按钮
   text: '指令按钮', // 按钮默认显示的文本
   show: '指令按钮', // 按钮点击后显示的文本
@@ -622,4 +576,62 @@ segment.rows({
   role: ['用户ID1', '用户ID2'], // 设置后，只有这些用户可以点击，与admin互斥 （仅频道可用）
   tips: '指令提示' // 客户端不支持本 action 的时候，弹出的 toast 文案
 })
+```
+
+### 多维按钮
+```js twoslash
+// @include: main
+// ---cut---
+// 快速构建
+segment.keyboard(
+//       ^?
+
+
+
+
+
+
+
+// @annotate: 和`segment.button`不同的是`segment.keyboard`为多行按钮
+
+// @annotate: 多维按钮需要嵌套数组使用
+
+  [
+// @annotate: 下方数组的两个按钮可组成第一行按钮
+
+    [
+      { text: '状态', show: '运行状态' },
+      { text: '菜单', show: '菜单' }
+    ],
+// @annotate: 下方三个按钮可组成第二行按钮
+
+    [
+      { text: '状态', show: '运行状态' },
+      { text: '扫雷', show: '扫雷' },
+      { text: '小游戏帮助', show: '小游戏帮助', reply: true }
+    ],
+// @annotate: 下方可组成第三行按钮
+
+    [
+      { text: '签到', show: '签到' },
+      { text: '角色', show: '角色' }
+    ]
+  ]
+)
+
+
+// 完整构建
+segment.keyboard([{
+  type: 2, // 按钮类型 2 指令按钮
+  text: '指令按钮', // 按钮默认显示的文本
+  show: '指令按钮', // 按钮点击后显示的文本
+  data: '操作相关数据', // 指令数据
+  style: 0, // 按钮样式 0 灰色线框，1 蓝色线框 默认 0
+  enter: true, // 设置为true时，点击按钮后直接自动发送 data，默认 false
+  reply: true, // 设置为true时，点击按钮后回复当前消息，默认 false
+  admin: false, // 设置为true时，只有群管理员可以点击
+  list: ['用户ID1', '用户ID2'], // 设置后，只有这些用户可以点击，与admin互斥
+  role: ['用户ID1', '用户ID2'], // 设置后，只有这些用户可以点击，与admin互斥 （仅频道可用）
+  tips: '指令提示' // 客户端不支持本 action 的时候，弹出的 toast 文案
+}])
 ```

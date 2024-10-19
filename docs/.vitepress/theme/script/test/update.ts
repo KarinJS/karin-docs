@@ -1,6 +1,3 @@
-# 更新相关
-
-```ts twoslash
 import { Update } from 'node-karin'
 
 const status = Update.checkUpdate('./plugins/karin-plugin-xxxxxx', 120)
@@ -19,4 +16,3 @@ Update.getTime('./plugins/karin-plugin-xxxxxx')
 Update.updatePkg('node-karin', 120)
 
 Update.update('./plugins/karin-plugin-xxxxxx', 'git pull')
-```

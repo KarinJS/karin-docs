@@ -16,9 +16,9 @@
 }
 
 /* 移除链接跳转下划线 */
-.vp-doc a {
+/* .vp-doc a {
   text-decoration: none;
-}
+} */
 
 /* 提示框背景颜色 */
 /* :root {

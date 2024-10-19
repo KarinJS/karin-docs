@@ -6,7 +6,6 @@ comment: false
 ## 插件规范
 
 - [开发规范](./standard.md)
-- [elements](./elements.md)
 
 ## 插件示例
 

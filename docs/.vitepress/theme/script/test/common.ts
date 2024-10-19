@@ -1,6 +1,3 @@
-# common
-
-```js twoslash
 import { common, segment } from 'node-karin'
 import fs from 'node:fs'
 
@@ -50,15 +47,6 @@ common.isDir('./temp/test')
 common.isPlugin('./plugins/karin-plugin-xxxxxx')
 
 common.makeForward([segment.at('114514')], '1919810', 'hello world')
-//         ^?
-
-
-
-
-
-
-
-
 
 common.makeMessage('hello world')
 
@@ -78,11 +66,10 @@ common.updateYaml('./temp/test/1.yaml', [{ key: 'service', val: true, comment: '
 
 common.uptime()
 
-// @annotate: 在 plugins/karin-plugin-example/index.ts 中使用将返回 '../../'
-
+// 在 plugins/karin-plugin-example/index.ts 中使用
 common.urlToPath(import.meta.url)
+// 返回 '../../'
 
 common.writeJson('./temp/test/1.json', { a: 1 })
 
 common.writeYaml('./temp/test/1.yaml', { a: 1 })
-```

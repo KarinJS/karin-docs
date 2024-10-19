@@ -15,7 +15,7 @@ Api: `SendMessage`
 |  请求参数  |                类型                | 必须  |   描述   |
 | :--------: | :--------------------------------: | :---: | :------: |
 | `contact`  |  [点击跳转](./contact.md#contact)  |  是   | 发送目标 |
-| `elements` | [elements](../plugins/elements.md) |  是   | 消息内容 |
+| `elements` | [elements](../utils/segment.md) |  是   | 消息内容 |
 
 ::: warning 注意
 请各位开发者尽量使用 `array` ，其他类型的值可能会在未来版本中被废弃
@@ -23,7 +23,7 @@ Api: `SendMessage`
 
 ::: code-group
 
-```js [请求示例1]
+```js [请求示例1]  twoslash
 // 主动发送消息 直接调用Api
 import { segment } from 'node-karin'
 
@@ -41,7 +41,7 @@ await this.e.bot.SendMessage(contact, elements)
 
 ```
 
-```js [请求示例2]
+```js [请求示例2] twoslash
 // 主动发送消息 调用封装过的Api
 import { Bot } from 'node-karin'
 
@@ -56,7 +56,7 @@ await Bot.sendMsg(self_id, contact, '这只一条主动消息')
 
 ```
 
-```js [请求示例3]
+```js [请求示例3] twoslash
 // 被动回复消息
 import { segment } from 'node-karin'
 
@@ -88,7 +88,7 @@ Api: `RecallMessage`
 
 ::: code-group
 
-```js [请求示例]
+```js [请求示例] twoslash
 import { Bot } from 'node-karin'
 
 const self_id = 123456789
@@ -123,7 +123,7 @@ Api: `GetMessage`
 
 ::: code-group
 
-```js [请求示例]
+```js [请求示例] twoslash
 import { Bot } from 'node-karin'
 
 const self_id = 123456789
