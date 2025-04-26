@@ -1,35 +1,42 @@
-# karin文档
+# karin
 
-```bash
-git clone https://github.com/KarinJS/karin-docs.git
+The Site is generated using [vuepress](https://vuepress.vuejs.org/) and [vuepress-theme-plume](https://github.com/pengzhanbo/vuepress-theme-plume)
+
+## Install
+
+```sh
+pnpm i
 ```
 
-## 安装依赖
+## Usage
 
-```bash
-cd karin-docs && pnpm install
+```sh
+# start dev server
+pnpm docs:dev
+# build for production
+pnpm docs:build
+# preview production build in local
+pnpm docs:preview
+# update vuepress and theme
+pnpm vp-update
 ```
 
-## 启动项目
+## Deploy to GitHub Pages
 
-```bash
-pnpm dev
-```
+The plume theme has been created with GitHub Actions: `.github/workflows/docs-deploy.yml`. You also need to make the following settings in the GitHub repository:
 
-## 编译
+- [ ] `settings > Actions > General`, Scroll to the bottom of the page, under `Workflow permissions`, check `Read and write permissions`, and click the save button.
 
-```bash
-pnpm build
-```
+- [ ] `settings > Pages`, In `Build and deployment`, select `Deploy from a branch` for `Source`, choose `gh-pages` for `Branch`, and click the save button.
+  (The `gh-pages` branch may not exist upon first creation. You can complete the above setup first, push the code to the main branch, wait for `github actions` to finish, and then proceed with the setup.)
 
-## 预览
+- [ ] Modify the `base` option in `docs/.vuepress/config.ts`:
+  - If you are planning to deploy to `https://<USERNAME>.github.io/`, you can skip this step as `base` defaults to `"/"`.
+  - If you are planning to deploy to `https://<USERNAME>.github.io/<REPO>/`, meaning your repository URL is `https://github.com/<USERNAME>/<REPO>`, set `base` to `"/<REPO>/"`.
 
-```bash
-pnpm preview
-```
+To customize a domain name, please refer to [Github Pages](https://docs.github.com/zh/pages/configuring-a-custom-domain-for-your-github-pages-site/about-custom-domains-and-github-pages)
 
-### 贡献者
+## Documents
 
-[![贡献者](https://contributors-img.web.app/image?repo=KarinJS/karin-docs)](https://github.com/KarinJS/karin-docs/graphs/contributors)
-
-![Alt](https://repobeats.axiom.co/api/embed/aaaa2759c8885691443a4d80e5753f975d4f250e.svg "Repobeats analytics image")
+- [vuepress](https://vuepress.vuejs.org/)
+- [vuepress-theme-plume](https://theme-plume.vuejs.press/)
