@@ -1,13 +1,13 @@
 {
-  "name": "karin",
+  "name": "karin-简约-高效的机器人开发框架",
   "type": "module",
   "version": "1.0.0",
-  "description": "让机器人开发变得简单有趣",
+  "description": "让插件开发变得简单有趣",
   "packageManager": "pnpm@9.7.1",
-  "author": "炫炫 <112480306+ikenxuan@users.noreply.github.com>",
+  "author": "炫炫 <2066855608@qq.com>",
   "license": "MIT",
   "engines": {
-    "node": "^18.19.0 || ^20.6.0 || >=22.0.0"
+    "node": "^20.6.0 || >=22.0.0"
   },
   "scripts": {
     "docs:dev": "vuepress dev docs",
@@ -17,14 +17,12 @@
     "vp-update": "pnpm dlx vp-update"
   },
   "devDependencies": {
-    "@vuepress/bundler-vite": "2.0.0-rc.21",
-    "@vuepress/shiki-twoslash": "2.0.0-rc.94",
+    "@vuepress/bundler-vite": "2.0.0-rc.22",
+    "vuepress": "2.0.0-rc.22",
+    "vuepress-theme-plume": "1.0.0-rc.148",
     "http-server": "^14.1.1",
-    "node-karin": "^1.7.14",
-    "sass-embedded": "^1.86.3",
-    "typescript": "^5.8.3",
     "vue": "^3.5.13",
-    "vuepress": "2.0.0-rc.21",
-    "vuepress-theme-plume": "1.0.0-rc.143"
+    "sass-embedded": "^1.88.0",
+    "typescript": "^5.8.3"
   }
 }
