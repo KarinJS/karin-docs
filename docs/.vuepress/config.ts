@@ -5,7 +5,7 @@ import { plumeTheme } from 'vuepress-theme-plume'
 export default defineUserConfig({
   base: '/',
   lang: 'zh-CN',
-  title: 'Karin - 简约、高效的机器人开发框架',
+  title: 'Karin',
   description: '让插件开发变得简单有趣',
 
   head: [
@@ -26,16 +26,16 @@ export default defineUserConfig({
     // docsBranch: '',
 
     /* 页内信息 */
-    // editLink: true,
+    editLink: true,
     // lastUpdated: true,
     // contributors: true,
-    // changelog: false,
+    changelog: false,
 
     /**
      * 博客
      * @see https://theme-plume.vuejs.press/config/basic/#blog
      */
-    // blog: false, // 禁用博客
+    blog: false, // 禁用博客
     // blog: {
     //   postList: true, // 是否启用文章列表页
     //   tags: true, // 是否启用标签页
@@ -46,7 +46,7 @@ export default defineUserConfig({
     // },
 
     /* 博客文章页面链接前缀 */
-    article: '/article/',
+    // article: '/article/',
 
     /**
      * 编译缓存，加快编译速度
@@ -58,11 +58,13 @@ export default defineUserConfig({
      * 为 markdown 文件自动添加 frontmatter 配置
      * @see https://theme-plume.vuejs.press/config/basic/#autofrontmatter
      */
-    // autoFrontmatter: {
-    //   permalink: true,  // 是否生成永久链接
-    //   createTime: true, // 是否生成创建时间
-    //   title: true,      // 是否生成标题
-    // },
+    autoFrontmatter: {
+      permalink: true,  // 是否生成永久链接
+      createTime: true, // 是否生成创建时间
+      title: true,      // 是否生成标题
+    },
+    // 完全禁用所有自动生成
+    // autoFrontmatter: false,
 
     /* 本地搜索, 默认启用 */
     search: { provider: 'local' },

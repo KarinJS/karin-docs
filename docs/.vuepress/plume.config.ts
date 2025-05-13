@@ -28,17 +28,17 @@ export default defineThemeConfig({
   // createTime: true, // 是否显示文章创建时间
 
   /* 站点页脚 */
-  // footer: {
-  //   message: 'Power by <a target="_blank" href="https://v2.vuepress.vuejs.org/">VuePress</a> & <a target="_blank" href="https://theme-plume.vuejs.press">vuepress-theme-plume</a>',
-  //   copyright: '',
-  // },
+  footer: {
+    message: `© 2023-${new Date().getFullYear()} <a target="_blank" href="https://github.com/KarinJS/Karin">Karin</a> Released under the MIT License.`,
+    copyright: '',
+  },
 
   /**
    * @see https://theme-plume.vuejs.press/config/basic/#profile
    */
   profile: {
     avatar: 'https://theme-plume.vuejs.press/plume.png',
-    name: 'Karin - 简约、高效的机器人开发框架',
+    name: 'Karin',
     description: '让插件开发变得简单有趣',
     // circle: true,
     // location: '',
