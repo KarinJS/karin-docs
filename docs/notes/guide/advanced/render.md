@@ -17,9 +17,6 @@ permalink: /guide/9e95pid5/
 
 ## 简介
 
-<!-- - 国外源 (GitHub)： <Pill name="Github-karin-puppeteer" link="https://github.com/KarinJS/karin-puppeteer" />
-- 国内源 (Gitee)： <Pill name="Gitee-karin-puppeteer" link="https://gitee.com/KarinJS/karin-puppeteer" /> -->
-
 ::: warning 注意
 karin-puppeteer 是一个单独的项目，需要单独安装运行。
 :::
@@ -61,17 +58,22 @@ npm config set registry https://registry.npmmirror.com
 
 ### 安装
 
-::: code-group
+::: code-tabs
+@tab npm
 
-```bash [npm]
+```bash
 npm init -y && npm install @karinjs/puppeteer@1.6.1 && npx init && node .
 ```
 
-```bash [pnpm]
+@tab pnpm
+
+```bash
 pnpm init && pnpm install @karinjs/puppeteer@1.6.1 && npx init && node .
 ```
 
-```bash [yarn]
+@tab yarn
+
+```bash
 yarn init -y && yarn add @karinjs/puppeteer@1.6.1 && npx init && node .
 ```
 
@@ -81,26 +83,35 @@ yarn init -y && yarn add @karinjs/puppeteer@1.6.1 && npx init && node .
 
 ## 相关命令
 
-::: code-group
+::: code-tabs
+@前台启动
 
-```bash [前台启动]
+```bash
 npx k .
 ```
 
-```bash [后台启动]
+@后台启动
+
+```bash
 npx k pm2
 
 ```
 
-```bash [后台重启]
+@后台重启
+
+```bash
 npx k rs
 ```
 
-```bash [查看日志]
+@查看日志
+
+```bash
 npx k log
 ```
 
-```bash [查看帮助]
+@查看帮助
+
+```bash
 npx k
 ```
 

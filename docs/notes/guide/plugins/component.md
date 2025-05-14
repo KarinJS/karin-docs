@@ -93,7 +93,7 @@ export default {
 
 **如果需要创建一个无任何配置的输入框，请使用`components.input.create()`方法**
 
-::: code-group
+::: code-tabs
 
 ```js twoslash [基础用法]
 import { components } from 'node-karin'

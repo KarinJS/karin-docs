@@ -18,9 +18,9 @@ permalink: /guide/o2zidcaz/
 
 👉 其次，你应该**阅读一遍 [**《常见问题解答 / FAQ》**](./faq.md)**。<mark>很多情况下你遇到的问题也曾经困扰过很多人，并且已经被总结出了解决方案。</mark>这种情况下，直接查阅这份 FAQ 能更快地解决你的问题。
 
-<NCard title="🤔 常见问题解答 / FAQ" link="/start/faq/">
+<LinkCard  title="🤔 常见问题解答 / FAQ" href="./faq.md">
 说不定就有你正在努力寻找的答案。
-</NCard>
+</LinkCard >
 
 如果你确定不是你自己的问题，并且你遇到的问题并未列举在 FAQ 中，你可以着手准备报告问题了。
 
@@ -81,9 +81,9 @@ permalink: /guide/o2zidcaz/
 
 <p style="margin-bottom: 2em"></p>
 
-<NCard title="🙋 获取即时支持" link="http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=kDN3vwVj8Qozw94TWX69r24vxrWqkgMy&authKey=NxnqHYmo8037jCeDkO9yIFPOdQxkKa4JlxC%2FAV6UNxwGc%2FwKEVoogi44syB3BWuC&noverify=0&group_code=967068507" >
+<LinkCard title="🙋 获取即时支持" href="http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=kDN3vwVj8Qozw94TWX69r24vxrWqkgMy&authKey=NxnqHYmo8037jCeDkO9yIFPOdQxkKa4JlxC%2FAV6UNxwGc%2FwKEVoogi44syB3BWuC&noverify=0&group_code=967068507" >
 你可以加入我们的官方用户交流群 967068507 来提问
-</NCard>
-<NCard title="📬️ 通过 GitHub issue" link="https://github.com/KarinJS/Karin/issues/new/choose" >
+</LinkCard>
+<LinkCard title="📬️ 通过 GitHub issue" href="https://github.com/KarinJS/Karin/issues/new/choose" >
 也可以给通过创建新的 GitHub issue 工单
-</NCard>
+</LinkCard>

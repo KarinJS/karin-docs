@@ -36,47 +36,63 @@ pnpm create karin
 > [!note] 1.8.0 新增
 > `ki`缩写命令，使用`ki`代替`karin`，更简洁哦！
 
-::: code-group
+::: code-tabs
+@创建项目
 
-```bash [创建项目]
+```bash
 # 如果用了上面的 pnpm create karin 就不用这个啦！
 npx karin init
 ```
 
-```bash [查看所有指令]
+@查看所有指令
+
+```bash
 npx karin  # 解锁更多操作！
 ```
 
 :::
 
 📝 日常会用到的指令：
-::: code-group
+::: code-tabs
+@前台启动
 
-```bash [前台启动]
+```bash
 npx karin .  # 开始冒险！
 ```
 
-```bash [后台运行]
+@后台运行
+
+```bash
 npx karin pm2  # 悄悄在后台运行
 ```
 
-```bash [停止运行]
+@停止运行
+
+```bash
 npx karin stop  # 暂时休息一下
 ```
 
-```bash [重启服务]
+@重启服务
+
+```bash
 npx karin rs  # 刷新一下！
 ```
 
-```bash [查看日志]
+@查看日志
+
+```bash
 npx karin log  # 看看发生了什么
 ```
 
-```bash [更新全部]
+@更新全部
+
+```bash
 npx karin up  # 升级打怪！
 ```
 
-```bash [查看版本]
+@查看版本
+
+```bash
 npx karin -v  # 看看当前版本
 ```
 

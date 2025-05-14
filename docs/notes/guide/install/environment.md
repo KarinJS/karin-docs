@@ -1,15 +1,13 @@
 ---
 title: 🛠️ 环境安装
 createTime: 2025/05/14 02:39:47
-permalink: /guide/xx0m2ats/
+permalink: /guide/j6ksgvd6/
 ---
-
-# 环境安装
 
 ## Node.js <Badge type="danger" text="铛铛铛！必需品" />
 
 ::: warning 友情提示
-`Karin`是一个基于`Node.js`开发的可爱机器人框架，在 <Pill name="MIT License" link="../license" /> 下开源~
+`Karin`是一个基于`Node.js`开发的可爱机器人框架，在 [MIT License](./license.md) 下开源~
 :::
 
 ### 版本要求
@@ -38,14 +36,14 @@ permalink: /guide/xx0m2ats/
 
 1. 使用官方安装包(推荐)
 
-   - 访问 <Pill name="Node.js官网" link="https://nodejs.org/zh-cn" /> 下载安装包
-   - <Pill name="如果无法访问，可以使用下方列表的安装包哦" link="#下载地址" />
+   - 访问 [Node.js 官网](https://nodejs.org/zh-cn) 下载安装包
+   - [如果无法访问，可以使用下方列表的安装包哦](#下载地址)
    - 下载 LTS 版本的 .msi 安装包
    - 双击运行安装程序，全部下一步即可
 
 2. 使用 nvm-windows (适合需要管理多个 Node.js 版本的用户)
 
-   - 访问 <Pill name="nvm-windows" link="https://github.com/coreybutler/nvm-windows/releases" /> 下载最新版本
+   - 访问 [nvm-windows](https://github.com/coreybutler/nvm-windows/releases) 下载最新版本
    - 下载 nvm-setup.exe 并安装
    - 打开命令提示符(cmd)，运行:
 
@@ -89,14 +87,17 @@ permalink: /guide/xx0m2ats/
 
 1. 使用包管理器
 
-::: code-group
+::: code-tabs
+@tab Ubuntu/Debian
 
-```bash [Ubuntu/Debian]
+```bash
 curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
 sudo apt-get install -y nodejs
 ```
 
-```bash [CentOS/RHEL]
+@tab CentOS/RHEL
+
+```bash
 curl -fsSL https://rpm.nodesource.com/setup_lts.x | sudo bash -
 sudo yum install -y nodejs
 ```
@@ -150,11 +151,11 @@ npm -v   # 查看 npm 版本
 
 1. 下载安装包:
 
-   - <Pill name="Git官网" link="https://git-scm.com/" />
+   - [Git 官网](https://git-scm.com/)
    - 国内镜像源(推荐):
-     - <Pill name="64位Git" link="https://registry.npmmirror.com/-/binary/git-for-windows/v2.47.1.windows.1/Git-2.47.1-64-bit.exe" />
-     - <Pill name="32位Git" link="https://registry.npmmirror.com/-/binary/git-for-windows/v2.47.1.windows.1/Git-2.47.1-32-bit.exe" />
-     - <Pill name="ARM64位Git" link="https://registry.npmmirror.com/-/binary/git-for-windows/v2.47.1.windows.1/Git-2.47.1-arm64.exe" />
+     - [64 位 Git](https://registry.npmmirror.com/-/binary/git-for-windows/v2.47.1.windows.1/Git-2.47.1-64-bit.exe)
+     - [32 位 Git](https://registry.npmmirror.com/-/binary/git-for-windows/v2.47.1.windows.1/Git-2.47.1-32-bit.exe)
+     - [ARM64 位 Git](https://registry.npmmirror.com/-/binary/git-for-windows/v2.47.1.windows.1/Git-2.47.1-arm64.exe)
 
 2. 运行安装程序，全部使用`默认选项`即可
 
@@ -168,14 +169,17 @@ brew install git
 
 ### Linux 安装
 
-::: code-group
+::: code-tabs
+@tab Ubuntu/Debian
 
-```bash [Ubuntu/Debian]
+```bash
 sudo apt-get update
 sudo apt-get install git
 ```
 
-```bash [CentOS/RHEL]
+@tab CentOS/RHEL
+
+```bash
 sudo yum install git
 ```
 
@@ -225,9 +229,10 @@ pnpm 在 10.x 版本引入了一个破坏性变更
 
 :::
 
-::: code-group
+::: code-tabs
+@官方源
 
-```bash [官方源]
+```bash
 # 安装 9.x 版本的pnpm
 npm install pnpm@9 -g
 
@@ -235,7 +240,9 @@ npm install pnpm@9 -g
 npm install pnpm -g
 ```
 
-```bash [国内源]
+@国内源
+
+```bash
 # 国内加速版！
 npm --registry=https://registry.npmmirror.com install pnpm@9 -g
 
@@ -243,7 +250,9 @@ npm --registry=https://registry.npmmirror.com install pnpm@9 -g
 npm --registry=https://registry.npmmirror.com install pnpm -g
 ```
 
-```bash [查看版本]
+@查看版本
+
+```bash
 # 查看版本
 pnpm -v
 ```
@@ -260,19 +269,24 @@ pnpm -v
 
 🚀 换源指南：
 
-::: code-group
+::: code-tabs
+@淘宝源
 
-```bash [淘宝源]
+```bash
 # 推荐使用这个，速度杠杠的！
 npm config set registry https://registry.npmmirror.com
 ```
 
-```bash [腾讯源]
+@腾讯源
+
+```bash
 # 淘宝源不行？试试腾讯源！
 npm config set registry https://mirrors.cloud.tencent.com/npm
 ```
 
-```bash [官方源]
+@官方源
+
+```bash
 # 想换回官方源也可以哦
 npm config set registry https://registry.npmjs.org
 ```

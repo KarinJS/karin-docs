@@ -15,11 +15,11 @@ permalink: /guide/8qzackqe/
 以下排名不分先后 感谢所有前行者的无私奉献！  
 :::
 
-- <Pill name="NapCat" link="https://www.napcat.wiki/" />
-- <Pill name="LLOneBot" link="https://llonebot.github.io/zh-CN/" />
-- <Pill name="Lagrange.OneBot" link="https://lagrangedev.github.io/Lagrange.Doc/Lagrange.OneBot/" />
-- <Pill name="Gensokyo" link="https://github.com/Hoshinonyaruko/Gensokyo" />
-- <Pill name="OneBots" link="https://github.com/lc-cn/onebots" />
+- [NapCat](https://www.napcat.wiki/)
+- [LLOneBot](https://llonebot.github.io/zh-CN/)
+- [Lagrange.OneBot](https://lagrangedev.github.io/Lagrange.Doc/Lagrange.OneBot/)
+- [Gensokyo](https://github.com/Hoshinonyaruko/Gensokyo)
+- [OneBots](https://github.com/lc-cn/onebots)
 - 更多适配器正在路上... 🚀
 
 ## 基本配置信息

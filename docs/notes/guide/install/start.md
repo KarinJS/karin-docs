@@ -18,10 +18,9 @@ permalink: /guide/9kgsi6ub/
 - Git (可选) `LTS` - 代码版本控制工具
   :::
 
-<br>
-<NCard title="🎉 点击查看环境安装教程" link="../install/environment">
+<LinkCard title="🎉 点击查看环境安装教程" href="../install/environment.md">
 ps: ∑(っ°Д°;)っ真的很难安装吗？
-</NCard>
+</LinkCard>
 
 ### 2. 框架安装
 
@@ -29,10 +28,9 @@ ps: ∑(っ°Д°;)っ真的很难安装吗？
 安装前请确保 pnpm 版本正确哦，这很重要！
 :::
 
-<br>
-<NCard title="💫 点击查看框架安装教程" link="../install/framework">
+<LinkCard title="💫 点击查看框架安装教程" href="../install/framework">
 让我们一起打造属于你的机器人吧~
-</NCard>
+</LinkCard>
 
 ### 3. 网页控制台 ⚡️
 
@@ -40,10 +38,9 @@ ps: ∑(っ°Д°;)っ真的很难安装吗？
 Karin 为你准备了一个强大的网页控制台，让机器人管理变得轻松愉快！
 :::
 
-<br>
-<NCard title="💫 点击查看网页控制台文档" link="../start/web">
+<LinkCard title="💫 点击查看网页控制台文档" href="../advanced/web">
 持续进化中，敬请期待更多精彩功能 ✨
-</NCard>
+</LinkCard>
 
 ### 4. 接入适配器 🔌
 
@@ -51,10 +48,9 @@ Karin 为你准备了一个强大的网页控制台，让机器人管理变得�
 完美支持所有 OneBot11 标准适配器，让你的机器人更加强大！
 :::
 
-<br>
-<NCard title="💫 点击查看接入适配器文档" link="../install/platform">
+<LinkCard title="💫 点击查看接入适配器文档" href="../install/platform">
 更多平台支持正在马不停蹄开发中~
-</NCard>
+</LinkCard>
 
 ## 🤔 遇到问题？
 
