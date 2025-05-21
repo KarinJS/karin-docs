@@ -6,7 +6,7 @@ PNPM_VERSION = "9.7.1"
 [build]
 publish = "docs/.vuepress/dist"
 command = """
-npm install -g pnpm@${PNPM_VERSION}
+pnpm --version || npm install -g pnpm@${PNPM_VERSION}
 pnpm install
 pnpm run build
 """
