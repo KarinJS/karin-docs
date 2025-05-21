@@ -17,7 +17,8 @@ request 模块提供了网络请求相关的工具函数，扩展了 axios 的�
 
 同时向多个 URL 发送请求，返回最先成功响应的数据。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { raceRequest } from 'node-karin'
 import type { AxiosRequestConfig } from 'axios'
 
@@ -60,7 +61,7 @@ if (postResponse) {
 
 - `urls`: 字符串数组，包含多个要请求的 URL
 - `config`: Axios 请求配置对象，默认值:
-  ```typescript
+  ```ts
   {
     method: 'HEAD',  // 默认使用HEAD请求
     timeout: 10000   // 默认超时时间10秒
@@ -82,7 +83,8 @@ if (postResponse) {
 
 测试多个 URL 的网络可达性和响应速度，可用于选择最快的服务器或检测网络状态。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { pingRequest } from 'node-karin'
 import type { ExtendedAxiosRequestConfig } from 'node-karin'
 
@@ -146,7 +148,9 @@ console.log('最快的URL详情:', fastestDetail)
 
 - `urls`: 字符串数组，包含多个要测试的 URL
 - `config`: 扩展的 Axios 请求配置对象，支持以下特殊选项:
-  ```typescript
+  ```ts twoslash
+  // @noErrorValidation
+  // @noErrorValidation
   {
     method: 'HEAD',     // 默认使用HEAD请求
     timeout: 10000,     // 默认超时时间10秒

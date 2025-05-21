@@ -17,7 +17,8 @@ message 模块提供了消息处理的工具函数，用于创建和处理各种
 
 将消息元素数组转换为原始字符串和纯文本。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { createRawMessage } from 'node-karin'
 
 /**
@@ -38,7 +39,8 @@ const { raw, msg } = createRawMessage([
 
 消息元素归一化，主要处理字符串文本。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { makeMessage } from 'node-karin'
 
 /**
@@ -56,7 +58,8 @@ const elements2 = makeMessage(['你好', { type: 'at', targetId: '123456' }])
 
 制作简单转发消息。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { makeForward } from 'node-karin'
 
 /**
@@ -75,7 +78,8 @@ message 模块通过`segment`子模块提供了丰富的消息段构造器：
 
 ### 基础消息段
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { segment } from 'node-karin'
 
 // 文本消息
@@ -94,7 +98,8 @@ const replyMsg = segment.reply('message-id-123')
 
 ### 媒体消息段
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 // 图片消息
 const imgMsg = segment.image('https://example.com/image.jpg')
 const imgMsg2 = segment.image('/path/to/image.jpg', {
@@ -113,7 +118,8 @@ const magicRecordMsg = segment.record('https://example.com/audio.mp3', true) // 
 
 ### 结构化消息段
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 // JSON消息
 const jsonMsg = segment.json('{"type":"LightApp","data":{}}')
 
@@ -129,7 +135,8 @@ const mdTplMsg = segment.markdownTpl('template-id', { key: 'value' })
 
 ### 交互消息段
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 // 按钮
 const btnMsg = segment.button({ text: '点击按钮', data: 'button-data' })
 
@@ -161,7 +168,8 @@ const customMusicMsg = segment.customMusic(
 
 ### 游戏消息段
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 // 骰子
 const diceMsg = segment.dice(3) // 点数为3的骰子
 
@@ -174,7 +182,11 @@ const basketballMsg = segment.basketball(1) // 0-未知 1-进了 2-没进
 
 ### 转发消息
 
-```typescript
+```ts twoslash
+// @noErrorValidation
+// @noErrorValidation
+import { segment } from 'node-karin'
+
 // 自定义转发节点
 const nodeMsg = segment.node(
   '123456', // 用户ID

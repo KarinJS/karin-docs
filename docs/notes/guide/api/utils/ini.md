@@ -17,7 +17,8 @@ ini 模块提供了对 INI 格式文件的解析和写入功能，特别适用�
 
 一个预先创建好的 INI 解析器实例，可以直接用于读写 INI 文件。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { ini } from 'node-karin'
 
 // 读取INI文件
@@ -36,7 +37,8 @@ const success = ini.write(config, '/path/to/config.ini')
 
 创建一个新的 INI 解析器实例。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { createINIParser } from 'node-karin'
 
 // 创建新的解析器实例
@@ -52,7 +54,8 @@ const data = myParser.read('/path/to/file.ini')
 
 INI 解析器提供了以下方法：
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 interface INIParser {
   /**
    * 从指定路径读取并解析INI文件
@@ -75,7 +78,8 @@ interface INIParser {
 
 读取并解析 INI 文件。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 /**
  * 从指定路径读取并解析INI文件
  * @param filePath - 文件路径
@@ -97,7 +101,10 @@ const config = ini.read('/path/to/config.ini')
 
 将键值对数据写入 INI 文件。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
+import { ini } from 'node-karin'
+// ---cut---
 /**
  * 将键值对对象保存到指定路径
  * @param data - 要保存的键值对数据

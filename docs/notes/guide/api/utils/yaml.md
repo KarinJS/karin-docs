@@ -17,7 +17,8 @@ yaml 模块提供了读写 YAML 文件的工具函数，同时支持注释处理
 
 读取 YAML 文件并解析为 JavaScript 对象。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { read as readYaml } from 'node-karin'
 
 /**
@@ -32,7 +33,8 @@ const config = readYaml('/path/to/config.yaml')
 
 将 JavaScript 对象序列化为 YAML 并写入文件。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { write as writeYaml } from 'node-karin'
 
 /**
@@ -51,7 +53,8 @@ writeYaml('/path/to/config.yaml', data)
 
 将数据写入 YAML 文件并应用注释。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { save } from 'node-karin'
 
 // 方式1: 使用JSON配置文件中的注释
@@ -74,7 +77,8 @@ save('/path/to/config.yaml', data, {
 
 单独为 YAML 文件添加注释。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { comment } from 'node-karin'
 
 // 使用键值对格式的注释
@@ -94,7 +98,8 @@ comment('/path/to/config.yaml', {
 
 YamlEditor 类提供了更高级的 YAML 文件操作功能。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { YamlEditor } from 'node-karin'
 
 // 创建编辑器实例
@@ -137,7 +142,13 @@ editor.save()
 
 获取指定路径的值。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
+import { YamlEditor } from 'node-karin'
+
+// 创建编辑器实例
+const editor = new YamlEditor('/path/to/config.yaml')
+// ---cut---
 /**
  * 获取指定路径的值
  * @param path 路径，多个路径使用`.`连接，例如：`a.b.c`
@@ -150,7 +161,13 @@ const value = editor.get('server.port')
 
 设置指定路径的值。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
+import { YamlEditor } from 'node-karin'
+
+// 创建编辑器实例
+const editor = new YamlEditor('/path/to/config.yaml')
+// ---cut---
 /**
  * 设置指定路径的值
  * @param path 路径，多个路径使用`.`连接，例如：`a.b.c`
@@ -165,7 +182,13 @@ editor.set('server.port', 8080)
 
 删除指定路径的值。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
+import { YamlEditor } from 'node-karin'
+
+// 创建编辑器实例
+const editor = new YamlEditor('/path/to/config.yaml')
+// ---cut---
 /**
  * 删除指定路径
  * @param path 路径，多个路径使用`.`连接，例如：`a.b.c`
@@ -179,7 +202,8 @@ editor.del('server.temp_dir')
 
 操作数组类型的值。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 /**
  * 向指定路径的数组添加新值
  * @param path 路径，多个路径使用`.`连接
@@ -204,7 +228,13 @@ editor.remove('server.domains', 'example.org')
 
 检查路径和值。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
+import { YamlEditor } from 'node-karin'
+
+// 创建编辑器实例
+const editor = new YamlEditor('/path/to/config.yaml')
+// ---cut---
 /**
  * 检查指定路径是否存在
  * @param path 路径，多个路径使用`.`连接

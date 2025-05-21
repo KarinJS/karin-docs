@@ -15,7 +15,8 @@ config 模块提供了配置文件的初始化、读取和缓存功能，用于�
 
 所有配置相关的功能均通过`config`命名空间导出，使用时需要先导入：
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { config } from 'node-karin'
 
 // 使用config的子模块
@@ -30,7 +31,8 @@ const formatData = config.formatObject({ numbers: [1, 2, 3] })
 
 将数组中的所有元素转换为字符串类型。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { config } from 'node-karin'
 
 /**
@@ -46,7 +48,8 @@ const strings = config.formatArray(numbers) // ['1', '2', '3']
 
 递归处理对象，将嵌套的数组中所有元素转换为字符串类型。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { config } from 'node-karin'
 
 /**
@@ -75,7 +78,8 @@ const formatted = config.formatObject(obj)
 
 合并默认配置和用户配置，专用于处理 privates 和 groups 配置。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { config } from 'node-karin'
 
 /**
@@ -112,7 +116,8 @@ const merged = config.mergeDegAndCfg(defaultConfig, userConfig)
 
 获取指定配置文件的内容。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { config } from 'node-karin'
 
 /**
@@ -132,7 +137,8 @@ const freshGroups = config.getYaml('groups', 'user', true) // 强制刷新缓存
 
 修改框架配置文件。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { config } from 'node-karin'
 
 /**
@@ -172,7 +178,8 @@ const success2 = config.setConfig('privates', {
 
 清空指定目录下的所有文件，但不删除目录本身。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { config } from 'node-karin'
 
 /**
@@ -187,7 +194,8 @@ config.clearFiles('/path/to/directory')
 
 更新日志等级。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { config } from 'node-karin'
 
 /**
@@ -210,7 +218,8 @@ const currentLevel = config.updateLevel()
 
 获取 node-karin 的 package.json 信息。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { config } from 'node-karin'
 
 /**
@@ -229,7 +238,8 @@ file 子模块用于管理和操作各类配置文件，支持热更新、缓存
 
 ### 1. adapter.json 适配器配置
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { config } from 'node-karin'
 
 /**
@@ -253,7 +263,8 @@ const token = config.webSocketServerToken()
 
 ### 2. config.json 全局配置
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { config } from 'node-karin'
 
 /**
@@ -277,7 +288,8 @@ const adminList = config.admin()
 
 ### 4. groups.json 群聊/频道配置
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { config } from 'node-karin'
 
 /**
@@ -306,7 +318,8 @@ const guildConfig = config.getGuildCfg('guild123', 'channel456', '10001')
 
 ### 5. privates.json 私聊/私信配置
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { config } from 'node-karin'
 
 /**
@@ -334,7 +347,8 @@ const directConfig = config.getDirectCfg('user123', '10001')
 
 ### 6. render.json 渲染配置
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { config } from 'node-karin'
 
 /**
@@ -346,7 +360,8 @@ const renderConfig = config.getRenderCfg()
 
 ### 7. pm2.json 进程管理配置
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { config } from 'node-karin'
 
 /**
@@ -358,7 +373,8 @@ const pm2Config = config.pm2()
 
 ### 8. redis.json Redis 配置
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { config } from 'node-karin'
 
 /**
@@ -372,7 +388,8 @@ const redisConfig = config.redis()
 
 配置模块还提供了一系列路径获取函数:
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { config } from 'node-karin'
 
 /**
@@ -402,7 +419,9 @@ const ffprobe = config.ffprobePath()
 const ffplay = config.ffplayPath()
 ```
 
-```typescript
+```ts twoslash
+// @noErrorValidation
+// @noErrorValidation
 import { config } from 'node-karin'
 import { karinPathConfig } from 'node-karin/root'
 

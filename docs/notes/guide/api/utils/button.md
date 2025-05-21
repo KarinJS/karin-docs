@@ -17,7 +17,8 @@ button 模块提供了处理和转换机器人按钮消息的工具函数。
 
 根据正则表达式调用注册的按钮处理器，用于生成交互按钮元素。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { buttonHandle } from 'node-karin'
 
 /**
@@ -46,7 +47,8 @@ const buttons = await buttonHandle('正则表达式', { e: event对象, 其他�
 
 将 karin 标准格式的按钮转换为 QQ 官方按钮格式。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { karinToQQBot } from 'node-karin'
 
 /**
@@ -69,8 +71,33 @@ const qqButtons = karinToQQBot(karinButton)
 
 将 QQ 官方按钮转换为 karin 标准格式的按钮文本。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
+import { type QQBotButton } from 'node-karin'
 import { qqbotToKarin } from 'node-karin'
+
+const qqbotButtons: { buttons: QQBotButton[] }[] = [
+  {
+    buttons: [
+      {
+        id: 'example-id',
+        render_data: {
+          label: '示例按钮',
+          visited_label: '已点击',
+          style: 1,
+        },
+        action: {
+          type: 1,
+          permission: {
+            type: 2,
+          },
+          data: 'example-data',
+          unsupport_tips: '不支持的操作',
+        },
+      },
+    ],
+  },
+]
 
 /**
  * 将QQ官方按钮转换为karin标准格式的按钮
@@ -92,7 +119,8 @@ const karinButtonText = qqbotToKarin(qqbotButtons)
 
 以下是按钮相关的主要类型：
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 // 按钮元素
 interface ButtonElement {
   type: 'button'

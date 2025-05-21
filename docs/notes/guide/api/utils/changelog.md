@@ -17,7 +17,8 @@ changelog 模块提供了用于处理更新日志(CHANGELOG.md)的工具函数�
 
 提取指定版本号的更新日志内容。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { log } from 'node-karin'
 
 /**
@@ -40,7 +41,8 @@ console.log(version100Log)
 
 提取指定范围版本号的更新日志内容，可以选择向前或向后提取。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { logs } from 'node-karin'
 
 /**
@@ -67,7 +69,8 @@ const backwardLogs = logs('1.0.0', changelogContent, 2, true)
 
 提取两个指定版本号之间的所有更新日志内容。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { range } from 'node-karin'
 
 /**
@@ -90,7 +93,8 @@ const versionRangeLogs = range(changelogContent, '1.0.0', '2.0.0')
 
 将更新日志解析为以版本号为键的对象结构。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { parseChangelog } from 'node-karin'
 
 /**
@@ -113,11 +117,13 @@ console.log(changelogObj['1.0.0'])
 
 ## 使用示例
 
-```typescript
-import { readFile } from 'fs/promises'
+```ts twoslash
+// @noErrorValidation
+import { PathLike } from 'fs'
+import { FileHandle, readFile } from 'fs/promises'
 import { log, range, parseChangelog } from 'node-karin'
 
-async function getRecentChanges(changelogPath, currentVersion) {
+async function getRecentChanges(changelogPath: PathLike | FileHandle, currentVersion: string) {
   try {
     // 读取CHANGELOG.md文件
     const content = await readFile(changelogPath, 'utf-8')

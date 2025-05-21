@@ -15,7 +15,8 @@ system 模块提供了系统级工具函数，包括执行命令、时间处理�
 
 system 模块可以作为命名空间整体导入，也可以直接导入其中的函数：
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 // 作为命名空间使用
 import { system } from 'node-karin'
 system.exec('ls -la', { log: true })
@@ -29,7 +30,8 @@ exec('ls -la', { log: true })
 
 exec 模块提供了执行系统命令的功能。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { exec } from 'node-karin'
 // 或使用命名空间
 import { system } from 'node-karin'
@@ -62,7 +64,8 @@ await exec('git clone https://github.com/example/repo.git', { log: true })
 
 time 模块提供了格式化时间和获取运行时间的功能。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { uptime, formatTime } from 'node-karin'
 // 或使用命名空间
 import { system } from 'node-karin'
@@ -94,7 +97,8 @@ const diff3 = formatTime(1620000000, 1624000000) // "46天"
 
 ffmpeg 模块提供了 FFmpeg、FFprobe 和 FFplay 命令的封装。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { ffmpeg, ffprobe, ffplay } from 'node-karin'
 // 或使用命名空间
 import { system } from 'node-karin'
@@ -122,7 +126,8 @@ await ffplay('-autoexit video.mp4')
 
 ip 模块提供了 IP 地址检测和处理的功能。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { isLoopback, isIPv4Loop, isIPv6Loop, getRequestIp, isLocalRequest } from 'node-karin'
 // 或使用命名空间
 import { system } from 'node-karin'
@@ -182,7 +187,8 @@ app.get('/admin', async (req, res) => {
 
 port 模块提供了端口检测和获取空闲端口的功能。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { isPortAvailable, getAvailablePort } from 'node-karin'
 // 或使用命名空间
 import { system } from 'node-karin'
@@ -214,7 +220,8 @@ console.log(`找到可用端口: ${port}`)
 
 提供进程 ID 管理和重启进程的功能。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { killByPort, getPidsByPort, restart } from 'node-karin'
 // 或使用命名空间
 import { system } from 'node-karin'
@@ -251,7 +258,8 @@ restart(1000)
 
 error 模块提供了错误信息格式化功能。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { stringifyError, errorToString } from 'node-karin'
 // 或使用命名空间
 import { system } from 'node-karin'
@@ -289,7 +297,8 @@ try {
 
 提供获取系统信息的功能。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { isWin, isLinux, isMac, isDocker, isRoot } from 'node-karin'
 // 或使用命名空间
 import { system } from 'node-karin'
@@ -320,7 +329,8 @@ if (isRoot) {
 
 range 模块提供了数值范围限制功能。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { inRange, clamp } from 'node-karin'
 // 或使用命名空间
 import { system } from 'node-karin'
@@ -353,7 +363,8 @@ const limited3 = clamp(-5, 1, 10) // 1
 
 提供文件路径转 URL 的功能。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { fileToUrl } from 'node-karin'
 // 或使用命名空间
 import { system } from 'node-karin'
@@ -373,7 +384,8 @@ const url2 = system.fileToUrl('/path/to/file.txt')
 
 update 模块提供了检查和更新 NPM 包和 Git 插件的功能。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { checkPkgUpdate, getPkgVersion, getRemotePkgVersion, updatePkg, updateAllPkg } from 'node-karin'
 // 或使用命名空间
 import { system } from 'node-karin'
@@ -456,7 +468,8 @@ console.log(allGitResult)
 
 lock 模块提供了锁定对象方法和属性的功能，防止意外修改。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { lockMethod, lockProp, lock } from 'node-karin'
 // 或使用命名空间
 import { system } from 'node-karin'
@@ -471,7 +484,7 @@ import { system } from 'node-karin'
 // 创建测试对象
 const testObj = {
   value: 42,
-  setValue(newValue) {
+  setValue(newValue: number) {
     this.value = newValue
   },
 }
@@ -515,7 +528,8 @@ lock.prop(testObj, 'value')
 
 import 模块提供了动态导入模块的功能。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { importModule } from 'node-karin'
 // 或使用命名空间
 import { system } from 'node-karin'
@@ -545,7 +559,8 @@ const freshResult = await importModule('/path/to/module.js', true)
 
 class 模块提供了操作和检查类的工具。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { isClass } from 'node-karin'
 // 或使用命名空间
 import { system } from 'node-karin'
@@ -570,7 +585,9 @@ console.log(isClass(TestClass)) // true
 
 综合使用 system 模块中的多个函数：
 
-```typescript
+```ts twoslash
+// @noErrorValidation
+// @noErrorValidation
 import { exec, isPortAvailable, getAvailablePort, formatTime, restart, checkPkgUpdate, updatePkg, isWin, stringifyError } from 'node-karin'
 
 async function startService() {

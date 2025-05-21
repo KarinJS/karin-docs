@@ -15,7 +15,8 @@ Bot 模块提供了机器人实例的管理功能，包括注册、获取、卸�
 
 获取指定的机器人实例。可以通过索引、协议或机器人 ID 获取。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { karin } from 'node-karin'
 
 /**
@@ -39,7 +40,8 @@ const botInstance3 = karin.getBot('123456789')
 
 获取所有已注册的机器人实例，不包含索引信息。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { karin } from 'node-karin'
 
 /**
@@ -53,7 +55,8 @@ const allBots = karin.getAllBot()
 
 获取所有已注册的机器人实例，包含索引信息。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { karin } from 'node-karin'
 
 /**
@@ -68,7 +71,8 @@ const botsList = karin.getAllBotList()
 
 获取所有已注册机器人的 ID。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { karin } from 'node-karin'
 
 /**
@@ -83,7 +87,8 @@ const botIds = karin.getAllBotID()
 
 获取当前注册的机器人数量。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { karin } from 'node-karin'
 
 /**
@@ -99,7 +104,8 @@ const count = karin.getBotCount()
 
 注册一个新的机器人实例，通常由适配器内部调用，不建议直接使用。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { karin } from 'node-karin'
 
 /**
@@ -122,7 +128,8 @@ const botIndex = karin.registerBot(communication, botInstance)
 
 卸载指定的机器人实例。支持通过索引、机器人 ID 或机器人 ID 与地址组合进行卸载。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { karin } from 'node-karin'
 
 /**
@@ -149,7 +156,8 @@ const success3 = karin.unregisterBot('address', '123456789', 'ws://example.com')
 
 发送主动消息，是最常用的消息发送方法。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { karin, segment } from 'node-karin'
 
 /**
@@ -211,7 +219,8 @@ const result3 = await karin.sendMsg(
 
 联系人信息，用于指定消息发送的目标。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 interface Contact {
   /** 场景 'group'表示群聊，'private'表示私聊 */
   scene: 'group' | 'private'
@@ -226,7 +235,8 @@ interface Contact {
 
 消息发送选项。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 interface SendMsgOptions {
   /** 发送成功后撤回消息时间（秒） */
   recallMsg?: number
@@ -241,7 +251,8 @@ interface SendMsgOptions {
 
 消息发送结果。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 interface SendMsgResults {
   /** 消息ID */
   messageId: string
@@ -260,7 +271,8 @@ interface SendMsgResults {
 
 ### 获取并使用机器人实例
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { karin, segment } from 'node-karin'
 
 // 获取所有机器人实例
@@ -286,7 +298,8 @@ await karin.sendMsg(
 
 ### 高级使用：消息发送与撤回
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { karin, segment } from 'node-karin'
 
 // 发送一条5秒后自动撤回的消息
@@ -308,7 +321,8 @@ console.log(`消息已发送，ID: ${result.messageId}，时间: ${result.time}`
 
 ### 动态获取和管理机器人
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { karin } from 'node-karin'
 
 // 定期检查机器人状态的功能

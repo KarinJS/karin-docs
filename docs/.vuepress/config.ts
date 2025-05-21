@@ -85,57 +85,72 @@ export default defineUserConfig({
      * Shiki 代码高亮
      * @see https://theme-plume.vuejs.press/config/plugins/code-highlight/
      */
-    // codeHighlighter: {
-    //   twoslash: true, // 启用 twoslash
-    //   whitespace: true, // 启用 空格/Tab 高亮
-    //   lineNumbers: true, // 启用行号
-    // },
+    codeHighlighter: {
+      twoslash: true, // 启用 TypeScript twoslash 支持，提供类型提示和错误检查
+      themes: {
+        light: 'github-light-default',
+        dark: 'github-dark-default'
+      },
+      notationDiff: true, // 启用 diff 标记语法支持
+      notationErrorLevel: true, // 启用错误级别标记语法支持
+      notationFocus: true, // 启用焦点标记语法支持
+      notationHighlight: true, // 启用高亮标记语法支持
+      notationWordHighlight: true, // 启用单词高亮标记语法支持
+      highlightLines: true, // 启用行高亮功能
+      collapsedLines: false, // 禁用默认折叠代码块功能
+      lineNumbers: true, // 启用行号显示
+      // whitespace: true, // 启用 空格/Tab 高亮（当前禁用）
+      // lineNumbers: true, // 启用行号（已启用，此处为冗余配置）
+    },
 
     /* 文章字数统计、阅读时间，设置为 false 则禁用 */
-    // readingTime: true,
+    readingTime: {
+      wordPerMinute: 300, // 每分钟阅读字数
+    },
 
     /**
       * markdown
       * @see https://theme-plume.vuejs.press/config/markdown/
       */
-    // markdown: {
-    //   abbr: true,         // 启用 abbr 语法  *[label]: content
-    //   annotation: true,   // 启用 annotation 语法  [+label]: content
-    //   pdf: true,          // 启用 PDF 嵌入 @[pdf](/xxx.pdf)
-    //   caniuse: true,      // 启用 caniuse 语法  @[caniuse](feature_name)
-    //   plot: true,         // 启用隐秘文本语法 !!xxxx!!
-    //   bilibili: true,     // 启用嵌入 bilibili视频 语法 @[bilibili](bid)
-    //   youtube: true,      // 启用嵌入 youtube视频 语法 @[youtube](video_id)
-    //   artPlayer: true,    // 启用嵌入 artPlayer 本地视频 语法 @[artPlayer](url)
-    //   audioReader: true,  // 启用嵌入音频朗读功能 语法 @[audioReader](url)
-    //   icons: true,        // 启用内置图标语法  ::icon-name::
-    //   codepen: true,      // 启用嵌入 codepen 语法 @[codepen](user/slash)
-    //   replit: true,       // 启用嵌入 replit 语法 @[replit](user/repl-name)
-    //   codeSandbox: true,  // 启用嵌入 codeSandbox 语法 @[codeSandbox](id)
-    //   jsfiddle: true,     // 启用嵌入 jsfiddle 语法 @[jsfiddle](user/id)
-    //   npmTo: true,        // 启用 npm-to 容器  ::: npm-to
-    //   demo: true,         // 启用 demo 容器  ::: demo
-    //   repl: {             // 启用 代码演示容器
-    //     go: true,         // ::: go-repl
-    //     rust: true,       // ::: rust-repl
-    //     kotlin: true,     // ::: kotlin-repl
-    //   },
-    //   math: {             // 启用数学公式
-    //     type: 'katex',
-    //   },
-    //   chartjs: true,      // 启用 chart.js
-    //   echarts: true,      // 启用 ECharts
-    //   mermaid: true,      // 启用 mermaid
-    //   flowchart: true,    // 启用 flowchart
-    //   image: {
-    //     figure: true,     // 启用 figure
-    //     lazyload: true,   // 启用图片懒加载
-    //     mark: true,       // 启用图片标记
-    //     size: true,       // 启用图片大小
-    //   },
-    //   include: true,      // 在 Markdown 文件中导入其他 markdown 文件内容
-    //   imageSize: 'local', // 启用 自动填充 图片宽高属性，避免页面抖动
-    // },
+    markdown: {
+      //   abbr: true,         // 启用 abbr 语法  *[label]: content
+      //   annotation: true,   // 启用 annotation 语法  [+label]: content
+      //   pdf: true,          // 启用 PDF 嵌入 @[pdf](/xxx.pdf)
+      //   caniuse: true,      // 启用 caniuse 语法  @[caniuse](feature_name)
+      //   plot: true,         // 启用隐秘文本语法 !!xxxx!!
+      //   bilibili: true,     // 启用嵌入 bilibili视频 语法 @[bilibili](bid)
+      //   youtube: true,      // 启用嵌入 youtube视频 语法 @[youtube](video_id)
+      //   artPlayer: true,    // 启用嵌入 artPlayer 本地视频 语法 @[artPlayer](url)
+      //   audioReader: true,  // 启用嵌入音频朗读功能 语法 @[audioReader](url)
+      //   icons: true,        // 启用内置图标语法  ::icon-name::
+      //   codepen: true,      // 启用嵌入 codepen 语法 @[codepen](user/slash)
+      //   replit: true,       // 启用嵌入 replit 语法 @[replit](user/repl-name)
+      //   codeSandbox: true,  // 启用嵌入 codeSandbox 语法 @[codeSandbox](id)
+      //   jsfiddle: true,     // 启用嵌入 jsfiddle 语法 @[jsfiddle](user/id)
+      //   npmTo: true,        // 启用 npm-to 容器  ::: npm-to
+      //   demo: true,         // 启用 demo 容器  ::: demo
+      //   repl: {             // 启用 代码演示容器
+      //     go: true,         // ::: go-repl
+      //     rust: true,       // ::: rust-repl
+      //     kotlin: true,     // ::: kotlin-repl
+      //   },
+      //   math: {             // 启用数学公式
+      //     type: 'katex',
+      //   },
+      //   chartjs: true,      // 启用 chart.js
+      //   echarts: true,      // 启用 ECharts
+      //   mermaid: true,      // 启用 mermaid
+      //   flowchart: true,    // 启用 flowchart
+      //   image: {
+      //     figure: true,     // 启用 figure
+      //     lazyload: true,   // 启用图片懒加载
+      //     mark: true,       // 启用图片标记
+      //     size: true,       // 启用图片大小
+      //   },
+      //   include: true,      // 在 Markdown 文件中导入其他 markdown 文件内容
+      //   imageSize: 'local', // 启用 自动填充 图片宽高属性，避免页面抖动
+      // shiki
+    },
 
     /**
      * 水印

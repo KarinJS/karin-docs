@@ -44,7 +44,8 @@ permalink: /guide/wmhiz1s1/
 
 ## 配置组件
 
-```js twoslash
+```ts twoslash
+// @noErrorValidation
 import { components } from 'node-karin'
 
 export default {
@@ -95,91 +96,104 @@ export default {
 
 ::: code-tabs
 
-```js twoslash [基础用法]
+```ts twoslash
+// @noErrorValidation [基础用法]
 import { components } from 'node-karin'
 // ---cut-before---
 // 创建全新无任何配置的输入框
 components.input.create('input-key')
 ```
 
-```js twoslash [字符串]
+```ts twoslash
+// @noErrorValidation [字符串]
 import { components } from 'node-karin'
 // ---cut-before---
 // 创建一个字符串输入框
 components.input.string('input-key')
 ```
 
-```js twoslash [数字]
+```ts twoslash
+// @noErrorValidation [数字]
 import { components } from 'node-karin'
 // ---cut-before---
 // 创建一个数字输入框
 components.input.number('input-key')
 ```
 
-```js twoslash [布尔值]
+```ts twoslash
+// @noErrorValidation [布尔值]
 import { components } from 'node-karin'
 // ---cut-before---
 // 创建一个布尔值输入框
 components.input.boolean('input-key')
 ```
 
-```js twoslash [日期]
+```ts twoslash
+// @noErrorValidation [日期]
 import { components } from 'node-karin'
 // ---cut-before---
 // 创建一个日期输入框
 components.input.date('input-key')
 ```
 
-```js twoslash [时间]
+```ts twoslash
+// @noErrorValidation [时间]
 import { components } from 'node-karin'
 // ---cut-before---
 // 创建一个时间输入框
 components.input.time('input-key')
 ```
 
-```js twoslash [日期时间]
+```ts twoslash
+// @noErrorValidation [日期时间]
 import { components } from 'node-karin'
 // ---cut-before---
 // 创建一个日期时间输入框
 components.input.datetime('input-key')
 ```
 
-```js twoslash [邮箱]
+```ts twoslash
+// @noErrorValidation [邮箱]
 import { components } from 'node-karin'
 // ---cut-before---
 // 创建一个邮箱输入框
 components.input.email('input-key')
 ```
 
-```js twoslash [URL]
+```ts twoslash
+// @noErrorValidation [URL]
 import { components } from 'node-karin'
 // ---cut-before---
 // 创建一个URL输入框
 components.input.url('input-key')
 ```
 
-```js twoslash [电话]
+```ts twoslash
+// @noErrorValidation [电话]
 import { components } from 'node-karin'
 // ---cut-before---
 // 创建一个电话输入框
 components.input.tel('input-key')
 ```
 
-```js twoslash [密码]
+```ts twoslash
+// @noErrorValidation [密码]
 import { components } from 'node-karin'
 // ---cut-before---
 // 创建一个密码输入框
 components.input.password('input-key')
 ```
 
-```js twoslash [JSON]
+```ts twoslash
+// @noErrorValidation [JSON]
 import { components } from 'node-karin'
 // ---cut-before---
 // 创建一个JSON输入框
 components.input.json('input-key')
 ```
 
-```js twoslash [单维数组]
+```ts twoslash
+// @noErrorValidation [单维数组]
 import { components } from 'node-karin'
 // ---cut-before---
 // 创建一个单维数组容器
@@ -205,6 +219,7 @@ components.input.group('input-key')
 | `基础参数`    | `ComponentProps`                                                            | 每个组件都继承自这个 [**基础参数**](#基础参数) |
 
 ```ts twoslash
+// @noErrorValidation
 import { components } from 'node-karin'
 // ---cut-before---
 export interface ValidationRule {
@@ -225,7 +240,8 @@ export interface ValidationRule {
 
 #### 调用示例
 
-```js twoslash
+```ts twoslash
+// @noErrorValidation
 import { components } from 'node-karin'
 // ---cut-before---
 // create函数可以随意换成其他 因为有时候我们不需要配置那么多参数 可以使用一些其他默认方法的参数
@@ -264,7 +280,8 @@ components.input.create('input-key', {
 
 #### 调用示例
 
-```js twoslash
+```ts twoslash
+// @noErrorValidation
 import { components } from 'node-karin'
 // ---cut-before---
 // 基础用法
@@ -310,7 +327,8 @@ components.divider.vertical('divider-key') // orientation 参数默认为 vertic
 
 #### 调用示例
 
-```js twoslash
+```ts twoslash
+// @noErrorValidation
 import { components } from 'node-karin'
 // ---cut-before---
 components.switch.create('switch-key', {
@@ -381,7 +399,8 @@ components.switch.create('switch-key', {
 手风琴的调用比较复杂 请仔细阅读此部分
 :::
 
-```js twoslash
+```ts twoslash
+// @noErrorValidation
 import { components } from 'node-karin'
 // ---cut-before---
 // 基本调用方法
@@ -401,7 +420,8 @@ components.accordion.create('accordion-key', {
 完整调用示例
 :::
 
-```js twoslash
+```ts twoslash
+// @noErrorValidation
 import { components } from 'node-karin'
 // ---cut-before---
 components.accordion.create('accordion-key', {
@@ -498,7 +518,8 @@ A: 比如：`{ title: '标题', input: '数据项' }`，那么 `title` 就是键
 
 #### 调用示例
 
-```js twoslash
+```ts twoslash
+// @noErrorValidation
 import { components } from 'node-karin'
 // ---cut-before---
 components.accordionPro.create(
@@ -576,7 +597,8 @@ components.accordionPro.create(
 
 #### 调用示例
 
-```js twoslash
+```ts twoslash
+// @noErrorValidation
 import { components } from 'node-karin'
 // ---cut-before---
 // 基础用法
@@ -598,7 +620,8 @@ components.radio.group('radio-group', {
 
 完整配置示例：
 
-```js twoslash
+```ts twoslash
+// @noErrorValidation
 import { components } from 'node-karin'
 // ---cut-before---
 components.radio.group('radio-group', {
@@ -693,7 +716,8 @@ components.radio.group('radio-group', {
 
 #### 调用示例
 
-```js twoslash
+```ts twoslash
+// @noErrorValidation
 import { components } from 'node-karin'
 // ---cut-before---
 // 基础用法
@@ -715,7 +739,8 @@ components.checkbox.group('checkbox-group', {
 
 完整配置示例：
 
-```js twoslash
+```ts twoslash
+// @noErrorValidation
 import { components } from 'node-karin'
 // ---cut-before---
 components.checkbox.group('checkbox-group', {
@@ -796,6 +821,7 @@ components.checkbox.group('checkbox-group', {
 **示例：**
 
 ```ts twoslash
+// @noErrorValidation
 const numbers: number[] = [1, 2, 3, 4, 5]
 const names: string[] = ['Alice', 'Bob', 'Charlie']
 ```
@@ -816,7 +842,8 @@ const names: string[] = ['Alice', 'Bob', 'Charlie']
 
 #### 调用示例
 
-```js twoslash
+```ts twoslash
+// @noErrorValidation
 import { components } from 'node-karin'
 // ---cut-before---
 components.input.group('group-key', {
@@ -870,7 +897,8 @@ components.input.group('group-key', {
 
 ## 下面是一个我写的示例文件
 
-```js twoslash
+```ts twoslash
+// @noErrorValidation
 import { components } from 'node-karin'
 
 export default {

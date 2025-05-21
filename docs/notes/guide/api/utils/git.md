@@ -17,7 +17,8 @@ git 模块提供了与 Git 仓库交互的实用函数，主要用于获取分�
 
 获取本地 Git 仓库的分支列表。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { getLocalBranches } from 'node-karin'
 
 /**
@@ -30,7 +31,8 @@ const branches = await getLocalBranches('/path/to/repo')
 
 **返回值类型：**
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 interface GitLocalBranches {
   /** 默认分支 */
   defaultBranch: string
@@ -43,7 +45,8 @@ interface GitLocalBranches {
 
 获取本地 Git 仓库的默认分支。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { getDefaultBranch } from 'node-karin'
 
 /**
@@ -58,7 +61,8 @@ const branch = await getDefaultBranch('/path/to/repo')
 
 获取远程 Git 仓库的分支列表。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { getRemoteBranches } from 'node-karin'
 
 /**
@@ -71,7 +75,8 @@ const remoteBranches = await getRemoteBranches('/path/to/repo')
 
 **返回值类型：**
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 interface GitRemoteBranches {
   /** 分支名称 */
   branch: string
@@ -86,7 +91,8 @@ interface GitRemoteBranches {
 
 获取本地分支的最新提交哈希。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { getLocalCommitHash } from 'node-karin'
 
 /**
@@ -105,7 +111,8 @@ const hash = await getLocalCommitHash('/path/to/repo', {
 
 获取远程分支的最新提交哈希。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { getRemoteCommitHash } from 'node-karin'
 
 /**
@@ -126,7 +133,8 @@ const hash = await getRemoteCommitHash('/path/to/repo', {
 
 拉取 Git 仓库更新，支持普通 pull 和强制更新。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { gitPull } from 'node-karin'
 
 /**
@@ -145,7 +153,8 @@ const result = await gitPull('/path/to/repo', {
 
 **返回值类型：**
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 interface GitPullResult {
   /** 是否成功 */
   status: boolean
@@ -167,7 +176,8 @@ interface GitPullResult {
 
 执行命令行命令并返回结果。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { exec } from 'node-karin'
 
 /**
@@ -184,7 +194,7 @@ const result = await exec('git status', {
 
 **返回值类型：**
 
-```typescript
+```ts
 {
   status: boolean // 执行状态
   error: Error | null // 错误信息

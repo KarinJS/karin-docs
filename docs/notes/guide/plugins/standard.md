@@ -155,7 +155,8 @@ permalink: /guide/p13zmecw/
 
 为了减少开发者的工作量，`karin`提供了一个内置函数，用户快速复制默认配置文件到用户配置文件夹下
 
-```js twoslash
+```ts twoslash
+// @noErrorValidation
 import { copyConfigSync } from 'node-karin'
 
 // 第一个参数为默认配置目录

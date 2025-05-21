@@ -15,7 +15,8 @@ fs 模块是 node-karin 的文件系统工具集合，提供了一系列便捷�
 
 fs 模块可以作为命名空间整体导入，也可以直接导入其中的函数：
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 // 作为命名空间使用
 import { fs } from 'node-karin'
 fs.file.downFile('https://example.com/image.png', '/path/to/save.png')
@@ -27,7 +28,8 @@ downFile('https://example.com/image.png', '/path/to/save.png')
 
 fs 模块下的许多子模块也可以作为命名空间使用：
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 // 使用json命名空间
 import { json } from 'node-karin'
 const config = await json.read('/path/to/config.json')
@@ -49,7 +51,8 @@ file 模块提供了文件下载、复制和递归目录操作等功能。
 
 ### 文件下载
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { downFile, downloadFile } from 'node-karin'
 
 /**
@@ -80,7 +83,8 @@ if (result.success) {
 
 ### 路径处理
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { absPath } from 'node-karin'
 
 /**
@@ -99,7 +103,8 @@ const uriPath = absPath('./relative/path', true, true) // 'file:///absolute/path
 
 ### 插件目录创建
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { createPluginDir } from 'node-karin'
 
 /**
@@ -113,7 +118,8 @@ await createPluginDir('my-plugin', ['config', 'data', 'logs', 'temp']) // 创建
 
 ### 文件列表获取
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { getFiles } from 'node-karin'
 
 /**
@@ -131,7 +137,8 @@ const configFiles = getFiles('/path/to/dir', ['.json', '.yaml'])
 
 ### 配置文件复制
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { copyConfig, copyConfigSync } from 'node-karin'
 
 /**
@@ -152,7 +159,8 @@ copyConfigSync('template/config', 'user/config')
 
 ### 递归文件获取
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { getAllFiles, getAllFilesSync } from 'node-karin'
 
 /**
@@ -168,7 +176,7 @@ const files = getAllFilesSync('src', {
 })
 
 // 异步版本
-const files = await getAllFiles('src', {
+const files2 = await getAllFiles('src', {
   exclude: ['.d.ts'], // 排除.d.ts文件
   returnType: 'rel', // 返回相对路径
 })
@@ -180,7 +188,8 @@ path 模块提供了路径处理和比较相关的工具函数。
 
 ### 按后缀筛选文件
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { filesByExt } from 'node-karin'
 
 /**
@@ -199,7 +208,8 @@ const scriptFiles = filesByExt('./src', ['.js', '.ts'], 'abs')
 
 ### 路径分割
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { splitPath } from 'node-karin'
 
 /**
@@ -214,7 +224,8 @@ const { dirname, basename } = splitPath('/path/to/file.txt')
 
 ### 相对路径处理
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { getRelPath, urlToPath } from 'node-karin'
 
 /**
@@ -236,7 +247,8 @@ const rootPath = urlToPath(import.meta.url) // '../../../'
 
 ### 路径比较和检查
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { isSubPath, isPathEqual, formatPath } from 'node-karin'
 
 /**
@@ -270,7 +282,8 @@ data 模块提供了各种数据格式转换和处理函数。
 
 ### Base64 转换
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { base64 } from 'node-karin'
 
 /**
@@ -291,7 +304,8 @@ const cleanBase64 = await base64('base64://aGVsbG8=') // 'aGVsbG8='
 
 ### Buffer 转换
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { buffer, stream } from 'node-karin'
 
 /**
@@ -320,7 +334,8 @@ const streamBuffer = await stream(createReadStream('/path/to/file.txt'))
 
 ### 其他工具函数
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { readFile, randomStr } from 'node-karin'
 
 /**
@@ -345,7 +360,8 @@ pkg 模块提供了获取 NPM 包路径和插件信息的函数。
 
 ### 获取包根目录
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { pkgRoot } from 'node-karin'
 
 /**
@@ -363,7 +379,8 @@ const lodashRoot = pkgRoot('lodash', import.meta.url)
 
 ### 插件信息获取
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { getPluginInfo, isPlugin } from 'node-karin'
 
 /**
@@ -391,7 +408,8 @@ node-karin 提供了同步和异步两个版本的文件检查函数。
 
 ### 异步文件检查 (fsPromises)
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { exists, isDir, isFile, mkdir, existToMkdir } from 'node-karin'
 
 /**
@@ -432,7 +450,8 @@ const ensured = await existToMkdir('/path/to/ensure/directory')
 
 ### 同步文件检查 (fsSync)
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { existsSync, isDirSync, isFileSync, mkdirSync, existToMkdirSync, rmSync } from 'node-karin'
 
 /**
@@ -486,7 +505,8 @@ rmSync('/path/to/directory', { recursive: true, force: true })
 
 json 模块提供了读写 JSON 文件的便捷函数，支持同步和异步操作。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { readJson, writeJson, readJsonSync, writeJsonSync } from 'node-karin'
 // 或使用命名空间
 import { json } from 'node-karin'
@@ -539,7 +559,9 @@ const successSync2 = json.writeSync('/path/to/config.json', data)
 
 yaml 模块提供了读写 YAML 文件的工具函数，同时支持注释处理和高级编辑功能。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
+// @noErrorValidation
 import { readYaml, writeYaml, YamlEditor } from 'node-karin'
 // 或使用命名空间
 import { yaml } from 'node-karin'
@@ -599,10 +621,13 @@ editor.save()
 
 changelog 模块提供了用于处理更新日志(CHANGELOG.md)的工具函数。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { log, logs, range, parseChangelog } from 'node-karin'
 // 或使用命名空间
 import { changelog } from 'node-karin'
+
+import fs from 'node:fs'
 
 /**
  * 提取指定版本号的更新日志
@@ -653,10 +678,13 @@ const changelogObj2 = changelog.parseChangelog(changelogContent)
 
 综合使用 fs 模块中的多个函数：
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { downFile, exists, mkdir, readJson, writeJson, base64, formatPath } from 'node-karin'
+import path from 'node:path'
 
-async function processConfigFile(configPath) {
+const configPath = 'config.json'
+async function processConfigFile(configPath: string) {
   // 确保目录存在
   const dir = formatPath(path.dirname(configPath))
   if (!(await exists(dir))) {

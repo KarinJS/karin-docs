@@ -24,6 +24,7 @@ permalink: /guide/49w0mt5c/
 | **notice.privateFileUploaded** | 在私聊中文件上传时触发。       |
 
 ```ts twoslash
+// @noErrorValidation
 import { ReceiveLikeNotice, FriendDecreaseNotice, FriendIncreaseNotice, PrivatePokeNotice, PrivateRecallNotice, PrivateFileUploadedNotice } from 'node-karin'
 // ---cut-before---
 /** 私聊通知事件对应的对象类型 */
@@ -58,6 +59,7 @@ interface FriendNoticeEventMap {
 | **notice.groupHonorChanged**       | 群荣誉变更时触发。         |
 
 ```ts twoslash
+// @noErrorValidation
 import {
   GroupPokeNotice,
   GroupRecallNotice,

@@ -40,7 +40,8 @@ common 模块只能通过命名空间对象方式使用，不支持直接导入�
 
 通过导入 common 命名空间来访问所有函数：
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { common } from 'node-karin'
 
 // 通过命名空间访问函数
@@ -54,7 +55,8 @@ const timeDiff = common.formatTime(1620000000)
 
 对 Axios 进行简单封装，优化错误处理和超时处理。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { common } from 'node-karin'
 
 /**
@@ -80,7 +82,8 @@ const postResponse = await common.axios('https://example.com/api', 'post', { dat
 
 计算两个时间戳之间的时间差，并格式化为人类可读的字符串。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { common } from 'node-karin'
 
 /**
@@ -101,7 +104,8 @@ const diff2 = common.formatTime(1620000000, 1624000000) // "46天"
 
 将多张图片合并成一张图片。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { common } from 'node-karin'
 
 /**
@@ -128,7 +132,8 @@ console.log(result.height) // 合并后图片的高度
 
 将图片路径数组转换为绝对路径数组，并处理 base64 格式的图片。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { common } from 'node-karin'
 
 /**
@@ -149,7 +154,8 @@ const paths = common.getAbsPath(['/relative/path/image.jpg', 'base64://...'], '/
 
 更新 YAML 文件，支持添加注释。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { common } from 'node-karin'
 
 /**
@@ -171,7 +177,8 @@ common.updateYaml('/path/to/config.yaml', [
 
 获取不同类型的插件列表。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { common } from 'node-karin'
 
 // 获取NPM插件列表
@@ -206,7 +213,8 @@ common 模块同样重新导出了按钮和消息处理相关的函数：
 
 ## 使用示例
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { common } from 'node-karin'
 
 async function processUserData(userId) {
@@ -235,7 +243,7 @@ async function processUserData(userId) {
   console.log(`账户创建于 ${accountAge} 前`)
 
   // 保存更新后的用户数据
-  await common.writeJson(`${userDir}/data.json`, response.data)
+  common.writeJson(`${userDir}/data.json`, response.data)
 
   return response.data
 }
