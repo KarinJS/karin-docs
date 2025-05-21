@@ -1,10 +1,15 @@
 [build.environment]
 NODE_VERSION = "21.7.3"
 PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "1"
+PNPM_VERSION = "9.7.1"
 
 [build]
 publish = "docs/.vuepress/dist"
-command = "pnpm run build"
+command = """
+npm install -g pnpm@${PNPM_VERSION}
+pnpm install
+pnpm run build
+"""
 
 [[headers]]
 for = "/assets/*"
@@ -12,14 +17,3 @@ for = "/assets/*"
 cache-control = '''
     max-age=31536000,
     immutable'''
-
-[build.environment]
-PNPM_VERSION = "9.7.1"
-
-[build]
-command = """
-npm install -g pnpm@${PNPM_VERSION}
-pnpm config set registry https://registry.npmmirror.com
-pnpm install
-pnpm run build
-"""
