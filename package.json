@@ -12,7 +12,7 @@
   "scripts": {
     "dev": "vuepress dev docs",
     "dev-clean": "vuepress dev docs --clean-cache --clean-temp",
-    "build": "vuepress build docs --clean-cache --clean-temp",
+    "build": "vuepress build docs",
     "preview": "http-server docs/.vuepress/dist",
     "vp-update": "pnpm dlx vp-update"
   },

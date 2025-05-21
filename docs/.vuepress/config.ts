@@ -39,7 +39,10 @@ export default defineUserConfig({
         Components({
           resolvers: [ElementPlusResolver()],
         }),
-      ]
+      ],
+      ssr: {
+        noExternal: [/element-plus/]
+      },
     }
   }),
   shouldPrefetch: false, // 站点较大，页面数量较多时，不建议启用
