@@ -1,6 +1,10 @@
 import { viteBundler } from '@vuepress/bundler-vite'
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
+import tailwindcss from '@tailwindcss/vite'
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 export default defineUserConfig({
   base: '/',
@@ -10,25 +14,53 @@ export default defineUserConfig({
 
   head: [
     // 配置站点图标
-    ['link', { rel: 'icon', type: 'image/png', href: 'https://theme-plume.vuejs.press/favicon-32x32.png' }],
+    ['meta', { name: 'msvalidate.01', content: '8D5DDEA97F72740B73499AA520B67A1A' }],
+    ['meta', { name: 'google-site-verification', content: '--V9ZVVBfakHdqwR54bgY6jnFPXz8XFBWhwsPEiBb5Q' }],
+    ['meta', { property: 'og:title', content: 'Karin' }],
+    ['meta', { property: 'og:description', content: 'An open source high-performance bot framework built with TypeScript. Supports functions such as multi-adapter, multi-platform access and custom renderer.' }],
+    ['meta', { property: 'og:image', content: 'https://karin.fun/logo-2.png' }],
+    ['meta', { property: 'og:image:width', content: '582' }],
+    ['meta', { property: 'og:image:height', content: '648' }],
+    ['meta', { property: 'og:url', content: 'https://karin.fun/' }],
+    ['meta', { property: 'og:license', content: 'https://karin.fun/docs/license' }],
+    ['meta', { name: 'author', content: 'KarinJS Team' }],
+    ['meta', { name: 'description', content: 'An open source high-performance bot framework built with TypeScript. Supports functions such as multi-adapter, multi-platform access and custom renderer.' }],
+    ['meta', { name: 'keywords', content: 'Bot frame, Robot frame, TypeScript' }],
+    ['link', { rel: 'icon', type: 'image/png', href: '/images/logo.png' }],
   ],
 
-  bundler: viteBundler(),
+  bundler: viteBundler({
+    viteOptions: {
+      plugins: [
+        tailwindcss(),
+        AutoImport({
+          resolvers: [ElementPlusResolver()],
+        }),
+        Components({
+          resolvers: [ElementPlusResolver()],
+        }),
+      ]
+    }
+  }),
   shouldPrefetch: false, // 站点较大，页面数量较多时，不建议启用
 
   theme: plumeTheme({
+    plugins: {
+      // 如果您在此处直接声明为 true，则表示开发环境和生产环境都启用该功能
+      git: process.env.NODE_ENV === 'production'
+    },
     /* 添加您的部署域名, 有助于 SEO, 生成 sitemap */
-    // hostname: 'https://your_site_url',
+    hostname: 'https://karin.fun',
 
     /* 文档仓库配置，用于 editLink */
-    // docsRepo: '',
-    // docsDir: 'docs',
+    docsRepo: 'KarinJS/Karin',
+    docsDir: 'docs',
     // docsBranch: '',
 
     /* 页内信息 */
     editLink: true,
     // lastUpdated: true,
-    // contributors: true,
+    contributors: true,
     changelog: false,
 
     /**
@@ -99,8 +131,6 @@ export default defineUserConfig({
       highlightLines: true, // 启用行高亮功能
       collapsedLines: false, // 禁用默认折叠代码块功能
       lineNumbers: true, // 启用行号显示
-      // whitespace: true, // 启用 空格/Tab 高亮（当前禁用）
-      // lineNumbers: true, // 启用行号（已启用，此处为冗余配置）
     },
 
     /* 文章字数统计、阅读时间，设置为 false 则禁用 */
@@ -141,14 +171,14 @@ export default defineUserConfig({
       //   echarts: true,      // 启用 ECharts
       //   mermaid: true,      // 启用 mermaid
       //   flowchart: true,    // 启用 flowchart
-      //   image: {
-      //     figure: true,     // 启用 figure
-      //     lazyload: true,   // 启用图片懒加载
-      //     mark: true,       // 启用图片标记
-      //     size: true,       // 启用图片大小
-      //   },
+      image: {
+        figure: true,     // 启用 figure
+        lazyload: true,   // 启用图片懒加载
+        mark: true,       // 启用图片标记
+        size: true,       // 启用图片大小
+      },
       //   include: true,      // 在 Markdown 文件中导入其他 markdown 文件内容
-      //   imageSize: 'local', // 启用 自动填充 图片宽高属性，避免页面抖动
+      imageSize: 'local', // 启用 自动填充 图片宽高属性，避免页面抖动
       codeTree: true,      // 启用 代码树
     },
 
@@ -162,17 +192,17 @@ export default defineUserConfig({
      * 评论 comments
      * @see https://theme-plume.vuejs.press/guide/features/comments/
      */
-    // comment: {
-    //   provider: '', // "Artalk" | "Giscus" | "Twikoo" | "Waline"
-    //   comment: true,
-    //   repo: '',
-    //   repoId: '',
-    //   category: '',
-    //   categoryId: '',
-    //   mapping: 'pathname',
-    //   reactionsEnabled: true,
-    //   inputPosition: 'top',
-    // },
+    comment: {
+      provider: 'Giscus', // "Artalk" | "Giscus" | "Twikoo" | "Waline"
+      comment: true,
+      repo: 'KarinJS/Karin',
+      repoId: 'R_kgDOLcebnw',
+      category: 'Announcements',
+      categoryId: 'DIC_kwDOLcebn84CeJZH',
+      mapping: 'pathname',
+      reactionsEnabled: true,
+      inputPosition: 'bottom',
+    },
 
     /**
      * 资源链接替换

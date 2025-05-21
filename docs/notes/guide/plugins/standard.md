@@ -64,13 +64,252 @@ permalink: /guide/p13zmecw/
 
 </details>
 
+## 了解插件
+
+> [!note]
+> 本章节不涉及插件创建相关内容  
+> 这里很重要，认真观看哦
+
+插件可分`3`种类型，分别是
+
+- `Npm插件`: 最明显的特征是通过`pnpm`安装的插件，通常是已经发布到 `npmjs.org` 托管的插件
+- `Git插件`: 最明显的特征是通过`git`克隆的插件，通常是托管在 `Github` 或 `Gitee` 上的插件
+- `App插件`: 通常是指单个`js`、`ts`文件，通常处于`./plugins/karin-plugin-example`目录下
+
+### App 插件
+
+> [!tip]
+> 因为`App`插件是最简单的插件，这里我们先来认识一下它  
+> 通过`pnpm create karin`创建项目  
+> 在 `./plugins` 目录下，附带了 `karin-plugin-example` 文件夹
+
+此时，`karin-plugin-example` 就是我们所说的 `App插件`  
+但是你打开它，会发现它是一个空文件夹，那么此时我们来了解一下 `App插件` 的特征
+
+- `App插件` 是一个处于 `./plugins` 目录下的文件夹
+- 目录下不允许存在 `package.json` 文件
+- 目录必须是`karin-plugin-` 开头的文件夹
+
+满足以上条件的文件夹，都会被当做 `App插件` 来处理。
+
+### package.json
+
+> [!tip]
+> 在了解 `Npm插件` 和 `Git插件` 之前，我们先来了解一下 `package.json` 文件  
+> 无论是 `Npm插件` 还是 `Git插件`，都需要有一个 `package.json` 文件  
+> 并且 `package.json` 文件中必须包含 `karin` 字段
+
+我们先来看一个标准的 `package.json`
+
+```json
+{
+  "name": "@karinjs/project", // npm包的名称
+  "version": "1.0.0", // npm包的版本号
+  "description": "", // npm包的描述
+  "keywords": [], // npm包的关键字
+  "homepage": "", // npm包的主页
+  "repository": {
+    "type": "git", // npm包的仓库类型
+    "url": "" // npm包的仓库地址
+  },
+  "license": "MIT", // npm包的许可证
+  "author": "shijin", // npm包的作者
+  "type": "module", // npm包的类型 没有此字段默认为 commonjs
+  "main": "", // npm包的入口文件
+  "scripts": {
+    // npm包的脚本
+    // ...
+  },
+  "dependencies": {
+    // npm包的依赖
+    // ...
+  },
+  "devDependencies": {
+    // npm包的开发依赖
+    // ...
+  },
+  "peerDependencies": {
+    // npm包的对等依赖
+    // ...
+  }
+}
+```
+
+而 `karin` 对于 `npm、git` 两种插件包，都需要存在以下字段
+
+```json
+{
+  // ...
+  "karin": {
+    /** ts入口 */
+    "main": "",
+    /** 插件app列表 */
+    "apps": [],
+    /** web配置文件 */
+    "web": "",
+    /** ts插件app列表 ts专属 仅在ts开发模式下生效 */
+    ["ts-apps"]: [],
+    /** ts-web */
+    ["ts-web"]: [],
+    /** 静态资源目录 */
+    "static": [],
+    /** 基本文件夹结构 */
+    "files": [],
+    /** 环境变量配置 */
+    "env": [],
+    /** 引擎兼容性 官方的翻译。。。奇奇怪怪的 */
+    "engines": {
+      /**
+       * @description karin版本
+       * @example ^0.0.1
+       * @example >=0.0.1
+       * @example 0.0.1
+       * @example 0.0.x
+       */
+      "karin": ""
+    }
+  }
+}
+```
+
+当前，并未所有字段都是必须的，严格意义来说，只有 `karin` 字段是必须的。
+
+```json
+{
+  // ...
+  "main": "dist/index.js", // 插件的入口文件
+  "karin": {} // 只要这样写，就是一个合法的插件，在加载的时候会正常加载入口文件
+}
+```
+
+#### 字段说明
+
+> [!IMPORTANT]
+> 这里所有的字段都不是必须的  
+> 但建议根据需要进行配置  
+> 所有路径相关的字段，都是**相对路径**，相对于 `package.json` 文件所在的目录
+
+| key             | 示例                 | 类型                   | 备注                                                           |
+| --------------- | -------------------- | ---------------------- | -------------------------------------------------------------- |
+| `apps`          | `[src/apps]`         | `string` \| `string[]` | js 环境下的 apps 目录                                          |
+| `web`           | `dist/web.config.js` | `string`               | web 配置文件的路径                                             |
+| `static`        | `[src/static]`       | `string` \| `string[]` | 静态资源目录                                                   |
+| `files`         | `[src]`              | `string` \| `string[]` | 基本文件夹结构，会自动在`@karinjs/{plugin_name}`下创建的文件夹 |
+| `env`           | `看下方详细说明`     | `PkgEnv[]`             | 环境变量配置，会自动写入`.env`、`process.env`中                |
+| `engines`       | `{}`                 | `object`               | 引擎兼容性配置                                                 |
+| `engines.karin` | `>=1.8.0`            | `string`               | karin 版本要求，支持 `^`、`>=`、`<=`、`>`、`<`、`=`等语法      |
+|                 |                      |                        |                                                                |
+| `main`          | `src/index.ts`       | `string`               | ts 环境下的入口，仅在 ts 下生效                                |
+| `ts-apps`       | `[src/apps]`         | `string` \| `string[]` | ts 环境下的 apps 目录，仅在 ts 下生效                          |
+| `ts-web`        | `dist/web.config.js` | `string`               | ts 环境下的 web 配置文件的路径                                 |
+
+- `static`:
+
+  - 此字段用于给远程`puppeteer`请求静态资源时使用
+  - 默认值为 `resource` `resources`
+  - `1.8.0` 版本之前的默认值为 `resource`
+
+- `env`:
+
+  - 此字段用于挂载环境变量到 `process.env`、`.env` 中
+  - 这里的字段优先级是高于**插件本身被加载**的
+  - 请不要配置`karin`已有的环境变量
+  - 类型如下:
+
+  ```ts
+  export interface PkgEnv {
+    /** 变量名 */
+    key: string
+    /** 变量值 */
+    value: string
+    /** 变量注释 */
+    comment: string
+  }
+  ```
+
+  - 示例:
+
+  ```json
+  {
+    "karin": {
+      "env": [
+        {
+          "key": "KARIN_TEST",
+          "value": "test",
+          "comment": "测试环境变量"
+        }
+      ]
+    }
+  }
+  ```
+
+  - 此时可以通过 `process.env.KARIN_TEST` 来获取变量值 `test`
+  - 而在 `.env` 中会自动生成 `KARIN_TEST=test` 的变量
+
+  ```ini
+  # ...
+  # 测试环境变量
+  KARIN_TEST=test
+  ```
+
+  - `files`:
+    - 如果字段不存在，默认创建 `config`、`data`、`resources` 三个文件夹
+    - 如果字段存在并且为空，则不会创建任何文件夹
+    - 对于 `App插件` 来说，`karin`的处理方式是**默认字段不存在**
+    - 也就是说，`App插件` 也可以在`@karinjs`下统一管理配置啦
+
+### Npm 插件
+
+> [!IMPORTANT]
+> 推荐所有开发者都使用 `此方式` 来发布插件，而不是使用 `Git` 方式~
+> 如果你不会使用 `npm` 发布插件，请查看后续章节的通过`npm`发布插件
+
+特征:
+
+- 处于项目的 `package.json` 中的 `dependencies` 或 `devDependencies` 中
+- 通过包管理器安装
+- 插件本身的 `package.json` 中包含`karin`字段
+
+### Git 插件
+
+> [!warning]
+> 此类型的插件包只推荐用于开发阶段，生产环境更推荐发布到 `npm` 上  
+> 注意: 在这里，`package.json`中是不需要强制包含`karin`字段的  
+> 其实与 `App插件` 最根本的区别就是 `package.json` 中是否包含 `karin` 字段...
+
+为什么会不推荐 `git插件`发布到生产环境:
+
+- 需要单独安装: 相较于`pnpm`只需要通过`nodejs`内置的`npm`一键安装...
+- 版本混乱: 单个版本存在多个提交，哈希值不一样，但是版本号是一样的...
+- 依赖管理: 依赖管理混乱，需要使用`pnpm-workspace`来管理依赖...
+- 更新混乱: 如果开发者使用了`git push -f`，更新又冲突了...
+
+特征:
+
+- 处于`./plugins`目录下是文件夹并包含`package.json`文件
+- 文件夹名称以 `karin-plugin-` 开头
+- 还有最特殊的一种，处于开发阶段，<mark>在根目录的`package.json`中包含`karin`字段</mark>
+
+> [!tip]
+> 在一般的开发中，我们常常需要部署一个正式环境，让插件在`plugins`下运行  
+> 而`特征`中的最后一条就是解决这个问题的  
+> 下方是一个示例，推荐使用`pnpm create karin`中的开发模板来创建项目
+
+- 我们将插件克隆到一个单独的目录
+- 新增开发依赖`node-karin`: `pnpm add node-karin -D`
+- 执行初始化`npx ki init`
+- 在根目录的 `package.json` 中添加 `karin` 字段
+
+完成上述操作，整个根项目都会被视为一个`git插件`，
+
 ## 命名规范
 
 > [!IMPORTANT]
 > 命名规范是插件开发的基础，规范的命名有助于提高代码的可读性和可维护性
 
-### Git 插件包
+### 插件包
 
+> [!CAUTION]
 > **以下规范为强制要求，否则插件将无法被 Karin 识别和启用**
 
 - <mark>插件包名称必须以 `karin-plugin-` 为前缀，紧接其后的部分为插件的具体名称。</mark>
@@ -121,63 +360,58 @@ permalink: /guide/p13zmecw/
 
 ## 可配置文件、数据文件规范
 
-> [!IMPORTANT]
-> 请重点注意这部分规范
+> [!note]
+> 推荐搭配`package.json`中的`files`字段使用  
+> 该字段会自动在`@karinjs/{plugin_name}`下创建的文件夹
 
-下方是`pakcage.json`的可配置项，这里我们只需要关心`files`字段
+任何由插件产生的文件，都适用于以下规范
 
-- `plugin_name`: 名称来源于`package.json`的`name`字段，并且`karin`会将其中的`/`替换为`-`
-- `files`：数组，指定`karin`在初始化的时候，为你插件在`/@karinjs/<plugin_name>`下创建的文件夹
-- 如`files`字段为空，则`karin`只会为你创建基本的`@karinjs/<plugin_name>`
-- 如`files`字段不存在，则默认创建`config`、`data`、`resource`三个文件夹
+以下，`root`指的是`@karinjs/{plugin_name}`的根目录
 
-```json
-{
-  "name": "karin-plugin-template-ts",
-  "version": "1.0.0",
-  "karin": {
-    "apps": [],
-    "ts-apps": [],
-    "static": [],
-    "files": ["config", "data", "resources"]
-  }
-}
-```
+- <mark>应保持用户在生产环境下无需查看插件本身的任何目录、文件</mark>
+- 配置文件: 放置在`root/config`目录下
+- 数据文件: 放置在`root/data`目录下
+- 资源文件: 放置在`root/resources`目录下
+- 临时文件: 放置在`@karinjs/temp`目录下，推荐新增一个文件夹来存放
+- 其他文件: 放置在`root`的自定义目录下
 
-### `config` 文件夹
+文件分列说明:
 
-> 存放插件`yaml`、`json`、`cookie`等配置文件
+- 配置文件: 用于存放插件的配置文件，通常是 `json`、`yaml`、`ini` 等格式的文件
+- 数据文件: 用于存放插件处理的数据，通常是 `json`、`db` 等格式的文件
+- 资源文件: 用于存放插件所需的静态资源，如图片、音频等文件
+- 临时文件: 用于存放插件运行时产生的临时文件，通常是 `tmp`、`temp` 等格式的文件
+- 其他文件: 用于存放插件的其他文件，如日志、缓存等文件
 
-**一般情况下，我们插件方需要一个不允许更改的默认配置文件，用户方则需要一个可供修改的**
+怎么获取这些目录:
 
-- `默认配置`：处于`<plugin_name>/config/config`文件夹下
-- `用户配置`：处于`karin/@karinjs/<plugin_name>/config`文件夹下
+- 建议查看[exports](../api//exports.md)
+- 示例:
 
-为了减少开发者的工作量，`karin`提供了一个内置函数，用户快速复制默认配置文件到用户配置文件夹下
+  ```ts
+  // @karinjs
+  import { karinPathBase } from 'node-karin/root'
 
-```ts twoslash
-// @noErrorValidation
-import { copyConfigSync } from 'node-karin'
+  // @karinjs/temp
+  import { karinPathTemp } from 'node-karin/temp'
 
-// 第一个参数为默认配置目录
-// 第二个参数为用户配置目录
-// 第三个参数为需要复制的文件后缀名
-copyConfigSync(defConfig, dirConfig, ['.yaml'])
-```
+  // 插件在@karinjs下的目录
+  import path from 'node:path'
+  import { karinPathPlugins } from 'node-karin/plugins'
 
-### `data` 文件夹
+  // App插件默认创建的哦，不记得了就看下上面的package.json吧
+  const pluginName = 'karin-plugin-example'
+  const pluginPath = path.join(karinPathPlugins, pluginName)
 
-::: warning 警告
-这里需要强制遵守
-:::
+  const configPath = path.join(pluginPath, 'config')
+  const dataPath = path.join(pluginPath, 'data')
+  const resourcePath = path.join(pluginPath, 'resources')
+  const tempPath = path.join(karinPathTemp, pluginName)
+  ```
 
-- 存放插件的数据文件，如`sqlite`、`db`、`保存的图片`等
-- 存放路径: `karin/@karinjs/<plugin_name>/data`
+> [!note] 
+> 总结就是: 所有文件都要放在 @karinjs 下的目录中
 
-### `resource` 文件夹
-
-- 存放插件的资源文件，如`图片`、`字体`、`样式`等
-- 此处不做强制要求，一般资源文件都会存放在插件包内
 
 <details>
 
@@ -190,12 +424,15 @@ copyConfigSync(defConfig, dirConfig, ['.yaml'])
       - config # 配置文件夹
         - config.yaml # 用户配置文件
     - <plugin_name>
-      - config
-        - config # 默认配置文件 一般这里不允许用户修改
-          - config.yaml
-        - data/ # 数据文件夹
-        - json/ # json 文件夹
+      - config # 配置文件夹
+        - config.json # 用户配置文件
+      - data/ # 数据文件夹
+        - user.db # 用户数据文件
+        - group.db # 群组数据文件 
+      - resources/ # 资源文件夹
 :::
+
+</details>
 
 ### 临时文件
 
@@ -206,7 +443,6 @@ copyConfigSync(defConfig, dirConfig, ['.yaml'])
 - 请勿对他人的文件夹进行删除、修改
 - 如无特殊需求，请不要在该文件夹下创建其他文件夹。
 
-</details>
 
 ## 结构规范
 
@@ -261,9 +497,7 @@ copyConfigSync(defConfig, dirConfig, ['.yaml'])
 - `@karinjs`：存放 `karin`和所有`plugin` 的配置文件、数据文件等
 - `plugins`：存放所有的插件包 请将数据文件统一存放到 `@karinjs/<plugin_name>` 下
 
-### `TypeScript`插件包结构
-
-@[code-tree title="TypeScript 开发模板目录" height="800px" entry="src/index.ts"](/karin-plugin-ts)
+### TS 插件开发模板结构
 
 :::tip
 以下是`TypeScript`插件包的参考结构`(不含编译产物)`  
@@ -279,38 +513,33 @@ copyConfigSync(defConfig, dirConfig, ['.yaml'])
 - karin-plugin-template-ts
   - .github
     - workflows
-      - release.yml
+      - release.yml   # GitHub Actions工作流配置文件
   - .vscode
-    - settings.json
+    - settings.json   # VS Code编辑器配置
   - config
-    - config.json
+    - config.json     # 插件默认配置文件
   - resources
-    - image
-      - 启程宣发.png
-    - template
-      - test.html
+    - image/          # 图片资源目录
+    - template/       # 模板文件目录
   - src
-    - apps
-      - example.ts
-      - handler.ts
-      - render.ts
-      - sendMsg.ts
-      - task.ts
-    - utils
-      - common.ts
-      - config.ts
-      - index.ts
-    - app.ts
-    - dir.ts
-    - index.ts
-  - .env
-  - .gitignore
-  - development.env
-  - eslint.config.mjs
-  - package.json
-  - README.md
-  - tsconfig.json
-  - tsup.config.ts
+    - apps/          # 插件应用目录（主要编写插件逻辑的地方）
+      - example.ts   # 示例插件
+      - handler.ts   # 事件处理器示例
+      - render.ts    # 渲染处理示例
+      - sendMsg.ts   # 消息发送示例
+      - task.ts      # 定时任务示例
+    - utils/         # 工具函数目录
+    - app.ts         # 开发环境入口
+    - dir.ts         # 目录管理
+    - index.ts       # 插件入口文件
+  - .env            # 环境变量配置文件
+  - .gitignore      # Git忽略规则
+  - development.env # 开发环境变量配置
+  - eslint.config.mjs # ESLint配置
+  - package.json    # 项目配置
+  - README.md       # 项目说明文档
+  - tsconfig.json   # TypeScript配置
+  - tsup.config.ts  # 构建配置
 :::
 
 
