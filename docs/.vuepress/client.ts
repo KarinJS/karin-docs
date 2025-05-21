@@ -1,4 +1,10 @@
 import { defineClientConfig } from 'vuepress/client'
+/** Npm 徽章 */
+import NpmBadge from 'vuepress-theme-plume/features/NpmBadge.vue'
+/** Npm 徽章组 */
+import NpmBadgeGroup from 'vuepress-theme-plume/features/NpmBadgeGroup.vue'
+/** Repo 卡片 */
+import RepoCard from 'vuepress-theme-plume/features/RepoCard.vue'
 // import RepoCard from 'vuepress-theme-plume/features/RepoCard.vue'
 // import NpmBadge from 'vuepress-theme-plume/features/NpmBadge.vue'
 // import NpmBadgeGroup from 'vuepress-theme-plume/features/NpmBadgeGroup.vue'
@@ -9,8 +15,11 @@ import { defineClientConfig } from 'vuepress/client'
 // import './theme/styles/custom.css'
 
 export default defineClientConfig({
-  enhance({ app }) {
+  enhance ({ app }) {
     // built-in components
+    app.component('RepoCard', NpmBadge)
+    app.component('RepoCard', NpmBadgeGroup)
+    app.component('RepoCard', RepoCard)
     // app.component('RepoCard', RepoCard)
     // app.component('NpmBadge', NpmBadge)
     // app.component('NpmBadgeGroup', NpmBadgeGroup)

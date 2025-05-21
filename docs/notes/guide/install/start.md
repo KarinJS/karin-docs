@@ -6,6 +6,17 @@ permalink: /guide/9kgsi6ub/
 
 欢迎使用 Karin! 这是一个充满魔力的现代化机器人开发框架，让我们开始这段奇妙的开发之旅吧
 
+<script setup>
+import NpmBadge from 'vuepress-theme-plume/features/NpmBadge.vue'
+import NpmBadgeGroup from 'vuepress-theme-plume/features/NpmBadgeGroup.vue'
+</script>
+
+<NpmBadgeGroup
+  name='node-karin'
+  repo="KarinJS/Karin"
+  items="stars,version,dm,source"
+/>
+
 ## 🚀 部署步骤
 
 ### 1. 环境配置

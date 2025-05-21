@@ -4,11 +4,11 @@ createTime: 2025/05/14 03:50:59
 permalink: /guide/p13zmecw/
 ---
 
-以往，在进行插件开发时，开发者常常将时间浪费在**繁琐**的兼容性、担忧各种问题的处理上。为了解决这些问题，我们制定了一套插件规范，帮助开发者更好的进行插件开发，提高**开发效率**，降低开发难度。
+以往，在进行插件开发时，开发者常常将时间浪费在 **繁琐** 的兼容性、担忧各种问题的处理上。为了解决这些问题，我们制定了一套插件规范，帮助开发者更好的进行插件开发，提高 **开发效率** ，降低开发难度。
 
 ## 基本规范
 
-> [!IMPORTANT] 疑问解答
+> [!IMPORTANT]
 > 为保证插件开发与使用的安全性、合法性以及社区的健康发展  
 > 建议开发者在遵循以下规范的同时，保持对社区精神的尊重与支持
 
@@ -66,7 +66,7 @@ permalink: /guide/p13zmecw/
 
 ## 命名规范
 
-> [!IMPORTANT] 疑问解答
+> [!IMPORTANT]
 > 命名规范是插件开发的基础，规范的命名有助于提高代码的可读性和可维护性
 
 ### Git 插件包
@@ -99,7 +99,7 @@ permalink: /guide/p13zmecw/
 
 ## 多媒体资源规范
 
-> [!IMPORTANT] 疑问解答
+> [!IMPORTANT]
 > 多媒体资源规范是框架和 Bot 协议交互过程中最重要的一环  
 > 无论是上报的事件，主动请求的数据，都必须遵守这个规范
 
@@ -121,7 +121,7 @@ permalink: /guide/p13zmecw/
 
 ## 可配置文件、数据文件规范
 
-> [!IMPORTANT] 疑问解答
+> [!IMPORTANT]
 > 请重点注意这部分规范
 
 下方是`pakcage.json`的可配置项，这里我们只需要关心`files`字段
@@ -183,19 +183,19 @@ copyConfigSync(defConfig, dirConfig, ['.yaml'])
 
 <summary><b>点击查看示例文件结构</b></summary>
 
-```md
-karin
-├── @karinjs
-│   ├── <plugin_name> # 插件包名称
-│   │   ├── config # 配置文件夹
-│   │   │   ├── config.yaml # 用户配置文件
-├── <plugin_name>
-│   ├── config
-│   │   ├── config # 默认配置文件 一般这里不允许用户修改
-│   │   │   ├── config.yaml
-│   │   ├── data # 数据文件夹
-│   │   ├── json # json 文件夹
-```
+::: file-tree
+- karin
+  - @karinjs
+    - <plugin_name> # 插件包名称
+      - config # 配置文件夹
+        - config.yaml # 用户配置文件
+    - <plugin_name>
+      - config
+        - config # 默认配置文件 一般这里不允许用户修改
+          - config.yaml
+        - data/ # 数据文件夹
+        - json/ # json 文件夹
+:::
 
 ### 临时文件
 
@@ -222,35 +222,37 @@ karin
 
 <summary><b>点击查看树状结构</b></summary>
 
-```md
-karin
-├── @karinjs
-│   ├── config
-│   │   ├── config.yaml
-│   │   ├── friendDirect.yaml
-│   │   ├── groupGuild.yaml
-│   │   ├── pm2.yaml
-│   │   ├── redis.yaml
-│   │   └── server.yaml
-│   ├── data
-│   │   └── db
-│   │      ├── level
-│   │      └── redis-level
-│   └── karin-plugin-example
-│      ├── config
-│      ├── data
-│      └── resource
-├── logs
-├── node_modules
-├── plugins
-│   ├── karin-plugin-example
-│   └── karin-plugin-xxx
-├── temp
-├── index.js
-├── package.json
-├── package-lock.json
-└── pnpm-workspace.yaml
-```
+::: file-tree
+- karin
+  - @karinjs
+    - config # 框架配置文件夹
+      - config.yaml # 主配置文件
+      - friendDirect.yaml # 好友直连配置
+      - groupGuild.yaml # 群组配置
+      - pm2.yaml # PM2配置
+      - redis.yaml # Redis配置
+      - server.yaml # 服务器配置
+    - data # 框架数据文件夹
+      - db # 数据库文件夹
+        - level/ # Level数据库
+        - redis-level/ # Redis-Level数据库
+    - karin-plugin-example # 示例插件
+      - config/ # 配置文件夹
+      - data/ # 数据文件夹
+      - resource/ # 资源文件夹
+  - logs/ # 日志文件夹
+  - node_modules/ # 依赖包
+  - plugins/ # 插件包文件夹
+    - karin-plugin-example/ # 示例插件
+    - karin-plugin-xxx/ # 其他插件
+  - .env # 环境变量文件
+  - .npmrc # npm配置文件
+  - .pnpmfile.cjs # PNPM配置文件
+  - index.mjs # 入口文件
+  - package.json # 包配置文件
+  - package-lock.json # 依赖锁定文件
+  - pnpm-workspace.yaml # PNPM工作区配置
+:::
 
 </details>
 
@@ -260,6 +262,8 @@ karin
 - `plugins`：存放所有的插件包 请将数据文件统一存放到 `@karinjs/<plugin_name>` 下
 
 ### `TypeScript`插件包结构
+
+@[code-tree title="TypeScript 开发模板目录" height="800px" entry="src/index.ts"](/karin-plugin-ts)
 
 :::tip
 以下是`TypeScript`插件包的参考结构`(不含编译产物)`  
@@ -271,32 +275,44 @@ karin
 
 <summary><b>点击查看树状结构</b></summary>
 
-```md
-karin-plugin-test
-├── .git
-├── .github
-├── @karinjs // 详细 config 和 data 请查看上方
-│   ├── config
-│   ├── data
-│   └── karin-plugin-test
-│      ├── config
-│      ├── data
-│      └── resource
-├── config
-├── logs
-├── node_modules
-├── resources
-├── src
-├── temp
-├── .gitignore
-├── CHANGELOG.md
-├── eslint.config.js
-├── index.js
-├── package.json
-├── package-lock.json
-├── README.md
-└── tsconfig.json
-```
+::: file-tree
+- karin-plugin-template-ts
+  - .github
+    - workflows
+      - release.yml
+  - .vscode
+    - settings.json
+  - config
+    - config.json
+  - resources
+    - image
+      - 启程宣发.png
+    - template
+      - test.html
+  - src
+    - apps
+      - example.ts
+      - handler.ts
+      - render.ts
+      - sendMsg.ts
+      - task.ts
+    - utils
+      - common.ts
+      - config.ts
+      - index.ts
+    - app.ts
+    - dir.ts
+    - index.ts
+  - .env
+  - .gitignore
+  - development.env
+  - eslint.config.mjs
+  - package.json
+  - README.md
+  - tsconfig.json
+  - tsup.config.ts
+:::
+
 
 </details>
 
@@ -308,7 +324,7 @@ karin-plugin-test
 
 ## 仓库规范
 
-> [!IMPORTANT] 疑问解答
+> [!IMPORTANT]
 > 强制仓库名称是为了方便用户可以快速在`Github`或`Gitee`上快速查找
 
 - 要求插件仓库名称必须以 `karin-plugin-` 开头，必须与插件包名称一致

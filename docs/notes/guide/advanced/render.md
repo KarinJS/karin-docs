@@ -15,7 +15,53 @@ permalink: /guide/9e95pid5/
 问：可否不安装渲染器？  
 答：可以，只要不使用需要渲染的插件即可。
 
-## 简介
+## 渲染器类型
+
+Karin 提供了两种类型的渲染器实现：
+
+1. **插件版渲染器**：直接集成在 Karin 项目中，随 Karin 一起启动
+2. **独立版渲染器**：作为独立项目运行，需要单独部署
+
+## 插件版渲染器（推荐）
+
+插件版渲染器 `@karinjs/plugin-puppeteer` 是 Karin 开发团队提供的渲染器插件，可以直接安装在 Karin 项目中，无需额外部署和维护。
+
+### 特点
+
+- **一体化部署**：随 Karin 一起启动，无需额外维护
+- **简单配置**：安装即用，配置简单
+- **性能优良**：提供与独立版相同的渲染性能
+
+### 安装方法
+
+::: code-tabs
+@tab npm
+
+```bash
+npm install @karinjs/plugin-puppeteer -w
+```
+
+@tab pnpm
+
+```bash
+pnpm add @karinjs/plugin-puppeteer -w
+```
+
+@tab yarn
+
+```bash
+yarn add @karinjs/plugin-puppeteer
+```
+
+:::
+
+安装完成后，插件会自动注册到 Karin 框架中，无需额外配置即可使用。
+
+### 配置说明
+
+插件版渲染器会自动读取 Karin 的配置文件，您可以在 Karin 的 WebUI 中添加或修改相关配置：
+
+## 独立版渲染器
 
 ::: warning 注意
 karin-puppeteer 是一个单独的项目，需要单独安装运行。
@@ -41,7 +87,7 @@ karin-puppeteer 是一个单独的项目，需要单独安装运行。
 > HTTP 的作用在本地使用环境下，几乎和正向、反向 WS 无异。  
 > 如果你的局域网内有高性能的渲染服务器，推荐使用 HTTP。
 
-## 安装渲染器
+### 安装
 
 ::: tip 温馨提示
 请自行安装 `Node.js`。
@@ -55,8 +101,6 @@ npm config set registry https://registry.npmmirror.com
 ```
 
 :::
-
-### 安装
 
 ::: code-tabs
 @tab npm
@@ -81,7 +125,7 @@ yarn init -y && yarn add @karinjs/puppeteer@1.6.1 && npx init && node .
 
 执行完成以上命令后不出意外，`karin-puppeteer` 已经安装成功并且正常启动了
 
-## 相关命令
+### 相关命令
 
 ::: code-tabs
 @前台启动
@@ -117,7 +161,7 @@ npx k
 
 :::
 
-## 配置文件
+### 配置文件
 
 `karin-puppeteer` 初次启动之后，会在 `跟目录` 下生成 `config.json` 配置文件。
 
@@ -148,4 +192,24 @@ npx k
   // 启动参数
   "args": ["--enable-gpu", "--no-sandbox", "--disable-setuid-sandbox", "--no-zygote", "--disable-extensions", "--disable-dev-shm-usage"]
 }
+```
+
+## 渲染器对比
+
+| 特性       | 插件版              | 独立版               |
+| ---------- | ------------------- | -------------------- |
+| 部署方式   | 作为 Karin 插件安装 | 独立项目部署         |
+| 资源占用   | 与 Karin 共享资源   | 独立占用资源         |
+| 适用场景   | 个人使用、小型部署  | 大型部署、高性能需求 |
+| 配置复杂度 | 简单                | 相对复杂             |
+| 更新维护   | WebUI 统一管理更新  | 需单独更新           |
+
+::: tip 选择建议
+
+- 如果您是个人用户或小型团队，推荐使用插件版渲染器，安装简单，无需额外维护
+- 如果您有高性能需求或需要在多个 Karin 实例间共享渲染服务，推荐使用独立版渲染器
+  :::
+
+```
+
 ```

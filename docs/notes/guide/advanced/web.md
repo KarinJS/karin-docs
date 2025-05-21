@@ -4,8 +4,6 @@ createTime: 2025/05/14 01:01:55
 permalink: /guide/rvm4n8jd/
 ---
 
-欢迎来到 Karin 的网页控制台介绍！(〃'▽'〃)
-
 ## 🎯 快速访问
 
 启动 Karin 后，你会在控制台日志中看到类似下面的信息：
@@ -121,39 +119,7 @@ HTTP_AUTH_KEY=your_new_secret_key  # 修改这里的值
 更多精彩功能正在开发中，敬请期待！(ﾉ>ω<)ﾉ
 :::
 
-<div class="features-preview">
-<ul>
-  <li>🌈 明暗主题切换</li>
-  <li>📱 移动端适配</li>
-  <li>🚀 实时数据更新</li>
-  <li>🎮 可视化数据图表</li>
-</ul>
-</div>
-
-<style>
-.tips-section {
-  background: var(--vp-c-bg-soft);
-  padding: 20px;
-  border-radius: 8px;
-  margin: 16px 0;
-}
-
-.faq-section {
-  background: var(--vp-c-bg-soft);
-  padding: 20px;
-  border-radius: 8px;
-  margin: 16px 0;
-}
-
-.features-preview {
-  background: var(--vp-c-bg-mute);
-  padding: 20px;
-  border-radius: 8px;
-  margin: 16px 0;
-}
-
-.features-preview ul {
-  list-style: none;
-  padding-left: 20px;
-}
-</style>
+- [x] 🌈 明暗主题切换
+- [x] 📱 移动端适配
+- [ ] 🚀 实时数据更新
+- [ ] 🎮 可视化数据图表

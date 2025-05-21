@@ -14,7 +14,7 @@ permalink: /guide/t0xrpxol/
 
 ## `.env` 文件
 
-> [!IMPORTANT] 温馨提示
+> [!IMPORTANT]
 > 环境变量配置文件，用于配置一些基础的运行环境参数
 > 支持在控制台通过`log <level>`命令动态更新日志等级哦~
 
@@ -151,7 +151,7 @@ RUNTIME=node
 
 ### `adapter.json`
 
-> [!IMPORTANT] 温馨提示
+> [!IMPORTANT]
 > 适配器配置文件，用于配置各种协议适配器
 
 <!-- 点击展开配置详细说明 -->
@@ -270,7 +270,7 @@ RUNTIME=node
 
 ### `config.json`
 
-> [!IMPORTANT] 温馨提示
+> [!IMPORTANT] 
 > `karin`基本配置文件
 
 <!-- 点击展开配置详细说明 -->
@@ -278,7 +278,7 @@ RUNTIME=node
 <details>
 <summary>点击展开配置详细说明</summary>
 
-> [!IMPORTANT] 注意
+> [!IMPORTANT]
 > 对于黑白名单配置，是可以同时存在的，并且黑名单的优先级更高  
 > 例如: 如果一个用户同时处于黑白名单中，那么他将被视为黑名单用户
 
@@ -479,7 +479,7 @@ RUNTIME=node
 
 ### `privates.json`
 
-> [!IMPORTANT] 温馨提示
+> [!IMPORTANT] 
 > `好友` `频道私信` 触发事件相关的配置文件
 
 <!-- 点击展开配置详细说明 -->
@@ -579,7 +579,7 @@ RUNTIME=node
 
 ### `groups.json`
 
-> [!IMPORTANT] 温馨提示
+> [!IMPORTANT] 
 > `群、频道` 触发事件相关的配置文件
 
 <!-- 点击展开配置详细说明 -->
@@ -730,7 +730,7 @@ RUNTIME=node
 
 ### `pm2.json`
 
-> [!IMPORTANT] 温馨提示
+> [!IMPORTANT] 
 > `pm2`配置项
 > `pm2`配置不提供示例配置
 
@@ -783,7 +783,7 @@ RUNTIME=node
 
 ### `redis.json`
 
-> [!IMPORTANT] 温馨提示
+> [!IMPORTANT] 
 > `redis`配置项  
 > `redis`配置不提供示例配置
 
@@ -826,7 +826,7 @@ RUNTIME=node
 
 ### `render.json`
 
-> [!IMPORTANT] 温馨提示
+> [!IMPORTANT]
 > 渲染服务配置文件
 
 <!-- 点击展开配置详细说明 -->
