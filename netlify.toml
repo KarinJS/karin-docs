@@ -1,0 +1,14 @@
+[build.environment]
+NODE_VERSION = "22"
+PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "1"
+
+[build]
+publish = "docs/.vuepress/dist"
+command = "pnpm run build"
+
+[[headers]]
+for = "/assets/*"
+[headers.values]
+cache-control = '''
+    max-age=31536000,
+    immutable'''
