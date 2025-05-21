@@ -22,6 +22,7 @@
     "@types/node": "^22.15.21",
     "@vuepress/bundler-vite": "2.0.0-rc.23",
     "@vuepress/shiki-twoslash": "2.0.0-rc.105",
+    "express": "^5.1.0",
     "http-server": "^14.1.1",
     "sass-embedded": "^1.89.0",
     "typescript": "^5.8.3",

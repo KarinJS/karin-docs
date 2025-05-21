@@ -4,7 +4,7 @@ createTime: 2025/05/15 00:12:24
 permalink: /guide/utils/gtdqbh1v/
 ---
 
-> [!note] 温馨提示
+> [!note]
 > 本文由 AI 辅助生成，可能存在不准确性。
 > 使用 `karin` 自带的 `express` 可以让你无需考虑任何端口、鉴权问题，快速创建路由。
 
@@ -12,68 +12,79 @@ permalink: /guide/utils/gtdqbh1v/
 
 ### app
 
-> [!tip] 提示
+> [!tip]
 > 无需重新安装 `express` 直接使用
 
-```ts
+```ts twoslash
 import { app } from 'node-karin'
+//        ^?
+
+
+
+
 
 // -> 这个app其实就是下面的代码...
 
-// import express from 'express'
-// /**
-//  * @public
-//  * @description express 服务
-//  */
-// export const app: Express = express()
+import express, { type Express } from 'express'
+/**
+ * @public
+ * @description express 服务
+ */
+export const app1: Express = express()
 ```
 
 ### server
 
-> [!warning] 提示
+> [!warning]
 > 一般来说这个函数用于内部使用。
 
-```ts
+```ts twoslash
+import { createServer } from 'http'
+import { app } from 'node-karin'
 import { server } from 'node-karin'
+//         ^?
+
+
+
+
 
 // -> 这个server其实就是下面的代码...
 
-// /**
-//  * @public
-//  * @description http 服务
-//  */
-// export const server = createServer(app)
+/**
+ * @public
+ * @description http 服务
+ */
+export const server1 = createServer(app)
 ```
 
 ### router
 
-> [!warning] 提示
+> [!warning]
 > 这个是`karin`的内部路由，也可以直接使用，但是推荐使用自定义路由。
 
-```ts
+```ts twoslash
 import { router, createSuccessResponse, BASE_ROUTER } from 'node-karin'
-import type { RequestHandler } from 'node-karin/express'
+import type { Request, Response } from 'express'
 
-const demo: RequestHandler = async (req, res) => {
-  createSuccessResponse('这是一个karin内部的路由demo')
+const demo = async (req: Request, res: Response) => {
+  createSuccessResponse(res, null, '这是一个karin内部的路由demo')
 }
 
 router.get('/demo', demo)
 
 console.log(`url: http://127.0.0.1:${process.env.HTTP_PORT}${BASE_ROUTER}/demo`)
-// -> url: http://127.0.0.1:7777/api/v1/demo
 ```
 
 ## Response 响应工具
 
-> [!note] 温馨提示
+> [!note]
 > 该模块包含处理 HTTP 响应的实用工具函数，方便开发者构建标准化的 API 响应。
 
 ### HTTP 状态码
 
 `node-karin` 提供了标准的 HTTP 状态码枚举：
 
-> [!warning] 特别提醒
+> [!warning]
 >
 > 1. 如果你正在编写 `TypeScript`
 > 2. 直接运行 `TypeScript` 文件
@@ -82,7 +93,7 @@ console.log(`url: http://127.0.0.1:${process.env.HTTP_PORT}${BASE_ROUTER}/demo`)
 > - 如满足以上条件，请不要在`node-karin`中直接导入枚举
 > - 目前已知: 除`ts-node`以外的所有运行时都无法处理这种导入。
 
-```ts
+```ts twoslash
 import { HTTPStatusCode } from 'node-karin'
 
 // 可用的状态码
@@ -100,10 +111,13 @@ HTTPStatusCode.RefreshTokenExpired // 420 刷新令牌已过期
 
 ### 创建通用响应
 
-```ts
+```ts twoslash
 import { createResponse, HTTPStatusCode } from 'node-karin'
 import type { Response } from 'express'
 
+// ---cut-start---
+const res = {} as Response
+// ---cut-end---
 /**
  * 创建通用响应
  * @param res Express响应对象
@@ -118,7 +132,7 @@ createResponse(res, HTTPStatusCode.OK, { userName: '张三' }, '获取成功')
 
 #### 成功响应
 
-```ts
+```ts twoslash
 import { createSuccessResponse } from 'node-karin'
 import type { Response } from 'express'
 
@@ -142,7 +156,7 @@ const successHandler = (res: Response) => {
 
 #### 错误响应
 
-```ts
+```ts twoslash
 import {
   createBadRequestResponse,
   createUnauthorizedResponse,
@@ -154,6 +168,10 @@ import {
   createAccessTokenExpiredResponse,
   createRefreshTokenExpiredResponse,
 } from 'node-karin'
+// ---cut-start---
+import type { Response } from 'express'
+const res = {} as Response
+// ---cut-end---
 
 // 400: 参数错误
 createBadRequestResponse(res, '请求参数格式不正确')
@@ -177,7 +195,7 @@ createServerErrorResponse(res, '系统发生未知错误')
 
 ### 在路由中使用
 
-```ts
+```ts twoslash
 import { app, createSuccessResponse, createBadRequestResponse } from 'node-karin'
 import type { Request, Response } from 'express'
 
@@ -195,19 +213,19 @@ app.get('/api/user/:id', (req: Request, res: Response) => {
 })
 ```
 
-> [!tip] 提示
+> [!tip]
 > 使用这些响应工具函数可以确保你的 API 返回格式一致的响应，便于前端处理。
 
 ## getMimeType 工具
 
-> [!note] 温馨提示
+> [!note]
 > 该模块提供了根据文件扩展名获取对应 MIME 类型的工具函数。
 
 ### 基本用法
 
 `getMimeType` 函数接收一个文件路径作为参数，返回该文件的 MIME 类型：
 
-```ts
+```ts twoslash
 import { getMimeType } from 'node-karin'
 
 // 获取各种文件的 MIME 类型
@@ -223,21 +241,22 @@ getMimeType('unknown.xyz') // 返回: 'application/octet-stream'（默认二进�
 
 #### 创建静态文件服务器
 
-```ts
+```ts twoslash
 import { app, getMimeType } from 'node-karin'
 import fs from 'node:fs'
 import path from 'node:path'
+import { Request, Response } from 'express'
 
 const staticFilesDir = path.join(__dirname, 'public')
 
-app.get('/static/*', (req, res) => {
+app.get('/static/*', async (req: Request, res: Response): Promise<void> => {
   try {
     // 获取请求的文件路径
     const filePath = path.join(staticFilesDir, req.path.replace('/static/', ''))
 
     // 检查文件是否存在
     if (!fs.existsSync(filePath) || !fs.statSync(filePath).isFile()) {
-      return res.status(404).send('文件未找到')
+      res.status(404).send('文件未找到')
     }
 
     // 获取文件的 MIME 类型
@@ -254,18 +273,19 @@ app.get('/static/*', (req, res) => {
 
 #### 文件下载示例
 
-```ts
+```ts twoslash
 import { app, getMimeType } from 'node-karin'
 import fs from 'node:fs'
 import path from 'node:path'
+import type { Request, Response } from 'express'
 
-app.get('/download/:filename', (req, res) => {
+app.get('/download/:filename', async (req: Request, res: Response): Promise<void> => {
   const filename = req.params.filename
   const filePath = path.join(__dirname, 'downloads', filename)
 
   try {
     if (!fs.existsSync(filePath)) {
-      return res.status(404).send('文件未找到')
+      res.status(404).send('文件未找到')
     }
 
     // 获取文件的 MIME 类型
@@ -328,7 +348,7 @@ app.get('/download/:filename', (req, res) => {
 > [!tip]
 > 路由在 1.8.0 版本发生了一次大变动，下方都是以`1.8.0`版本为准
 
-```ts
+```ts twoslash
 /** 基本路由 */
 export const BASE_ROUTER = '/api/v1'
 /** 登录路由 */
@@ -458,9 +478,10 @@ export const GET_LOADED_COMMAND_PLUGIN_CACHE_LIST_ROUTER = '/plugin/loaded/comma
 > 实战案例 这部分可以查看 express 官方文档了  
 > 如果是 `TypeScript`，记得安装 `@types/express` 哦
 
-```ts
+```ts twoslash
 import { app } from 'node-karin'
-import express, { RequestHandler } from 'node-karin/express'
+import express from 'express'
+import type { Request, Response, RequestHandler } from 'express'
 
 /**
  * 我们创建一个路由，等下将其挂载到app上
@@ -481,7 +502,7 @@ router.use(express.json())
  * 我们创建一个测试路由
  * 方法1
  */
-router.get('/ping', (req, res) => {
+router.get('/ping', (req: Request, res: Response) => {
   res.send('pong')
 })
 

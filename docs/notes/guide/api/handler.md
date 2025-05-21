@@ -4,7 +4,7 @@ createTime: 2025/05/15 00:12:24
 permalink: /guide/utils/yjpu7n0t/
 ---
 
-> [!note] 温馨提示
+> [!note]
 > 本文由 AI 辅助生成，可能存在不准确性。
 
 Handler 模块提供了事件处理器的调用机制，允许插件注册和处理特定事件，并通过键值对的方式进行查找和调用。该模块是实现插件间通信和事件处理的核心组件。
@@ -19,8 +19,13 @@ Handler 模块主要用于处理注册到特定事件键上的处理函数。它
 
 调用事件处理器。支持直接调用、使用 call 方法调用以及使用 has 方法检查是否存在处理器。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { handler } from 'node-karin'
+import type { Event } from 'node-karin'
+// ---cut-start---
+const eventObject = {} as Event
+// ---cut-end---
 
 /**
  * 调用事件处理器
@@ -43,7 +48,9 @@ const hasHandler = handler.has('event.key')
 
 与直接调用 handler 功能相同，但允许显式指定返回类型。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
+import { UserInfo } from 'node-karin'
 import { handler } from 'node-karin'
 
 /**
@@ -60,7 +67,8 @@ const result = await handler.call<UserInfo>('user.get', { userId: '123456' })
 
 检查是否存在指定键的事件处理器。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { handler } from 'node-karin'
 
 /**
@@ -85,7 +93,8 @@ if (handler.has('permission.check')) {
 1. `args`：调用处理器时传递的参数对象
 2. `next`：一个函数，调用它表示当前处理器不处理此事件，允许继续执行链中的下一个处理器
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 // 插件中注册处理器的示例
 ctx.on('handler', {
   key: 'user.get',
@@ -122,11 +131,12 @@ ctx.on('handler', {
 
 ### 基本使用
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { handler } from 'node-karin'
 
 // 检查用户权限
-async function checkUserPermission(userId, action) {
+async function checkUserPermission (userId: string, action: string) {
   if (!handler.has('permission.check')) {
     // 没有权限处理器，默认拒绝
     return false
@@ -136,7 +146,7 @@ async function checkUserPermission(userId, action) {
 }
 
 // 使用示例
-async function editUserProfile(userId, newData) {
+async function editUserProfile (userId: string, newData: any) {
   // 检查是否有编辑权限
   const hasPermission = await checkUserPermission(userId, 'profile.edit')
 
@@ -151,11 +161,13 @@ async function editUserProfile(userId, newData) {
 
 ### 与事件系统结合
 
-```typescript
+```ts twoslash
+// @noErrorValidation
+import { Event } from 'node-karin'
 import { handler } from 'node-karin'
 
 // 在消息处理中使用
-async function onMessageReceived(e) {
+async function onMessageReceived (e: Event) {
   // 解析消息内容，检查是否是命令
   if (e.message.startsWith('/translate ')) {
     const text = e.message.slice(11) // 去掉"/translate "前缀
@@ -184,7 +196,8 @@ async function onMessageReceived(e) {
 
 ### 实现插件间服务调用
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 import { handler } from 'node-karin'
 
 // 插件A：提供天气查询服务
