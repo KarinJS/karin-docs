@@ -1,5 +1,5 @@
 [build.environment]
-NODE_VERSION = "22"
+NODE_VERSION = "21.7.3"
 PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "1"
 
 [build]
@@ -12,3 +12,14 @@ for = "/assets/*"
 cache-control = '''
     max-age=31536000,
     immutable'''
+
+[build.environment]
+PNPM_VERSION = "9.7.1"
+
+[build]
+command = """
+npm install -g pnpm@${PNPM_VERSION}
+pnpm config set registry https://registry.npmmirror.com
+pnpm install
+pnpm run build
+"""

@@ -31,5 +31,8 @@
   },
   "dependencies": {
     "node-karin": "^1.9.4"
+  },
+  "pnpm": {
+    "version": "10.11.0"
   }
 }
