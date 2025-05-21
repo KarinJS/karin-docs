@@ -3,5 +3,5 @@ NODE_VERSION = "22"
 PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "1"
 
 [build]
-publish = "docs/.vitepress/dist"
+publish = "docs/.vuepress/dist"
 command = "pnpm run build"
