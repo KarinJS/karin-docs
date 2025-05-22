@@ -48,7 +48,10 @@ export const test = karin.command('^文本$', '这是一段文本消息')
 ```ts twoslash
 // @noErrorValidation
 import karin, { segment } from 'node-karin'
-export const text = karin.command(/^#文本测试$/, segment.text('这是一段文本消息'))
+export const text = karin.command(
+  /^#文本测试$/,
+  segment.text('这是一段文本消息')
+)
 ```
 
 - `command` 的第三种使用方法，回调函数
@@ -64,7 +67,10 @@ export const callback = karin.command(/^#回调测试$/, async (e, next) => {
   // 传入`sengment`元素
   await e.reply(segment.text('这是一个回调测试'))
   // 传入数组 支持各种组合的`segment`元素
-  await e.reply([segment.text('这是一个回调测试'), segment.image('https://www.example.com/example.png')])
+  await e.reply([
+    segment.text('这是一个回调测试'),
+    segment.image('https://www.example.com/example.png')
+  ])
   // 若要继续匹配下一个插件，请调用 next 方法（类似 return false）
   next() // 注释该行则终止匹配
 })
@@ -93,7 +99,7 @@ export const test = karin.command('^文本$', '这是一段文本消息', {
   adapter: [], // 生效的适配器
   dsbAdapter: [], // 禁用的适配器
   delay: 0, // 延迟回复 单位毫秒 仅在第二个参数非函数时有效
-  stop: false, // 是否停止执行后续插件 仅在第二个参数非函数时有效
+  stop: false // 是否停止执行后续插件 仅在第二个参数非函数时有效
 })
 ```
 
@@ -159,9 +165,9 @@ export class hello extends Plugin {
           /** 命令正则匹配 */
           reg: /^#你好$/,
           /** 正则对应的执行方法 */
-          fnc: 'hello',
-        },
-      ],
+          fnc: 'hello'
+        }
+      ]
     })
   }
 
@@ -201,9 +207,9 @@ export class hello extends Plugin {
           /** 是否显示操作日志 默认显示 */
           log: true,
           /** 操作权限 all | admin | master | group.admin | group.owner */
-          permission: 'all',
-        },
-      ],
+          permission: 'all'
+        }
+      ]
     })
   }
 
