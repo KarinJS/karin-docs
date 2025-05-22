@@ -6,6 +6,8 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import path from 'path'
+import { pwaPlugin } from '@vuepress/plugin-pwa'
+import { pwaPopupPlugin } from '@vuepress/plugin-pwa-popup'
 
 export default defineUserConfig({
   base: '/',
@@ -14,12 +16,19 @@ export default defineUserConfig({
   description: '让插件开发变得简单有趣',
 
   head: [
-    // 配置站点图标
+    // pwa
+    ['link', { rel: 'icon', type: 'image/png', href: '/favicon/favicon-96x96.png', sizes: '96x96' }],
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon/favicon.svg' }],
+    ['link', { rel: 'shortcut icon', href: '/favicon/favicon.ico' }],
+    ['link', { rel: 'apple-touch-icon', sizes: '180x180', href: '/favicon/apple-touch-icon.png' }],
+    ['meta', { name: 'apple-mobile-web-app-title', content: 'Karin' }],
+    ['link', { rel: 'manifest', href: '/favicon/site.webmanifest' }],
+    // 1
     ['meta', { name: 'msvalidate.01', content: '8D5DDEA97F72740B73499AA520B67A1A' }],
     ['meta', { name: 'google-site-verification', content: '--V9ZVVBfakHdqwR54bgY6jnFPXz8XFBWhwsPEiBb5Q' }],
     ['meta', { property: 'og:title', content: 'Karin' }],
     ['meta', { property: 'og:description', content: 'An open source high-performance bot framework built with TypeScript. Supports functions such as multi-adapter, multi-platform access and custom renderer.' }],
-    ['meta', { property: 'og:image', content: 'https://karin.fun/logo-2.png' }],
+    ['meta', { property: 'og:image', content: 'https://karin.fun/logo.png' }],
     ['meta', { property: 'og:image:width', content: '582' }],
     ['meta', { property: 'og:image:height', content: '648' }],
     ['meta', { property: 'og:url', content: 'https://karin.fun/' }],
@@ -27,9 +36,23 @@ export default defineUserConfig({
     ['meta', { name: 'author', content: 'KarinJS Team' }],
     ['meta', { name: 'description', content: 'An open source high-performance bot framework built with TypeScript. Supports functions such as multi-adapter, multi-platform access and custom renderer.' }],
     ['meta', { name: 'keywords', content: 'Bot frame, Robot frame, TypeScript' }],
-    ['link', { rel: 'icon', type: 'image/png', href: '/images/logo.png' }],
+    ['link', { rel: 'icon', type: 'image/png', href: '/logo.png' }],
   ],
-
+  plugins: [
+    pwaPlugin(),
+    pwaPopupPlugin({
+      locales: {
+        '/': {
+          message: 'New content is available.',
+          buttonText: 'Refresh',
+        },
+        '/zh/': {
+          message: '发现新内容可用',
+          buttonText: '刷新',
+        },
+      },
+    }),
+  ],
   bundler: viteBundler({
     viteOptions: {
       plugins: [
