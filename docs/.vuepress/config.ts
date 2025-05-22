@@ -65,7 +65,7 @@ export default defineUserConfig({
         }),
       ],
       ssr: {
-        noExternal: [/element-plus/]
+        noExternal: process.env.NODE_ENV === 'production' ? [/element-plus/] : []
       },
     }
   }),
@@ -74,7 +74,10 @@ export default defineUserConfig({
   theme: plumeTheme({
     plugins: {
       // 如果您在此处直接声明为 true，则表示开发环境和生产环境都启用该功能
-      git: process.env.NODE_ENV === 'production'
+      git: true,
+      markdownPower: {
+        imageSize: 'all', // 'local' | 'all'
+      },
     },
     /* 添加您的部署域名, 有助于 SEO, 生成 sitemap */
     hostname: 'https://karin.fun',
@@ -87,7 +90,17 @@ export default defineUserConfig({
     /* 页内信息 */
     editLink: true,
     // lastUpdated: true,
-    contributors: true,
+    contributors: {
+      mode: 'block',
+      avatar: true,
+      avatarPattern: 'https://github.com/:username.png',
+      info: [
+        {
+          username: 'ikenxuan', // github username
+          alias: ['炫炫'], // 别名，本地 git 配置中的用户名
+        }
+      ]
+    },
     changelog: false,
 
     /**
@@ -192,7 +205,10 @@ export default defineUserConfig({
       //   replit: true,       // 启用嵌入 replit 语法 @[replit](user/repl-name)
       //   codeSandbox: true,  // 启用嵌入 codeSandbox 语法 @[codeSandbox](id)
       //   jsfiddle: true,     // 启用嵌入 jsfiddle 语法 @[jsfiddle](user/id)
-      //   npmTo: true,        // 启用 npm-to 容器  ::: npm-to
+      npmTo: {
+        tabs: ['pnpm', 'npm', 'yarn'], // 代码块组默认显示顺序
+      },
+      // 启用 npm-to 容器  ::: npm-to
       //   demo: true,         // 启用 demo 容器  ::: demo
       //   repl: {             // 启用 代码演示容器
       //     go: true,         // ::: go-repl

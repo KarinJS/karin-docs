@@ -14,7 +14,7 @@ import NpmBadgeGroup from 'vuepress-theme-plume/features/NpmBadgeGroup.vue'
 <NpmBadgeGroup
   name='node-karin'
   repo="KarinJS/Karin"
-  items="stars,version,dm,source"
+  items="stars,forks,version,dm,source,license"
 />
 
 ## 🚀 部署步骤

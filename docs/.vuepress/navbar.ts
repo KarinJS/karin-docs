@@ -24,6 +24,7 @@ export const navbar = defineNavbarConfig([
     items: [
       { text: '插件商店', icon: 'mdi:store', link: '/notes/guide/plugins/list' },
       { text: '渲染器', icon: 'mdi:monitor-eye', link: '/notes/guide/advanced/render' },
+      { text: '开发工具', icon: 'mdi:tools', link: '/notes/guide/resources/tools' },
       { text: '常见问题', icon: 'mdi:help-circle', link: '/notes/guide/advanced/problems/faq' },
     ],
   },
