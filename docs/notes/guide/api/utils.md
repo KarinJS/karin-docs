@@ -17,6 +17,7 @@ node-karin 提供了丰富的工具库函数，涵盖了文件操作、网络请
 | ------------------------ | ------------ | --------------------------------------------------------- |
 | [root](../exports.md)    | 路径管理     | 框架中常用的路径和状态信息                                |
 | [config](./config.md)    | 配置管理     | 配置文件的初始化、读取和缓存                              |
+| [context](./context.md)  | 上下文       | 提供事件上下文管理，包括事件监听、触发                    |
 | [common](./common.md)    | 通用工具集合 | 提供各种常用工具函数的集合                                |
 | [button](./button.md)    | 按钮工具     | 处理交互按钮的创建、转换和渲染                            |
 | [fs](./fs.md)            | 文件系统     | 文件系统操作的核心模块，包含多个子模块                    |
@@ -32,9 +33,10 @@ node-karin 提供了丰富的工具库函数，涵盖了文件操作、网络请
 
 node-karin 的工具函数可以通过以下方式导入：
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 // 方式1：从主模块导入
-import { common, config, fs } from 'node-karin'
+import { common as common$1, config, fs } from 'node-karin'
 
 // 方式2：直接导入具体函数 并非所有函数都支持 推荐使用方式1
 import { formatTime, readJson } from 'node-karin'
@@ -49,9 +51,10 @@ common.axios('https://example.com', 'get')
 > [!warning] 警告
 > node-karin 是纯 ESM 格式的包，不支持 CommonJS 的 require()方式导入。必须使用 import 语法，并确保你的项目也支持 ESM。
 
-```typescript
+```ts twoslash
+// @noErrorValidation
 // ✅ 正确的导入方式
-import { common } from 'node-karin'
+import { common as common$1 } from 'node-karin'
 
 // ❌ 错误的导入方式
 const { common } = require('node-karin') // 这种方式将无法工作

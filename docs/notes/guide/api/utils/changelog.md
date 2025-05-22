@@ -20,6 +20,7 @@ changelog 模块提供了用于处理更新日志(CHANGELOG.md)的工具函数�
 ```ts twoslash
 // @noErrorValidation
 import { log } from 'node-karin'
+import fs from 'node:fs'
 
 /**
  * 提取指定版本号的更新日志
@@ -44,6 +45,7 @@ console.log(version100Log)
 ```ts twoslash
 // @noErrorValidation
 import { logs } from 'node-karin'
+import fs from 'node:fs'
 
 /**
  * 提取指定范围版本号的更新日志
@@ -72,6 +74,7 @@ const backwardLogs = logs('1.0.0', changelogContent, 2, true)
 ```ts twoslash
 // @noErrorValidation
 import { range } from 'node-karin'
+import fs from 'node:fs'
 
 /**
  * 提取指定版本号之间的更新日志
@@ -96,6 +99,7 @@ const versionRangeLogs = range(changelogContent, '1.0.0', '2.0.0')
 ```ts twoslash
 // @noErrorValidation
 import { parseChangelog } from 'node-karin'
+import fs from 'node:fs'
 
 /**
  * 对更新日志进行解析并形成对象
@@ -119,8 +123,8 @@ console.log(changelogObj['1.0.0'])
 
 ```ts twoslash
 // @noErrorValidation
-import { PathLike } from 'fs'
-import { FileHandle, readFile } from 'fs/promises'
+import { PathLike } from 'node:fs'
+import { FileHandle, readFile } from 'node:fs/promises'
 import { log, range, parseChangelog } from 'node-karin'
 
 async function getRecentChanges(changelogPath: PathLike | FileHandle, currentVersion: string) {
