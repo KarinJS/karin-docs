@@ -291,7 +291,7 @@ npm config set registry https://mirrors.cloud.tencent.com/npm
 npm config set registry https://registry.npmjs.org
 ```
 
-```bash [查看当前源]
+```bash
 # 看看现在用的是哪个源
 npm config get registry
 ```
@@ -325,11 +325,14 @@ pnpm run <script> # 运行 package.json 中定义的脚本
 
 ## 关于`pnpm v10.x`版本
 
-> [!note] karin 非 1.8.0+ 的版本，请勿使用 pnpm v10.x
+> [!note] 
+> karin 非 1.8.0+ 的版本，请勿使用 pnpm v10.x
 
 ### 背景
 
-> [!caution] pnpm v10.x 版本引入了一个破坏性变更
+> [!caution] 
+> pnpm v10.x 版本引入了一个破坏性变更
+>
 > 官方原文如下:  
 > Since v10, pnpm doesn't run the lifecycle scripts of dependencies unless they are listed in onlyBuiltDependencies.
 >
@@ -348,7 +351,7 @@ pnpm run <script> # 运行 package.json 中定义的脚本
 
 ### 解决方法
 
-> [!note] 温馨提示
+> [!note]
 > 执行完成`pnpm install`后  
 > 如果出现了上图的这个提示，只需要跟着下面的步骤走就可以了哦~
 
@@ -386,7 +389,7 @@ onlyBuiltDependencies:
 
 ### 写给开发者的话
 
-> [!note] 温馨提示
+> [!note]
 > 如果你的插件依赖了包含`生命周期脚本`的依赖  
 > 可以将安装指令修改为如下所示  
 > 注意要求使用`pnpm v10.8.0+`版本哦~

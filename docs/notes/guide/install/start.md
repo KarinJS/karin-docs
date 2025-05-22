@@ -77,111 +77,31 @@ Karin 为你准备了一个强大的网页控制台，让机器人管理变得�
 
 ## 🎯 探索更多
 
-<div class="next-steps">
-  <h3>进阶开发 ✨</h3>
-  <ul>
-    <li>🔧 <a href="../plugins/demo">插件开发教程</a> - 创造属于你的功能</li>
-    <li>📚 <a href="../utils/api">API 文档</a> - 解锁全部开发能力</li>
-    <li>💡 <a href="../utils/index">最佳实践</a> - 掌握开发技巧</li>
-  </ul>
+### 进阶开发 ✨
 
-  <h3>实战案例</h3>
-  <ul>
-    <li>🎮 <a href="../plugins/demo">插件开发示例</a> - 学习实用技巧</li>
-    <li>⚙️ <a href="../start/file">配置最佳实践</a> - 优化你的配置</li>
-    <li>🚀 <a href="../install/framework">部署实战指南</a> - 上线你的机器人</li>
-  </ul>
-</div>
+- 🔧 [插件开发教程](../plugins/standard.md) - 创造属于你的功能
+- 📚 [API 文档](../api/utils.md) - 解锁全部开发能力  
+- 💡 [最佳实践](../api/utils/button.md) - 掌握开发技巧
+
+### 实战案例
+
+- 🎮 [插件开发示例](../plugins/demo.md) - 学习实用技巧
+- ⚙️ [配置最佳实践](../advanced/file.md) - 优化你的配置
+- 🚀 [部署实战指南](../install/framework.md) - 上线你的机器人
 
 ## 🎁 社区资源
 
-<div class="community-resources">
-  <ul>
-    <li>🎯 <a href="../plugins/list">插件市场</a> - 发现无限可能</li>
-    <li>🎨 <a href="../themes">主题商店</a> - 打造独特风格</li>
-    <li>💻 <a href="../snippets">代码片段</a> - 即取即用</li>
-  </ul>
-</div>
+- 🎯 [插件市场](../plugins/list.md) - 发现无限可能
+- ......
 
 ## 💪 参与贡献
 
-<div class="contribution">
-  <p>和我们一起让 Karin 变得更好吧 ✨</p>
-  <ul>
-    <li>🐛 发现 Bug？告诉我们！</li>
-    <li>💫 有新想法？分享给我们！</li>
-    <li>📝 文档不够清晰？帮助完善！</li>
-    <li>🔧 发现可以改进的代码？提交 PR！</li>
-    <li>⭐ 喜欢这个项目？给个星星吧！</li>
-  </ul>
-  <p>让我们携手共建 Karin 的未来 ✨</p>
-</div>
+和我们一起让 Karin 变得更好吧 ✨
 
-<style>
-.features {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  margin: 2rem 0;
-}
+- 🐛 发现 Bug？[告诉我们](https://github.com/KarinJS/Karin/issues/new/choose)！
+- 💫 有新想法？[分享给我们](https://github.com/KarinJS/Karin/issues/new/choose)！
+- 📝 文档不够清晰？点击底部 `编辑此页`！
+- 🔧 发现可以改进的代码？[提交 PR](https://github.com/KarinJS/Karin/pulls)！
+- ⭐ 喜欢这个项目？[给个星星](https://github.com/KarinJS/Karin)吧！
 
-.feature {
-  padding: 20px;
-  border-radius: 12px;
-  background: var(--vp-c-bg-soft);
-  transition: transform 0.3s ease;
-}
-
-.feature:hover {
-  transform: translateY(-5px);
-}
-
-.env-list ul {
-  list-style: none;
-  padding-left: 20px;
-}
-
-.warning {
-  padding: 16px;
-  border-radius: 12px;
-  background: var(--vp-c-warning-soft);
-  margin: 16px 0;
-}
-
-.code-block {
-  background: var(--vp-c-bg-soft);
-  padding: 16px;
-  border-radius: 12px;
-  margin: 16px 0;
-}
-
-.adapter-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin: 16px 0;
-}
-
-.help-section ul,
-.next-steps ul,
-.community-resources ul,
-.contribution ul {
-  list-style: none;
-  padding-left: 20px;
-}
-
-.help-section a,
-.next-steps a,
-.community-resources a,
-.contribution a {
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.help-section a:hover,
-.next-steps a:hover,
-.community-resources a:hover,
-.contribution a:hover {
-  color: var(--vp-c-brand);
-}
-</style>
+让我们携手共建 Karin 的未来 ✨

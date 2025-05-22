@@ -74,6 +74,7 @@ export const guide: ThemeNote = defineNoteConfig({
             { text: 'Button', link: 'button', icon: 'mdi:button-cursor' },
             { text: 'Common', link: 'common', icon: 'mdi:function-variant' },
             { text: 'Config', link: 'config', icon: 'mdi:cog' },
+            { text: 'Context', link: 'context', icon: 'mdi:code-brackets' },
             { text: 'Fs', link: 'fs', icon: 'mdi:folder' },
             { text: 'Git', link: 'git', icon: 'mdi:git' },
             { text: 'Ini', link: 'ini', icon: 'mdi:file-document-outline' },

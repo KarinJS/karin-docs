@@ -388,26 +388,25 @@ permalink: /guide/p13zmecw/
 - 建议查看[exports](../api//exports.md)
 - 示例:
 
-  ```ts
-  // @karinjs
-  import { karinPathBase } from 'node-karin/root'
+```ts twoslash
+// @noErrorValidation
+import { karinPathBase } from 'node-karin/root' // @karinjs
 
-  // @karinjs/temp
-  import { karinPathTemp } from 'node-karin/temp'
+import { karinPathTemp } from 'node-karin/root' // @karinjs/temp
 
-  // 插件在@karinjs下的目录
-  import path from 'node:path'
-  import { karinPathPlugins } from 'node-karin/plugins'
+// 插件在@karinjs下的目录
+import path from 'node:path'
+import { karinPathPlugins } from 'node-karin/root'
 
-  // App插件默认创建的哦，不记得了就看下上面的package.json吧
-  const pluginName = 'karin-plugin-example'
-  const pluginPath = path.join(karinPathPlugins, pluginName)
+// App插件默认创建的哦，不记得了就看下上面的package.json吧
+const pluginName = 'karin-plugin-example'
+const pluginPath = path.join(karinPathPlugins, pluginName)
 
-  const configPath = path.join(pluginPath, 'config')
-  const dataPath = path.join(pluginPath, 'data')
-  const resourcePath = path.join(pluginPath, 'resources')
-  const tempPath = path.join(karinPathTemp, pluginName)
-  ```
+const configPath = path.join(pluginPath, 'config')
+const dataPath = path.join(pluginPath, 'data')
+const resourcePath = path.join(pluginPath, 'resources')
+const tempPath = path.join(karinPathTemp, pluginName)
+```
 
 > [!note] 
 > 总结就是: 所有文件都要放在 @karinjs 下的目录中

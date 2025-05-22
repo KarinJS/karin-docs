@@ -22,7 +22,7 @@ Karin 提供了两种类型的渲染器实现：
 1. **插件版渲染器**：直接集成在 Karin 项目中，随 Karin 一起启动
 2. **独立版渲染器**：作为独立项目运行，需要单独部署
 
-## 插件版渲染器（推荐）
+## 插件版渲染器
 
 插件版渲染器 `@karinjs/plugin-puppeteer` 是 Karin 开发团队提供的渲染器插件，可以直接安装在 Karin 项目中，无需额外部署和维护。
 
@@ -106,19 +106,19 @@ npm config set registry https://registry.npmmirror.com
 @tab npm
 
 ```bash
-npm init -y && npm install @karinjs/puppeteer@1.6.1 && npx init && node .
+npm init -y && npm install @karinjs/puppeteer@latest && npx init && node .
 ```
 
 @tab pnpm
 
 ```bash
-pnpm init && pnpm install @karinjs/puppeteer@1.6.1 && npx init && node .
+pnpm init && pnpm install @karinjs/puppeteer@latest && npx init && node .
 ```
 
 @tab yarn
 
 ```bash
-yarn init -y && yarn add @karinjs/puppeteer@1.6.1 && npx init && node .
+yarn init -y && yarn add @karinjs/puppeteer@latest && npx init && node .
 ```
 
 :::

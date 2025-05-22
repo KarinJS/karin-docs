@@ -118,55 +118,12 @@ export const accept = karin.accept('notice.groupMemberAdd', async (e) => {
 }, { name: '加群通知' })
 ```
 
-### 3. 上下文事件处理 <Badge type="warning" text="待完善..." />
 
-调用 `karin.ctx` 注册一个上下文事件
-
-> [!IMPORTANT]
->
-> - `ctx` 可以在任何地方调用，它并不是插件
-> - `ctx` 的返回值是一个 `Message` 类型的对象
-> - `ctx` 的第一个参数为消息事件，也就是 `Message` 事件，第二个参数详见下方说明
-
-::: tip 提示
-上下文也可以通过 `通知事件` 和 `请求事件` 触发
-:::
-
-```ts twoslash
-// @noErrorValidation
-import { Message } from 'node-karin'
-const e = {} as Message
-// ---cut-before---
-import karin from 'node-karin'
-// context 拥有完整的消息事件对象
-const context = await karin.ctx(e, {
-  reply: true, // 超时后是否回复
-  replyMsg: '操作超时已取消', // 超时回复文本 默认为 '操作超时已取消'
-  time: 120, // 超时时间 默认120秒
-  userId: e.userId, // 指定用户id触发下文 不指定则使用默认 e.user_id
-})
-```
-
-应用场景：
-
-```ts twoslash
-// @noErrorValidation
-import karin, { logger } from 'node-karin'
-
-const ctxText = karin.command('登录', async (e) => {
-  await e.reply('6位数的验证码已发送至您的邮箱 123456789@example.com，请注意查收')
-  const ctx = await karin.ctx(e) // 120 秒内等待用户发送验证码
-  logger.mark('验证码：' + ctx.msg) // 记录日志
-  // 处理登录逻辑......
-  await e.reply(`验证成功，Welcome ${ctx.sender.name}`)
-})
-```
-
-### 5. 事件处理器 <Badge type="danger" text="待完善..." />
+### 3. 事件处理器 <Badge type="danger" text="待完善..." />
 
 调用 `karin.handle` 注册一个事件处理器
 
-### 6. 定时任务 <Badge type="warning" text="待完善..." />
+### 4. 定时任务 <Badge type="warning" text="待完善..." />
 
 调用 `karin.task` 注册一个定时任务插件
 
@@ -196,7 +153,7 @@ export class hello extends Plugin {
   constructor() {
     super({
       name: '插件名称',
-      dsc: '插件描述',
+      desc: '插件描述',
       rule: [
         {
           /** 命令正则匹配 */
@@ -230,7 +187,7 @@ export class hello extends Plugin {
   constructor() {
     super({
       name: '插件名称',
-      dsc: '插件描述',
+      desc: '插件描述',
       /** 监听事件 具体请查看事件分类 */
       event: 'message',
       /** 插件的优先级 必须为数字 数字越小优先级越高 默认5000 */

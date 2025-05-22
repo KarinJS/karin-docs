@@ -26,14 +26,15 @@ pnpm create karin
 
 ## 常用指令
 
-> [!NOTE] 小贴士
+> [!NOTE]
 > 文档可能会有点落后于版本，随时用 `npx karin` 查看最新指令哦！
 >
 > 前台启动时请保持窗口开启，想关闭用 `Ctrl+C` 就好啦~
 >
 > 后台运行的话随便关窗口，要停止就用 `npx karin stop`
 
-> [!note] 1.8.0 新增
+> [!note]
+> 1.8.0 新增
 > `ki`缩写命令，使用`ki`代替`karin`，更简洁哦！
 
 ::: code-tabs

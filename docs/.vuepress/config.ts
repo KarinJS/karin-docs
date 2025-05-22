@@ -5,6 +5,7 @@ import tailwindcss from '@tailwindcss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import path from 'path'
 
 export default defineUserConfig({
   base: '/',
@@ -121,7 +122,15 @@ export default defineUserConfig({
      * @see https://theme-plume.vuejs.press/config/plugins/code-highlight/
      */
     codeHighlighter: {
-      twoslash: true, // 启用 TypeScript twoslash 支持，提供类型提示和错误检查
+      twoslash: {
+        twoslashOptions: {
+          compilerOptions: {
+            paths: {
+              'node-karin/root': [path.resolve(process.cwd(), './node_modules/node-karin/dist/root')],
+            }
+          }
+        }
+      },
       themes: {
         light: 'github-light-default',
         dark: 'github-dark-default'

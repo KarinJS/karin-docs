@@ -30,7 +30,7 @@ import { karin } from 'node-karin'
 const botInstance1 = karin.getBot(0)
 
 // 通过协议获取
-const botInstance2 = karin.getBot('onebot', true)
+const botInstance2 = karin.getBot('napcat', true)
 
 // 通过机器人ID获取
 const botInstance3 = karin.getBot('123456789')
@@ -106,6 +106,10 @@ const count = karin.getBotCount()
 
 ```ts twoslash
 // @noErrorValidation
+import { type AdapterBase } from 'node-karin'
+const communication = 'webSocketClient'
+const botInstance = {} as AdapterBase
+// ---cut---
 import { karin } from 'node-karin'
 
 /**
@@ -172,31 +176,21 @@ import { karin, segment } from 'node-karin'
 // 发送文本消息
 const result1 = await karin.sendMsg(
   '123456789',
-  {
-    scene: 'group',
-    peer: '群号',
-    userId: '发送者ID',
-  },
+  karin.contactGroup('123456789'),
   '这是一条消息'
 )
 
 // 发送复杂消息元素
 const result2 = await karin.sendMsg(
   '123456789',
-  {
-    scene: 'private',
-    peer: '私聊对象ID',
-  },
+  karin.contactFriend('123456789'),
   [segment.text('Hello'), segment.image('/path/to/image.jpg')]
 )
 
 // 使用选项
 const result3 = await karin.sendMsg(
   '123456789',
-  {
-    scene: 'group',
-    peer: '群号',
-  },
+  karin.contactGroup('123456789'),
   '这条消息将在5秒后自动撤回',
   {
     recallMsg: 5, // 5秒后撤回
@@ -288,10 +282,7 @@ if (myBot) {
 // 向特定群组发送消息
 await karin.sendMsg(
   '123456789',
-  {
-    scene: 'group',
-    peer: '10000000',
-  },
+  karin.contactGroup('10000000'),
   [segment.text('这是一条来自Karin框架的消息'), segment.image('https://example.com/image.jpg')]
 )
 ```
@@ -305,10 +296,7 @@ import { karin, segment } from 'node-karin'
 // 发送一条5秒后自动撤回的消息
 const result = await karin.sendMsg(
   '123456789',
-  {
-    scene: 'private',
-    peer: '10000000',
-  },
+  karin.contactFriend('10000000'),
   [segment.text('这条消息将在5秒后自动消失'), segment.image('/path/to/image.jpg')],
   {
     recallMsg: 5, // 5秒后自动撤回
@@ -317,34 +305,4 @@ const result = await karin.sendMsg(
 )
 
 console.log(`消息已发送，ID: ${result.messageId}，时间: ${result.time}`)
-```
-
-### 动态获取和管理机器人
-
-```ts twoslash
-// @noErrorValidation
-import { karin } from 'node-karin'
-
-// 定期检查机器人状态的功能
-const checkBotsStatus = () => {
-  const botIds = karin.getAllBotID()
-
-  botIds.forEach((id) => {
-    const botInstance = karin.getBot(id)
-    if (botInstance) {
-      console.log(`Bot ${id} 在线状态: ${botInstance.online ? '在线' : '离线'}`)
-
-      // 如果机器人离线，可以尝试重新连接或者卸载
-      if (!botInstance.online) {
-        // 可以选择卸载该机器人
-        // karin.unregisterBot('selfId', id)
-        // 或者尝试重新连接（根据适配器实现方式可能不同）
-        // botInstance.reconnect()
-      }
-    }
-  })
-}
-
-// 每5分钟检查一次
-setInterval(checkBotsStatus, 5 * 60 * 1000)
 ```

@@ -58,7 +58,7 @@ export default {
   ],
 
   /** 前端点击保存之后调用的方法 */
-  save: (config) => {
+  save: (config: any) => {
     console.log('保存的配置:', config)
     // 在这里处理保存逻辑
     return {
@@ -998,7 +998,7 @@ export default {
   ],
 
   /** 前端点击保存之后调用的方法 */
-  save: (config) => {
+  save: (config: any) => {
     console.log('config:', JSON.stringify(config, null, 2))
   },
 }
