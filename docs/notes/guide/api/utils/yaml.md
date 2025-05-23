@@ -6,7 +6,7 @@ permalink: /guide/37u0i3zq/
 
 # yaml 模块
 
-> [!note] 温馨提示
+> [!note]
 > 本文由 AI 辅助生成，可能存在不准确性。
 
 yaml 模块提供了读写 YAML 文件的工具函数，同时支持注释处理和高级编辑功能。

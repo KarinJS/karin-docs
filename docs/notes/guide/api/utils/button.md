@@ -6,7 +6,7 @@ permalink: /guide/2m6z62a9/
 
 # button 模块
 
-> [!note] 温馨提示
+> [!note]
 > 本文由 AI 辅助生成，可能存在不准确性。
 
 button 模块提供了处理和转换机器人按钮消息的工具函数。

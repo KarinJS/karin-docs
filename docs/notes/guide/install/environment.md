@@ -265,33 +265,30 @@ pnpm -v
 国内的小伙伴们注意啦！如果访问官方源太慢，咱们换个源吧！
 :::
 
-::: details 点击查看换源大法
 
 🚀 换源指南：
 
 ::: code-tabs
-@淘宝源
 
-```bash
+@tab 淘宝源
+```sh
 # 推荐使用这个，速度杠杠的！
 npm config set registry https://registry.npmmirror.com
 ```
 
-@腾讯源
-
-```bash
+@tab 腾讯源
+```sh
 # 淘宝源不行？试试腾讯源！
 npm config set registry https://mirrors.cloud.tencent.com/npm
 ```
 
-@官方源
-
-```bash
+@tab 官方源
+```sh
 # 想换回官方源也可以哦
 npm config set registry https://registry.npmjs.org
 ```
 
-```bash
+```sh
 # 看看现在用的是哪个源
 npm config get registry
 ```

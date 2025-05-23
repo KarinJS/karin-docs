@@ -6,7 +6,7 @@ permalink: /guide/2gr1l6k8/
 
 # changelog 模块
 
-> [!note] 温馨提示
+> [!note]
 > 本文由 AI 辅助生成，可能存在不准确性。
 
 changelog 模块提供了用于处理更新日志(CHANGELOG.md)的工具函数，可以提取和解析特定版本的更新说明。

@@ -46,11 +46,26 @@ permalink: /guide/wmhiz1s1/
 
 ```ts twoslash
 // @noErrorValidation
-import { components } from 'node-karin'
+import { defineConfig } from 'node-karin'
 
-export default {
+export default defineConfig({
+  /** 插件信息配置 */
   info: {
-    // 插件信息配置
+    id: 'karin-plugin-123',
+    name: 'karin-plugin-123',
+    author: {
+      name: '开发者名称',
+      home: 'https://github.com/开发者名称/karin-plugin-123',
+      avatar: 'https://github.com/开发者名称.png'
+    },
+    icon: {
+      /** @see https://fonts.google.com/icons */
+      name: 'settings',
+      size: 24,
+      color: '#B2A8D3'
+    },
+    version: '1.0.0',
+    description: '这是一个示例Karin插件，用于演示配置'
   },
   /** 动态渲染的组件 */
   components: () => [
@@ -66,7 +81,7 @@ export default {
       message: '保存成功',
     }
   },
-}
+})
 ```
 
 ## 生成组件
@@ -488,7 +503,7 @@ Pro 版本的调用方法与基础版本类似。仅有 2 个区别
 
 ::: details 点击打开卡片查看参数二说明
 
-> [!IMPORTANT] 重要
+> [!IMPORTANT]
 >
 > 1. 如果数组中的对象拥有 `title` 这个属性，那么组件本身就会自动取出对应的值在前端进行渲染，如果没有，那么它的默认值是 `新卡片 ${参数二.length + 1}`<br />
 > 2. 但是，还有但是，如果在参数三中 **给手风琴项配置了 `title` 属性** 的话，那么组件页面就会以手风琴项的配置为准。优先级：`手风琴项配置` > `数组对象配置`
@@ -513,7 +528,7 @@ A: 比如：`{ title: '标题', input: '数据项' }`，那么 `title` 就是键
 
 :::
 
-> [!IMPORTANT] 注意：
+> [!IMPORTANT]
 > 在手风琴 Pro 的参数三中，`children` 属性不是数组，而是对象了噢。
 
 #### 调用示例
@@ -898,10 +913,10 @@ components.input.group('group-key', {
 ## 下面是一个我写的示例文件
 
 ```ts twoslash
-// @noErrorValidation
-import { components } from 'node-karin'
+// @noErrors
+import { defineConfig, components } from 'node-karin'
 
-export default {
+export default defineConfig({
   info: {},
   /** 动态渲染的组件 */
   components: () => [
@@ -1000,8 +1015,13 @@ export default {
   /** 前端点击保存之后调用的方法 */
   save: (config: any) => {
     console.log('config:', JSON.stringify(config, null, 2))
+    // 必须要返回一个对象，success表示是否保存成功，message表示保存成功的提示信息
+    return {
+      success: true,
+      message: '保存成功',
+    }
   },
-}
+})
 ```
 
 ### 返回值

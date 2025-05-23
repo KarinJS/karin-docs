@@ -1,4 +1,4 @@
-# karin-简约-高效的机器人开发框架
+# karin-简洁-高效的机器人开发框架
 
 网站使用 [vuepress](https://vuepress.vuejs.org/) 和 [vuepress-theme-plume](https://github.com/pengzhanbo/vuepress-theme-plume) 构建生成。
 

@@ -4,7 +4,7 @@ createTime: 2025/05/15 00:12:24
 permalink: /guide/omb4d38v/
 ---
 
-> [!note] 温馨提示
+> [!note]
 > 本文由 AI 辅助生成，可能存在不准确性。
 
 node-karin 提供了丰富的工具库函数，涵盖了文件操作、网络请求、配置管理等多种功能，方便开发者构建插件和应用。
@@ -48,7 +48,7 @@ common.axios('https://example.com', 'get')
 
 ## ESM 格式说明
 
-> [!warning] 警告
+> [!warning]
 > node-karin 是纯 ESM 格式的包，不支持 CommonJS 的 require()方式导入。必须使用 import 语法，并确保你的项目也支持 ESM。
 
 ```ts twoslash

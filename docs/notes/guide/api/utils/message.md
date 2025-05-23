@@ -6,7 +6,7 @@ permalink: /guide/tnaf8j8v/
 
 # message 模块
 
-> [!note] 温馨提示
+> [!note]
 > 本文由 AI 辅助生成，可能存在不准确性。
 
 message 模块提供了消息处理的工具函数，用于创建和处理各种消息元素。

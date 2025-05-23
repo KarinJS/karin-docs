@@ -6,7 +6,7 @@ permalink: /guide/ulw3vz9u/
 
 # system 模块
 
-> [!note] 温馨提示
+> [!note]
 > 本文由 AI 辅助生成，可能存在不准确性。
 
 system 模块提供了系统级工具函数，包括执行命令、时间处理、IP 检测、多媒体处理等功能。

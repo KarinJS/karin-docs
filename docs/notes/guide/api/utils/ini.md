@@ -6,7 +6,7 @@ permalink: /guide/bnvigc6e/
 
 # ini 模块
 
-> [!note] 温馨提示
+> [!note]
 > 本文由 AI 辅助生成，可能存在不准确性。
 
 ini 模块提供了对 INI 格式文件的解析和写入功能，特别适用于处理`.npmrc`格式的配置文件。

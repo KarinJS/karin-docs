@@ -6,7 +6,7 @@ permalink: /guide/61b00fe9/
 
 # request 模块
 
-> [!note] 温馨提示
+> [!note]
 > 本文由 AI 辅助生成，可能存在不准确性。
 
 request 模块提供了网络请求相关的工具函数，扩展了 axios 的基础功能。

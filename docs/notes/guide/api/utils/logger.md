@@ -6,7 +6,7 @@ permalink: /guide/dx7y8w93/
 
 # logger 模块
 
-> [!note] 温馨提示
+> [!note]
 > 本文由 AI 辅助生成，可能存在不准确性。
 
 logger 模块提供了日志记录功能，基于 log4js 扩展，增加了彩色输出和便捷的日志分类方法。

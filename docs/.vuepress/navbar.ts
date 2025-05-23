@@ -2,7 +2,7 @@ import { defineNavbarConfig } from 'vuepress-theme-plume'
 import { version } from '../../node_modules/node-karin/package.json'
 
 export const navbar = defineNavbarConfig([
-  { text: '首页', link: '/' },
+  { text: '首页', icon: 'mdi:home', link: '/' },
   {
     text: '快速开始',
     icon: 'icon-park-outline:guide-board',

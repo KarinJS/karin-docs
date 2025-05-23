@@ -4,10 +4,10 @@ createTime: 2025/05/15 00:12:24
 permalink: /guide/utils/1ususf67/
 ---
 
-> [!note] 温馨提示
+> [!note]
 > 本文由 AI 辅助生成，可能存在不准确性。
 
-> [!warning] 警告
+> [!warning]
 > 除了 sqlite3 以外，所有导出模块都是 ESM 格式。底层使用了 vite+tsup 对模块本身进行了重新打包，可能存在一定的兼容性问题。如果遇到问题，请在 GitHub 仓库开 issues 报告。
 >
 > 使用 TypeScript 开发时，目前`lodash`和`express`需要单独安装类型包：
@@ -30,8 +30,8 @@ import { karinPathRoot } from 'node-karin/root'
 
 ### 新的路径常量
 
-> [!note] Api 变动
->
+> [!note]
+> Api 变动
 > | 版本  | 变动                                                                 |
 > | ----- | -------------------------------------------------------------------- |
 > | 1.8.0 | 新增 `karinPathKv` `kvPath`，统一前缀 `karinPath` ，并废弃了旧的常量 |
@@ -103,7 +103,8 @@ import express from 'node-karin/express'
 import { Router } from 'node-karin/express'
 ```
 
-> [!note] TypeScript 类型
+> [!note] 
+> TypeScript 类型
 > TypeScript 开发中，需要单独安装类型声明包：`npm install -D @types/express`
 
 详细文档请参考 [express 官方文档](https://expressjs.com/)
@@ -118,7 +119,8 @@ import _ from 'node-karin/lodash'
 import { merge } from 'node-karin/lodash'
 ```
 
-> [!note] TypeScript 类型
+> [!note] 
+> TypeScript 类型
 > TypeScript 开发中，需要单独安装类型声明包：`npm install -D @types/lodash`
 
 详细文档请参考 [lodash 官方文档](https://lodash.com/docs)
@@ -205,7 +207,7 @@ SQLite 数据库客户端。
 import sqlite3 from 'node-karin/sqlite3'
 ```
 
-> [!note] 特别说明
+> [!note]
 > 不同于其他导出模块，sqlite3 为 CommonJS 格式。
 
 详细文档请参考 [sqlite3 文档](https://github.com/TryGhost/node-sqlite3)
