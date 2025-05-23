@@ -4,7 +4,7 @@ on:
   # 每当 push 到 main 分支时触发部署
   # Deployment is triggered whenever a push is made to the main branch.
   push:
-    branches: [main]
+    branches: [docs]
   # 手动触发部署
   # Manually trigger deployment
   workflow_dispatch:
@@ -39,7 +39,7 @@ jobs:
       # 运行构建脚本
       # Run the build script
       - name: Build VuePress site
-        run: pnpm run docs:build
+        run: pnpm run build
 
 
       # 查看 workflow 的文档来获取更多信息
