@@ -1,8 +1,8 @@
 name: deploy
 
 on:
-  # 每当 push 到 main 分支时触发部署
-  # Deployment is triggered whenever a push is made to the main branch.
+  # 每当 push 到 docs 分支时触发部署
+  # Deployment is triggered whenever a push is made to the docs branch.
   push:
     branches: [docs]
   # 手动触发部署
@@ -95,8 +95,8 @@ jobs:
           publish_dir: docs/.vuepress/dist
           force: true
           force_orphan: true
-          user_name: "github-actions[bot]"
-          user_email: "github-actions[bot]@users.noreply.github.com"
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
 
       - name: Check hanhan0258/karin-docs push status
         if: steps.push-to-hanhan.outcome == 'failure'
@@ -115,8 +115,8 @@ jobs:
           publish_dir: docs/.vuepress/dist
           force: true
           force_orphan: true
-          user_name: "github-actions[bot]"
-          user_email: "github-actions[bot]@users.noreply.github.com"
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
 
       - name: Check yusheng929/karin-docs push status
         if: steps.push-to-yusheng.outcome == 'failure'
