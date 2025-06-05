@@ -231,7 +231,7 @@ const port2 = await system.waitPort(8000)
 
 ```ts twoslash
 // @noErrorValidation
-import { getPid, restart, restartDirect, Message } from 'node-karin'
+import { getPid, restart, restartDirect, Message, killApp } from 'node-karin'
 // 或使用命名空间
 import { system } from 'node-karin'
 
@@ -245,6 +245,14 @@ if (pid) {
 }
 // 使用命名空间
 await system.getPid(3000)
+
+/**
+ * 结束指定进程
+ */
+await killApp(3369) // 通过pid结束进程
+await killApp(3369, true) // 通过端口进程进程
+// 使用命名空间
+await system.killApp(3369)
 
 
 /**
@@ -263,13 +271,6 @@ async function onMessage(e: Message) {
   await system.restart(e.self_id, e.contact, e.message_id, true)
 }
 
-/**
- * 直接重启Bot
- * @param isPm2 - 是否为pm2重启 默认false
- */
-await restartDirect()
-// 使用命名空间
-await system.restartDirect()
 ```
 
 ## 错误处理 (error)
