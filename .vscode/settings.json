@@ -1,4 +1,5 @@
 {
+  "editor.tabSize": 2,
   "editor.formatOnSave": true,
   "[typescript]": {
     "editor.defaultFormatter": "vscode.typescript-language-features"

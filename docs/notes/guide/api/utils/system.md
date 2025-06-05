@@ -373,7 +373,7 @@ range 模块提供了版本范围限制功能。
 
 ```ts twoslash
 // @noErrorValidation
-import { satisfies, compareVersions } from 'node-karin'
+import { satisfies } from 'node-karin'
 // 或使用命名空间
 import { system } from 'node-karin'
 
@@ -394,21 +394,6 @@ const isInRange7 = satisfies('1.0.x', '1.0.1') // true
 const isInRange8 = satisfies('1.0.x', '1.1.0') // false
 // 使用命名空间
 const isInRange9 = system.satisfies('^1.0.0', '1.0.1') 
-
-/**
- * 比较两个版本
- * @param v1 第一个版本
- * @param v2 第二个版本
- * @returns 比较结构
- */
-const limited = compareVersions('2.0.0', '1.9.9') // 1
-const limited2 = compareVersions('1.0.0-alpha', '1.0.0-beta') // （正式版 > 预发布）
-const limited3 = compareVersions('1.0.0-rc', '1.0.0') // -1 // -1
-//  通配符
-const limited4 = compareVersions('1.x.x', '1.2.3') // 1
-
-// 使用命名空间
-const limited5 = system.compareVersions('1.x', '1.2.3')
 ```
 
 ## URL 转换为网络 URL (fileToUrl)
