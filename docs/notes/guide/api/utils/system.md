@@ -128,9 +128,11 @@ ip 模块提供了 IP 地址检测和处理的功能。
 
 ```ts twoslash
 // @noErrorValidation
-import { isLoopback, isIPv4Loop, isIPv6Loop, getRequestIp, isLocalRequest } from 'node-karin'
+import { isLoopback, isIPv4Loop, isIPv6Loop, getRequestIp, isLocalRequest, app } from 'node-karin'
 // 或使用命名空间
 import { system } from 'node-karin'
+
+import type { Request, Response } from 'express'
 
 /**
  * 判断是否为回环地址
@@ -189,7 +191,7 @@ port 模块提供了端口检测和获取空闲端口的功能。
 
 ```ts twoslash
 // @noErrorValidation
-import { isPortAvailable, getAvailablePort } from 'node-karin'
+import { checkPort, waitPort } from 'node-karin'
 // 或使用命名空间
 import { system } from 'node-karin'
 
@@ -198,22 +200,29 @@ import { system } from 'node-karin'
  * @param port 端口号
  * @returns 布尔值
  */
-const available = await isPortAvailable(3000)
+const available = await checkPort(3000)
 if (available) {
   console.log('端口3000可用')
 } else {
   console.log('端口3000已被占用')
 }
 // 使用命名空间
-const available2 = await system.isPortAvailable(3000)
+const available2 = await system.checkPort(3000)
 
 /**
- * 获取可用端口
- * @param startPort 起始端口号
+ * 等待一个端口变为可用状态
+ * @param port - 端口号
+ * @param maxAttempts - 最大尝试次数
+ * @param interval - 检查间隔(ms)
  * @returns 可用的端口号
  */
-const port = await getAvailablePort(8000)
-console.log(`找到可用端口: ${port}`)
+const port = await waitPort(8000)
+if(port){
+console.log('端口可用')
+}
+
+//  使用命名空间
+const port2 = await system.waitPort(8000)
 ```
 
 ## 进程管理 (pid/restart)
@@ -222,36 +231,45 @@ console.log(`找到可用端口: ${port}`)
 
 ```ts twoslash
 // @noErrorValidation
-import { killByPort, getPidsByPort, restart } from 'node-karin'
+import { getPid, restart, restartDirect, Message } from 'node-karin'
 // 或使用命名空间
 import { system } from 'node-karin'
 
 /**
- * 根据端口号终止进程
- * @param port 端口号
- * @returns 布尔值表示是否成功
+ * 根据端口找到对应的进程pid
+ * @param port - 端口号
  */
-const killed = await killByPort(3000)
-if (killed) {
-  console.log('成功终止占用端口3000的进程')
+const pid = await getPid(3000)
+if (pid) {
+  console.log(`进程ID: ${pid}`)
 }
 // 使用命名空间
-await system.killByPort(3000)
+await system.getPid(3000)
+
 
 /**
- * 获取占用指定端口的进程ID
- * @param port 端口号
- * @returns 进程ID数组
+ * 重启Bot
+ * @param selfId - 机器人的id 传e.self_id
+ * @param contact - 事件联系人信息 也就是从哪来的这条消息 传e.contact即可
+ * @param messageId - 消息id 传e.message_id
+ * @param isFront - 是否为前台重启 默认是 不支持的环境会强制为pm2重启
  */
-const pids = await getPidsByPort(3000)
-console.log(`占用端口3000的进程ID: ${pids.join(', ')}`)
+// 在消息处理中使用
+async function onMessage(e: Message) {
+  // 传递完整的事件参数
+  await restart(e.self_id, e.contact, e.message_id, true)
+  
+  // 使用命名空间方式
+  await system.restart(e.self_id, e.contact, e.message_id, true)
+}
 
 /**
- * 重启应用程序
- * @param delay 延迟毫秒数
+ * 直接重启Bot
+ * @param isPm2 - 是否为pm2重启 默认false
  */
-// 延迟1秒后重启
-restart(1000)
+await restartDirect()
+// 使用命名空间
+await system.restartDirect()
 ```
 
 ## 错误处理 (error)
@@ -272,10 +290,11 @@ import { system } from 'node-karin'
 try {
   throw new Error('测试错误')
 } catch (error) {
-  const errorInfo = stringifyError(error)
-  console.log(errorInfo)
+  const errorInfo = stringifyError(error as Error)
+   console.log(JSON.stringify(errorInfo, null, 2))
   // 使用命名空间
-  console.log(system.stringifyError(error))
+  const errorInfo2 = system.stringifyError(error as Error)
+  console.log(JSON.stringify(errorInfo2, null, 2))
   // 结果：{ name: 'Error', message: '测试错误', stack: '...' }
 }
 
@@ -287,7 +306,7 @@ try {
 try {
   throw new Error('测试错误')
 } catch (error) {
-  const errorStr = errorToString(error)
+  const errorStr = errorToString(error as Error)
   console.log(errorStr)
   // 结果：'name: Error\nmessage: 测试错误\nstack: Error: 测试错误\n    at ...'
 }
@@ -304,7 +323,7 @@ import { isWin, isLinux, isMac, isDocker, isRoot } from 'node-karin'
 import { system } from 'node-karin'
 
 /**
- * 判断当前操作系统类型和环境
+ * 判断当前操作系统类型
  */
 if (isWin) {
   console.log('当前是Windows系统')
@@ -313,50 +332,83 @@ if (isWin) {
 } else if (isMac) {
   console.log('当前是MacOS系统')
 }
+// 使用命名空间
+if(system.isWin){
+  console.log('当前是Windows系统')
+} else if (system.isLinux) {
+  console.log('当前是Linux系统')
+} else if (system.isMac) {
+  console.log('当前是MacOS系统')
+}
+
+/**
+ * 判断当前环境
+ */
 
 // 判断是否在Docker环境中运行
 if (isDocker) {
   console.log('当前在Docker容器中运行')
 }
 
+// 使用命名空间
+if(system.isDocker){
+  console.log('当前在Docker容器中运行')
+}
+
+/** 
+ * 判断当前权限
+ */
 // 判断是否是root用户(仅Linux)
 if (isRoot) {
+  console.log('当前以root用户运行')
+}
+if(system.isRoot){
   console.log('当前以root用户运行')
 }
 ```
 
 ## 范围限制 (range)
 
-range 模块提供了数值范围限制功能。
+range 模块提供了版本范围限制功能。
 
 ```ts twoslash
 // @noErrorValidation
-import { inRange, clamp } from 'node-karin'
+import { satisfies, compareVersions } from 'node-karin'
 // 或使用命名空间
 import { system } from 'node-karin'
 
 /**
- * 检查值是否在指定范围内
- * @param value 要检查的值
- * @param min 最小值
- * @param max 最大值
+ * 检查值是否在指定的版本范围内
+ * @param satisfies 版本范围
+ * @param version 版本
  * @returns 布尔值
  */
-const isInRange = inRange(5, 1, 10) // true
-const isInRange2 = inRange(15, 1, 10) // false
+const isInRange = satisfies('^1.0.0', '1.0.1') // true
+const isInRange2 = satisfies('^1.0.0', '2.0.0') // false
+const isInRange3 = satisfies('1.0.0-beta', '1.0.0-alpha') // false
+const isInRange4 = satisfies('^1.0.0-beta', '1.0.0-alpha') // false
+const isInRange5 = satisfies('>=1.0.0-beta', '1.0.0-alpha') // false
+const isInRange6 = satisfies('^1.0.0-alpha', '1.0.0-beta') // true
+// 通配符
+const isInRange7 = satisfies('1.0.x', '1.0.1') // true
+const isInRange8 = satisfies('1.0.x', '1.1.0') // false
 // 使用命名空间
-const isInRange3 = system.inRange(5, 1, 10)
+const isInRange9 = system.satisfies('^1.0.0', '1.0.1') 
 
 /**
- * 将值限制在指定范围内
- * @param value 要限制的值
- * @param min 最小值
- * @param max 最大值
- * @returns 限制后的值
+ * 比较两个版本
+ * @param v1 第一个版本
+ * @param v2 第二个版本
+ * @returns 比较结构
  */
-const limited = clamp(5, 1, 10) // 5
-const limited2 = clamp(15, 1, 10) // 10
-const limited3 = clamp(-5, 1, 10) // 1
+const limited = compareVersions('2.0.0', '1.9.9') // 1
+const limited2 = compareVersions('1.0.0-alpha', '1.0.0-beta') // （正式版 > 预发布）
+const limited3 = compareVersions('1.0.0-rc', '1.0.0') // -1 // -1
+//  通配符
+const limited4 = compareVersions('1.x.x', '1.2.3') // 1
+
+// 使用命名空间
+const limited5 = system.compareVersions('1.x', '1.2.3')
 ```
 
 ## URL 转换为网络 URL (fileToUrl)
@@ -365,19 +417,33 @@ const limited3 = clamp(-5, 1, 10) // 1
 
 ```ts twoslash
 // @noErrorValidation
-import { fileToUrl } from 'node-karin'
+import karin, { fileToUrl, handler } from 'node-karin'
 // 或使用命名空间
 import { system } from 'node-karin'
+
+import fs from 'node:fs'
 
 /**
  * 将文件路径转换为URL
  * @param filePath 文件路径
  * @returns URL
  */
-const url = fileToUrl('/path/to/file.txt')
-console.log(url.href) // "file:///path/to/file.txt"
+
+// 注册处理器
+export const Handler = karin.handler('fileToUrl', async (args, next)=> {
+  const { file, type, filename, args: options } = args
+  // @ts-ignore
+  await uploadFile(file, type, filename , options) // 假设这里有一个上传文件的函数
+  next()
+})
+
+
+const file = fs.readFileSync('example.jpg')
+const upload1 = await fileToUrl('image', file, 'loli.png')
+console.log(upload1.url) // "https://example.com/uploads/loli.png"
+
 // 使用命名空间
-const url2 = system.fileToUrl('/path/to/file.txt')
+const upload12 = await system.fileToUrl('image', file, 'loli.png')
 ```
 
 ## 更新管理 (update)
@@ -496,7 +562,7 @@ const unlock = lockMethod(testObj, 'setValue', '此方法已被锁定')
 try {
   testObj.setValue(100) // 抛出错误: 此方法已被锁定
 } catch (error) {
-  console.error(error.message)
+  console.error((error as Error).message)
 }
 
 // 解锁方法
@@ -588,7 +654,7 @@ console.log(isClass(TestClass)) // true
 ```ts twoslash
 // @noErrorValidation
 // @noErrorValidation
-import { exec, isPortAvailable, getAvailablePort, formatTime, restart, checkPkgUpdate, updatePkg, isWin, stringifyError } from 'node-karin'
+import { exec, common, checkPort, waitPort, formatTime, restartDirect, checkPkgUpdate, updatePkg, isWin, stringifyError } from 'node-karin'
 
 async function startService() {
   try {
@@ -599,16 +665,16 @@ async function startService() {
       const updateResult = await updatePkg('node-karin')
       if (updateResult.status === 'ok') {
         console.log('更新成功，需要重启...')
-        return restart(1000)
+        return await restartDirect()
       }
     }
 
     // 检查默认端口
     const defaultPort = 3000
-    const isAvailable = await isPortAvailable(defaultPort)
+    const isAvailable = await checkPort(defaultPort)
 
     // 如果默认端口不可用，寻找可用端口
-    const port = isAvailable ? defaultPort : await getAvailablePort(defaultPort + 1)
+    const port = isAvailable ? defaultPort : await waitPort(defaultPort + 1)
     console.log(`使用端口: ${port}`)
 
     // 根据系统类型选择启动命令
@@ -625,10 +691,12 @@ async function startService() {
       console.error('服务启动失败:', stderr)
       // 尝试重启
       console.log('5秒后尝试重启...')
-      restart(5000)
+      await common.sleep(5000)
+      await restartDirect()
     }
   } catch (error) {
-    console.error('启动过程出错:', stringifyError(error))
+      const errorInfo = stringifyError(error as Error)
+      console.error('启动过程出错:', JSON.stringify(errorInfo, null, 2))
   }
 }
 ```
