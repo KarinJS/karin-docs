@@ -479,7 +479,7 @@ export const GET_LOADED_COMMAND_PLUGIN_CACHE_LIST_ROUTER = '/plugin/loaded/comma
 > 如果是 `TypeScript`，记得安装 `@types/express` 哦
 
 ```ts twoslash
-import { app } from 'node-karin'
+import { app, authMiddleware } from 'node-karin'
 import express from 'express'
 import type { Request, Response, RequestHandler } from 'express'
 
@@ -495,7 +495,7 @@ const router = express.Router()
  */
 router.use(express.json())
 // 还可以挂上面说的，用karin内部的鉴权函数来对所有api进行鉴权
-
+router.use(authMiddleware)
 // ======================================================
 
 /**
