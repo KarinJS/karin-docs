@@ -7,6 +7,15 @@ createTime: 2025/11/06 04:23:00
 
 使用 Docker 部署 Karin 是最简单快捷的方式，无需手动配置 Node.js 环境。
 
+:::danger 🔒 安全警告
+**HTTP 服务器默认监听 0.0.0.0（所有网络接口）**
+
+- 默认端口 **7777** 会暴露在所有网络接口上
+- **请勿在公网直接暴露此端口**，否则可能导致未授权访问
+- 建议仅在内网使用，或通过反向代理（如 Nginx）+ HTTPS 访问
+- 如需公网访问，务必配置强密码、IP 白名单或 VPN
+:::
+
 ## 快速开始
 
 ### 一键安装脚本
@@ -424,11 +433,81 @@ docker run -d --name karin --restart=always \
 
 ## 安全建议
 
-1. 🔒 定期备份数据目录
-2. 🔒 使用强密码保护 Web UI
-3. 🔒 配置防火墙规则，限制访问端口
-4. 🔒 定期更新镜像到最新版本
-5. 🔒 不要在生产环境使用 root 用户运行
+### ⚠️ 网络安全
+
+**重要：HTTP 服务器监听 0.0.0.0**
+
+Karin 的 HTTP 服务器默认绑定到 `0.0.0.0`（所有网络接口），这意味着：
+
+- 默认端口 **7777** 会在所有网络接口上开放
+- 如果服务器有公网 IP，该端口将直接暴露在互联网上
+- **强烈建议不要将 7777 端口直接暴露到公网**
+
+#### 推荐的安全配置
+
+**方案一：仅内网访问（推荐）**
+
+修改端口映射，仅绑定到本地回环地址：
+
+```bash
+docker run -d --name karin --restart=always \
+  -e TZ=Asia/Shanghai \
+  -e PORT=7777 \
+  -p 127.0.0.1:7777:7777 \
+  -v /opt/karin:/app \
+  karinjs/karin:latest
+```
+
+这样只能通过 `localhost:7777` 或 `127.0.0.1:7777` 访问，不会暴露到外网。
+
+**方案二：使用反向代理 + HTTPS**
+
+通过 Nginx 等反向代理配置 HTTPS 和访问控制：
+
+```nginx
+# Nginx 配置示例
+server {
+    listen 443 ssl http2;
+    server_name your-domain.com;
+    
+    ssl_certificate /path/to/cert.pem;
+    ssl_certificate_key /path/to/key.pem;
+    
+    location / {
+        proxy_pass http://127.0.0.1:7777;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        
+        # IP 白名单（可选）
+        allow 192.168.1.0/24;  # 允许内网
+        deny all;               # 拒绝其他
+    }
+}
+```
+
+**方案三：防火墙规则**
+
+如果必须在非标准端口暴露服务，配置防火墙限制访问：
+
+```bash
+# 仅允许特定 IP 访问
+iptables -A INPUT -p tcp --dport 7777 -s YOUR_IP_ADDRESS -j ACCEPT
+iptables -A INPUT -p tcp --dport 7777 -j DROP
+
+# 或使用 firewalld
+firewall-cmd --permanent --add-rich-rule='rule family="ipv4" source address="YOUR_IP_ADDRESS" port port="7777" protocol="tcp" accept'
+firewall-cmd --reload
+```
+
+### 其他安全建议
+
+1. 🔒 **定期备份数据目录**：防止数据丢失
+2. 🔒 **使用强密码保护 Web UI**：在 `.env` 中设置 `HTTP_AUTH_KEY`
+3. 🔒 **定期更新镜像**：及时获取安全补丁
+4. 🔒 **不要使用 root 用户运行**：降低安全风险
+5. 🔒 **监控访问日志**：及时发现异常访问
+6. 🔒 **配置 HTTPS**：加密传输数据
 
 ## 相关链接
 
