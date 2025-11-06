@@ -9,6 +9,7 @@ command = "pnpm run build"
 
 # Deploy preview context (PRs)
 # Explicitly defined to ensure every push to a PR triggers a new build
-# Without this, Netlify might cache and skip rebuilds on PR updates
+# The command is explicitly set (even though it inherits from [build])
+# to make it clear that builds should always run for deploy previews
 [context.deploy-preview]
 command = "pnpm run build"
