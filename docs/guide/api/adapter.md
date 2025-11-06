@@ -44,7 +44,11 @@ createTime: 2025/05/24 00:03:09
 | `getHistoryMsg`  | `contact: Contact, startMsgId: string, count: number`                      | `Promise<Array<MessageResponse>>` | 通过消息ID获取历史消息     |
 | `getForwardMsg`  | `resId: string`                                                            | `Promise<Array<MessageResponse>>` | 获取合并转发消息           |
 | `createResId`    | `contact: Contact, elements: Array<NodeElement>`                           | `Promise<string>`                 | 构造一个资源ID             |
-| `setMsgReaction` | `contact: Contact, messageId: string, faceId: number, isSet: boolean`      | `Promise<boolean>`                | 设置消息表情回应（v1.11.1+ faceId 支持 string 类型）           |
+| `setMsgReaction` | `contact: Contact, messageId: string, faceId: number \| string, isSet: boolean`      | `Promise<boolean>`                | 设置消息表情回应           |
+
+> [!note]
+> **版本说明**：
+> - `setMsgReaction` 的 `faceId` 参数从 v1.11.1 开始支持 `string` 类型
 
 ### 群管理
 
@@ -79,7 +83,7 @@ createTime: 2025/05/24 00:03:09
 
 | 方法名                   | 参数                                                   | 返回值                                       | 描述                     |
 | ------------------------ | ------------------------------------------------------ | -------------------------------------------- | ------------------------ |
-| `getGroupInfo`           | `groupId: string, noCache?: boolean`                   | `Promise<GroupInfo>`                         | 获取群信息（v1.11.0+ 新增 avatar 字段）               |
+| `getGroupInfo`           | `groupId: string, noCache?: boolean`                   | `Promise<GroupInfo>`                         | 获取群信息               |
 | `getGroupList`           | `refresh?: boolean`                                    | `Promise<Array<GroupInfo>>`                  | 获取群列表               |
 | `getGroupMemberInfo`     | `groupId: string, targetId: string, refresh?: boolean` | `Promise<GroupMemberInfo>`                   | 获取群成员信息           |
 | `getGroupMemberList`     | `groupId: string, refresh?: boolean`                   | `Promise<Array<GroupMemberInfo>>`            | 获取群成员列表           |
@@ -88,6 +92,10 @@ createTime: 2025/05/24 00:03:09
 | `setGroupHighlights`     | `groupId: string, messageId: string, create: boolean`  | `Promise<boolean>`                           | 设置、取消群精华消息     |
 | `getNotJoinedGroupInfo?` | `groupId: string`                                      | `Promise<GroupInfo>`                         | 获取陌生群信息           |
 | `getAtAllCount`          | `groupId: string`                                      | `Promise<GetAtAllCountResponse>`             | 获取艾特全体成员剩余次数 |
+
+> [!note]
+> **版本说明**：
+> - `GroupInfo` 接口从 v1.11.0 开始新增 `avatar` 字段，用于获取群头像
 
 ### 好友与用户信息
 
