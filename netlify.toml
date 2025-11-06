@@ -6,3 +6,20 @@ NODE_OPTIONS = "--max-old-space-size=4096"
 [build]
 publish = "docs/.vuepress/dist"
 command = "pnpm run build"
+
+# Context-specific build settings
+# Production context (main/docs branch)
+[context.production]
+publish = "docs/.vuepress/dist"
+command = "pnpm run build"
+
+# Deploy preview context (PRs)
+# This ensures that every push to a PR triggers a new build
+[context.deploy-preview]
+publish = "docs/.vuepress/dist"
+command = "pnpm run build"
+
+# Branch deploy context (other branches)
+[context.branch-deploy]
+publish = "docs/.vuepress/dist"
+command = "pnpm run build"
