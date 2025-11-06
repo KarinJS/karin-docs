@@ -85,7 +85,7 @@ createTime: 2025/05/24 00:03:09
 | `getGroupMemberList`     | `groupId: string, refresh?: boolean`                   | `Promise<Array<GroupMemberInfo>>`            | 获取群成员列表           |
 | `getGroupHonor`          | `groupId: string`                                      | `Promise<Array<QQGroupHonorInfo>>`           | 获取群荣誉信息           |
 | `getGroupHighlights`     | `groupId: string, page: number, pageSize: number`      | `Promise<Array<GetGroupHighlightsResponse>>` | 获取精华消息             |
-| `setGgroupHighlights`    | `groupId: string, messageId: string, create: boolean`  | `Promise<boolean>`                           | 设置、取消群精华消息     |
+| `setGroupHighlights`     | `groupId: string, messageId: string, create: boolean`  | `Promise<boolean>`                           | 设置、取消群精华消息     |
 | `getNotJoinedGroupInfo?` | `groupId: string`                                      | `Promise<GroupInfo>`                         | 获取陌生群信息           |
 | `getAtAllCount`          | `groupId: string`                                      | `Promise<GetAtAllCountResponse>`             | 获取艾特全体成员剩余次数 |
 

@@ -46,7 +46,9 @@ createTime: 2025/06/30 20:52:12
         "name": "NODE_ENV",
         "value": "production"
       }
-    ]
+    ],
+    /** 忽略引擎版本检查 (v1.12.1+) */
+    "ignoreEngines": false
   }
 }
 ```
@@ -77,6 +79,21 @@ createTime: 2025/06/30 20:52:12
   - ~~`nodejs vxx` `(待适配)`~~
 
 `js环境` 就是正常使用 `nodejs` 启动 `karin`
+
+**engines.karin**:
+
+- 说明: 插件引擎版本要求
+- 类型: `string`
+- 示例: `">=1.8.0"`
+- 支持格式: `^0.0.1`、`>=0.0.1`、`0.0.1`、`0.0.x`
+
+**karin.ignoreEngines** (v1.12.1+):
+
+- 说明: 强制加载插件，即使版本不匹配（将显示警告而不是错误）
+- 类型: `boolean`
+- 示例: `true`
+- 备注: 仅适用于 `karin.engines` 字段，不影响 `package.engines`
+- 用途: 允许插件开发者明确选择在不兼容版本上运行
 
 **main**:
 

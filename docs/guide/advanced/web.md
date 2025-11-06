@@ -66,6 +66,28 @@ HTTP_AUTH_KEY=your_new_secret_key  # 修改这里的值
 - 💬 消息记录查询
 - 🎨 主题自定义
 
+## 🆕 新增功能 (v1.10.0+)
+
+### Select 下拉选择组件
+
+Web UI 配置系统新增了 Select 下拉选择组件，让插件配置更加灵活便捷：
+
+```typescript
+// 在插件的 web.config 中使用
+{
+  type: 'select',
+  label: '选择模式',
+  options: [
+    { label: '模式1', value: 'mode1' },
+    { label: '模式2', value: 'mode2' }
+  ]
+}
+```
+
+### Checkbox 复选框组件增强
+
+支持为每个选项添加描述文本，让用户更容易理解各个选项的含义。
+
 ## 💡 使用技巧
 
 <div class="tips-section">
