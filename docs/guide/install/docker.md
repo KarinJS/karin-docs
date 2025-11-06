@@ -127,7 +127,7 @@ docker run -d --name karin --restart=always \
   -e PORT=7777 \
   -p 7777:7777 \
   -v /opt/karin:/app \
-  -v /opt/karin/puppteer:${HOME}/.cache/puppeteer \
+  -v /opt/karin/puppeteer:${HOME}/.cache/puppeteer \
   karinjs/karin:latest
 ```
 
