@@ -29,7 +29,7 @@ createTime: 2025/05/14 01:01:55
 | `HTTP_HOST`          | `string`  | HTTP 服务监听地址                                               |
 | `HTTP_AUTH_KEY`      | `string`  | HTTP 服务鉴权密钥，仅用于 karin 自身 Api                        |
 | `WS_SERVER_AUTH_KEY` | `string`  | WebSocket 服务器鉴权密钥                                        |
-| `REDIS_ENABLE`       | `boolean` | 是否启用 Redis，关闭后将使用内部虚拟 Redis                      |
+| `REDIS_ENABLE`       | `boolean` | 是否启用 Redis，关闭后将使用内部虚拟 Redis (Redis Mock)                      |
 | `PM2_RESTART`        | `boolean` | 重启是否调用 pm2，如果不调用则会直接关机                        |
 | `LOG_LEVEL`          | `string`  | 日志等级，可选值: `trace` `debug` `info` `warn` `error` `fatal` |
 | `LOG_DAYS_TO_KEEP`   | `number`  | 日志保留天数                                                    |
@@ -59,7 +59,8 @@ HTTP_AUTH_KEY=default
 # ws_server鉴权秘钥
 WS_SERVER_AUTH_KEY=
 
-# 是否启用Redis 关闭后将使用内部虚拟Redis
+# 是否启用Redis 关闭后将使用内部虚拟Redis (Redis Mock)
+# v1.11.2+ 新增了 setEx, pSetEx, setNX, getEx, getDel 等常用方法
 REDIS_ENABLE=true
 # 重启是否调用pm2 如果不调用则会直接关机 此配置适合有进程守护的程序
 PM2_RESTART=true
@@ -785,6 +786,13 @@ RUNTIME=node
 > [!IMPORTANT] 
 > `redis`配置项  
 > `redis`配置不提供示例配置
+>
+> **Redis Mock 增强 (v1.11.2+)**：当 `REDIS_ENABLE=false` 时，将使用内置的 Redis Mock 客户端。
+> 从 v1.11.2 开始，Redis Mock 已补全以下常用方法：
+> - `setEx`, `pSetEx`, `setNX` - 带过期时间的设置操作
+> - `getEx`, `getDel` - 获取并设置过期时间、获取并删除
+> - `incrBy`, `decrBy`, `incrByFloat` - 数值增减操作
+> - v1.11.3 进一步修正了 SET 方法的选项处理（NX, XX, KEEPTTL, PXAT）
 
 <!-- 点击展开配置详细说明 -->
 
