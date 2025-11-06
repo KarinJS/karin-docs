@@ -68,8 +68,8 @@ export const requestHandler = karin.accept(
 | `notice.receiveLike`            | 收到点赞事件       | `ReceiveLikeType`                   |
 | `notice.friendIncrease`         | 好友增加事件       | `FriendIncreaseType`                |
 | `notice.friendDecrease`         | 好友减少事件       | `FriendDecreaseType`                |
-| `notice.friendPoke`             | 私聊戳一戳事件     | `PrivatePokeType`                   |
-| `notice.friendRecall`           | 私聊消息撤回事件   | `PrivateRecallType`                 |
+| `notice.privatePoke`            | 私聊戳一戳事件     | `PrivatePokeType`                   |
+| `notice.privateRecall`          | 私聊消息撤回事件   | `PrivateRecallType`                 |
 | `notice.privateFileUploaded`    | 私聊文件上传事件   | `PrivateFileUploadedType`           |
 | `notice.groupPoke`              | 群聊戳一戳事件     | `GroupPokeType`                     |
 | `notice.groupRecall`            | 群聊消息撤回事件   | `GroupRecallType`                   |
