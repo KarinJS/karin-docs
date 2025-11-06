@@ -21,6 +21,7 @@ const guideCollection: ThemeCollectionItem = defineCollection({
         { text: '环境安装', link: 'environment', icon: 'mdi:desktop-classic' },
         { text: '框架安装', link: 'framework', icon: 'mdi:package-variant' },
         { text: '接入平台', link: 'platform', icon: 'mdi:connection' },
+        { text: '最近更新', link: '../updates', icon: 'mdi:update' },
       ]
     },
     {

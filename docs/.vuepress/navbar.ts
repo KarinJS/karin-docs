@@ -34,6 +34,7 @@ export const navbar = defineNavbarConfig([
     badge: '新',
     items: [
       { text: 'NPM', icon: 'logos:npm-icon', link: 'https://www.npmjs.com/package/node-karin' },
+      { text: '最近更新', icon: 'mdi:update', link: '/guide/updates' },
       { text: '更新日志', icon: 'octicon:log-16', link: '/changelog/' },
       { text: '参与贡献', icon: 'octicon:people-16', link: '/contributing/' },
     ],
