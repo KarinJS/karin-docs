@@ -38,13 +38,13 @@ createTime: 2025/05/24 00:03:09
 | `sendMsg`        | `contact: Contact, elements: Array<SendElement>, retryCount?: number`      | `Promise<SendMsgResults>`         | 发送消息                   |
 | `sendLongMsg`    | `contact: Contact, resId: string`                                          | `Promise<SendMsgResults>`         | 发送长消息                 |
 | `sendForwardMsg` | `contact: Contact, elements: Array<NodeElement>, options?: ForwardOptions` | `Promise<{ messageId: string }>`  | 发送合并转发消息           |
-| `recallMsg`      | `contact: Contact, messageId: string`                                      | `Promise<boolean>`                | 撤回消息                   |
+| `recallMsg`      | `contact: Contact, messageId: string`                                      | `Promise<void>`                   | 撤回消息                   |
 | `getMsg`         | `contact: Contact, messageId: string`                                      | `Promise<MessageResponse>`        | 获取消息                   |
 | `getHistoryMsg`  | `contact: Contact, startMsgSeq: number, count: number`                     | `Promise<Array<MessageResponse>>` | 通过消息序列号获取历史消息 |
 | `getHistoryMsg`  | `contact: Contact, startMsgId: string, count: number`                      | `Promise<Array<MessageResponse>>` | 通过消息ID获取历史消息     |
 | `getForwardMsg`  | `resId: string`                                                            | `Promise<Array<MessageResponse>>` | 获取合并转发消息           |
 | `createResId`    | `contact: Contact, elements: Array<NodeElement>`                           | `Promise<string>`                 | 构造一个资源ID             |
-| `setMsgReaction` | `contact: Contact, messageId: string, faceId: number \| string, isSet: boolean`      | `Promise<boolean>`                | 设置消息表情回应           |
+| `setMsgReaction` | `contact: Contact, messageId: string, faceId: number \| string, isSet: boolean`      | `Promise<void>`                   | 设置消息表情回应           |
 
 > [!note]
 > **版本说明**：
@@ -54,14 +54,14 @@ createTime: 2025/05/24 00:03:09
 
 | 方法名                | 参数                                                                                 | 返回值                                     | 描述                 |
 | --------------------- | ------------------------------------------------------------------------------------ | ------------------------------------------ | -------------------- |
-| `groupKickMember`     | `groupId: string, targetId: string, rejectAddRequest?: boolean, kickReason?: string` | `Promise<boolean>`                         | 群踢人               |
-| `setGroupMute`        | `groupId: string, targetId: string, duration: number`                                | `Promise<boolean>`                         | 禁言群成员           |
-| `setGroupAllMute`     | `groupId: string, isBan: boolean`                                                    | `Promise<boolean>`                         | 群全员禁言           |
-| `setGroupAdmin`       | `groupId: string, targetId: string, isAdmin: boolean`                                | `Promise<boolean>`                         | 设置群管理员         |
-| `setGroupMemberCard`  | `groupId: string, targetId: string, card: string`                                    | `Promise<boolean>`                         | 设置群名片           |
-| `setGroupName`        | `groupId: string, groupName: string`                                                 | `Promise<boolean>`                         | 设置群名             |
-| `setGroupQuit`        | `groupId: string, isDismiss: boolean`                                                | `Promise<boolean>`                         | 退出群组             |
-| `setGroupMemberTitle` | `groupId: string, targetId: string, title: string`                                   | `Promise<boolean>`                         | 设置群专属头衔       |
+| `groupKickMember`     | `groupId: string, targetId: string, rejectAddRequest?: boolean, kickReason?: string` | `Promise<void>`                            | 群踢人               |
+| `setGroupMute`        | `groupId: string, targetId: string, duration: number`                                | `Promise<void>`                            | 禁言群成员           |
+| `setGroupAllMute`     | `groupId: string, isBan: boolean`                                                    | `Promise<void>`                            | 群全员禁言           |
+| `setGroupAdmin`       | `groupId: string, targetId: string, isAdmin: boolean`                                | `Promise<void>`                            | 设置群管理员         |
+| `setGroupMemberCard`  | `groupId: string, targetId: string, card: string`                                    | `Promise<void>`                            | 设置群名片           |
+| `setGroupName`        | `groupId: string, groupName: string`                                                 | `Promise<void>`                            | 设置群名             |
+| `setGroupQuit`        | `groupId: string, isDismiss: boolean`                                                | `Promise<void>`                            | 退出群组             |
+| `setGroupMemberTitle` | `groupId: string, targetId: string, title: string`                                   | `Promise<void>`                            | 设置群专属头衔       |
 | `setGroupRemark`      | `groupId: string, remark: string`                                                    | `Promise<boolean>`                         | 设置群备注           |
 | `getGroupMuteList`    | `groupId: string`                                                                    | `Promise<Array<GetGroupMuteListResponse>>` | 获取群被禁言用户列表 |
 
@@ -69,7 +69,7 @@ createTime: 2025/05/24 00:03:09
 
 | 方法名                   | 参数                                                            | 返回值                                    | 描述                         |
 | ------------------------ | --------------------------------------------------------------- | ----------------------------------------- | ---------------------------- |
-| `uploadFile`             | `contact: Contact, file: string, name: string, folder?: string` | `Promise<boolean>`                        | 上传群文件、私聊文件         |
+| `uploadFile`             | `contact: Contact, file: string, name: string, folder?: string` | `Promise<void>`                           | 上传群文件、私聊文件         |
 | `uploadGroupFile`        | `groupId: string, file: string, name?: string`                  | `Promise<boolean>`                        | 上传群文件                   |
 | `downloadFile`           | `options?: DownloadFileOptions`                                 | `Promise<DownloadFileResponse>`           | 让协议端下载文件到协议端本地 |
 | `createGroupFolder`      | `groupId: string, name: string`                                 | `Promise<CreateGroupFolderResponse>`      | 创建群文件夹                 |
@@ -89,7 +89,7 @@ createTime: 2025/05/24 00:03:09
 | `getGroupMemberList`     | `groupId: string, refresh?: boolean`                   | `Promise<Array<GroupMemberInfo>>`            | 获取群成员列表           |
 | `getGroupHonor`          | `groupId: string`                                      | `Promise<Array<QQGroupHonorInfo>>`           | 获取群荣誉信息           |
 | `getGroupHighlights`     | `groupId: string, page: number, pageSize: number`      | `Promise<Array<GetGroupHighlightsResponse>>` | 获取精华消息             |
-| `setGroupHighlights`     | `groupId: string, messageId: string, create: boolean`  | `Promise<boolean>`                           | 设置、取消群精华消息     |
+| `setGroupHighlights`     | `groupId: string, messageId: string, create: boolean`  | `Promise<void>`                              | 设置、取消群精华消息     |
 | `getNotJoinedGroupInfo?` | `groupId: string`                                      | `Promise<GroupInfo>`                         | 获取陌生群信息           |
 | `getAtAllCount`          | `groupId: string`                                      | `Promise<GetAtAllCountResponse>`             | 获取艾特全体成员剩余次数 |
 
@@ -103,18 +103,18 @@ createTime: 2025/05/24 00:03:09
 | ------------------- | ----------------------------------------------------------------- | -------------------------- | -------------- |
 | `getStrangerInfo`   | `targetId: string`                                                | `Promise<UserInfo>`        | 获取陌生人信息 |
 | `getFriendList`     | `refresh?: boolean`                                               | `Promise<Array<UserInfo>>` | 获取好友列表   |
-| `sendLike`          | `targetId: string, count: number`                                 | `Promise<boolean>`         | 发送好友赞     |
+| `sendLike`          | `targetId: string, count: number`                                 | `Promise<void>`            | 发送好友赞     |
 | `getAvatarUrl`      | `userId: string, size?: 0 \| 40 \| 100 \| 140`                    | `Promise<string>`          | 获取头像url    |
 | `getGroupAvatarUrl` | `groupId: string, size?: 0 \| 40 \| 100 \| 140, history?: number` | `Promise<string>`          | 获取群头像url  |
 | `pokeUser`          | `contact: Contact, count?: number`                                | `Promise<boolean>`         | 戳一戳用户     |
 
 ### 请求处理
 
-| 方法名                      | 参数                                                         | 返回值             | 描述                   |
-| --------------------------- | ------------------------------------------------------------ | ------------------ | ---------------------- |
-| `setFriendApplyResult`      | `requestId: string, isApprove: boolean, remark?: string`     | `Promise<boolean>` | 设置好友请求结果       |
-| `setGroupApplyResult`       | `requestId: string, isApprove: boolean, denyReason?: string` | `Promise<boolean>` | 设置申请加入群请求结果 |
-| `setInvitedJoinGroupResult` | `requestId: string, isApprove: boolean`                      | `Promise<boolean>` | 设置邀请加入群请求结果 |
+| 方法名                      | 参数                                                         | 返回值           | 描述                   |
+| --------------------------- | ------------------------------------------------------------ | ---------------- | ---------------------- |
+| `setFriendApplyResult`      | `requestId: string, isApprove: boolean, remark?: string`     | `Promise<void>`  | 设置好友请求结果       |
+| `setGroupApplyResult`       | `requestId: string, isApprove: boolean, denyReason?: string` | `Promise<void>`  | 设置申请加入群请求结果 |
+| `setInvitedJoinGroupResult` | `requestId: string, isApprove: boolean`                      | `Promise<void>`  | 设置邀请加入群请求结果 |
 
 ### 凭证获取
 
@@ -122,8 +122,17 @@ createTime: 2025/05/24 00:03:09
 | ---------------- | ---------------------------------------------- | -------------------------------------------------- | -------------------- |
 | `getCookies`     | `domain: string`                               | `Promise<{ cookie: string }>`                      | 获取 Cookies         |
 | `getCredentials` | `domain: string`                               | `Promise<{ cookies: string, csrf_token: number }>` | 获取 QQ 相关接口凭证 |
-| `getCSRFToken`   | `domain: string`                               | `Promise<{ token: number }>`                       | 获取 CSRF Token      |
-| `getHttpCookies` | `appid: string, daid: string, jumpUrl: string` | `Promise<{ cookie: string }>`                      | 获取 HTTP Cookies    |
+| `getCSRFToken`   | 无                                             | `Promise<{ token: number }>`                       | 获取 CSRF Token      |
+
+### 其他 API
+
+| 方法名              | 参数                                            | 返回值                                       | 描述                       |
+| ------------------- | ----------------------------------------------- | -------------------------------------------- | -------------------------- |
+| `getFileUrl`        | `contact: Contact, fileId: string`              | `Promise<string>`                            | 获取文件 URL               |
+| `setAvatar`         | `file: string`                                  | `Promise<void>`                              | 设置头像                   |
+| `getAiCharacters`   | 无                                              | `Promise<Array<GetAiCharactersResponse>>`    | 获取群 AI 语音可用声色列表 |
+| `sendAiCharacter`   | `group_id: string, character: string, text: string` | `Promise<{ messageId: string }>`             | 发送群 AI 语音声色         |
+| `getRkey`           | 无                                              | `Promise<Array<GetRkeyResponse>>`            | 获取 rkey                  |
 
 ## 使用示例
 
@@ -245,7 +254,7 @@ const handleFriendRequest = async (_: AdapterType, requestId: string, approve: b
 
 ## 注意事项
 
-1. 不同平台的适配器可能对某些API的实现有所差异，部分API可能在特定平台不可用。
-2. 部分API的返回值可能不可靠，文档中已标注"此接口的返回值不值得信任"的方法需要谨慎处理返回结果。
+1. **返回值类型**：很多方法返回 `Promise<void>`，这意味着它们不返回有意义的值。不要依赖这些方法的返回值来判断操作是否成功。
+2. 不同平台的适配器可能对某些API的实现有所差异，部分API可能在特定平台不可用。
 3. 在使用文件相关API时，请确保路径正确且有足够的权限。
 4. 部分API仅在特定协议端（如QQ）可用，使用前请确认当前适配器是否支持。
