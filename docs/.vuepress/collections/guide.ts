@@ -20,6 +20,7 @@ const guideCollection: ThemeCollectionItem = defineCollection({
         { text: '快速介绍', link: 'start', icon: 'carbon:document' },
         { text: '环境安装', link: 'environment', icon: 'mdi:desktop-classic' },
         { text: '框架安装', link: 'framework', icon: 'mdi:package-variant' },
+        { text: 'Docker 部署', link: 'docker', icon: 'mdi:docker' },
         { text: '接入平台', link: 'platform', icon: 'mdi:connection' },
         { text: '最近更新', link: '../updates', icon: 'mdi:update' },
       ]
