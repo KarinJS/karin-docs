@@ -154,3 +154,23 @@ jobs:
         run: |
           echo "::error::推送到 yusheng929/karin-docs 仓库失败"
           echo "错误信息: ${{ steps.push-to-yusheng.outputs.error }}"
+
+      - name: Push to esyka114514/karin-docs
+        id: push-to-esyka
+        uses: peaceiris/actions-gh-pages@v3
+        continue-on-error: true
+        with:
+          personal_token: ${{ secrets.ESYKA }}
+          external_repository: esyka114514/karin-docs
+          publish_branch: gh-pages
+          publish_dir: docs/.vuepress/dist
+          force: true
+          force_orphan: true
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+
+      - name: Check esyka114514/karin-docs push status
+        if: steps.push-to-esyka.outcome == 'failure'
+        run: |
+          echo "::error::推送到 esyka114514/karin-docs 仓库失败"
+          echo "错误信息: ${{ steps.push-to-esyka.outputs.error }}"
