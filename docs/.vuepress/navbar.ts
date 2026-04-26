@@ -58,7 +58,7 @@ export const navbar = defineNavbarConfig([
       { text: 'Vercel 镜像(憨憨)', icon: 'mdi:web', link: 'https://karin.hanhanz.top' },
       { text: 'Deno 镜像', icon: 'mdi:web', link: 'https://karin.deno.dev' },
       { text: '私有 CDN 镜像(ikechan8370)', icon: 'mdi:web', link: 'https://karin.chaite.cloud' },
-      { text: 'EdgOne 镜像(逸燧)', icon: 'mdi:web', link: 'https://karin.esyka.top' },
+      { text: 'EdgeOne 镜像(逸燧)', icon: 'mdi:web', link: 'https://karin.esyka.top' },
     ],
   },
 ])
