@@ -93,3 +93,17 @@ export const testGithub = async () => {
 //   }
 //   return false
 // }
+
+
+//请求来的插件数据类型
+export type Plugin = {
+  author: { home: string; name: string }[]
+  description: string
+  home: string
+  license: { name: string; url: string }[]
+  name: string
+  repo: { branch: string; type: string; url: string }[]
+  time: string
+  type: string
+  official?: boolean
+}

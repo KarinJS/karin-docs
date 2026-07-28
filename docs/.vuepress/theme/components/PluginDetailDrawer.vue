@@ -9,8 +9,8 @@
     :lock-scroll="false"
   >
     <el-divider style="margin: 12px 0" />
-    <el-tooltip effect="dark" :content="`pnpm add ${plugin.name} -w`">
-      <el-button v-if="plugin.type == 'npm'" round @click="copyInstallCommand(plugin.name)"> 安装命令 </el-button>
+    <el-tooltip v-if="plugin.type == 'npm'" effect="dark" :content="`pnpm add ${plugin.name} -w`">
+      <el-button round @click="copyInstallCommand(plugin.name)"> 安装命令 </el-button>
     </el-tooltip>
     <el-button round @click="jumpTo(plugin.home)"> 首页 </el-button>
     <el-divider style="margin: 12px 0" />
@@ -24,21 +24,10 @@
 import { useMediaQuery } from '@vueuse/core'
 import { ElMessage } from 'element-plus'
 import { onMounted, ref, watch } from 'vue'
-import { testGithub } from '../utils/test-url'
+import { testGithub, Plugin } from '../utils/test-url'
 import axios from 'axios'
 import { marked } from 'marked'
 const visible = defineModel('drawerVisible', { required: true, default: false })
-type Plugin = {
-  author: { home: string; name: string }[]
-  description: string
-  home: string
-  license: { name: string; url: string }[]
-  name: string
-  repo: { branch: string; type: string; url: string }[]
-  time: string
-  type: string
-  official?: boolean
-}
 interface Props {
   plugin: Plugin
 }
@@ -69,7 +58,7 @@ const getRawReadmeUrl = (homeUrl: string, branch: string): string => {
     return `https://raw.githubusercontent.com/${match[1]}/${match[2]}/${defaultBranch}/README.md`
   }
 
-  return homeUrl
+  return '无README'
 }
 
 /** 缓存的 github 代理函数 */
@@ -100,6 +89,10 @@ const fetchReadme = async () => {
   try {
     const branch = getRepoBranch(plugin.repo)
     const rawUrl = getRawReadmeUrl(plugin.home, branch)
+    if (rawUrl === '无README') {
+      readmeError.value = '无法加载 README'
+      return
+    }
     const proxiedUrl = githubProxy(rawUrl)
     const { data } = await axios.get(proxiedUrl)
     readmeHtml.value = marked.parse(data) as string

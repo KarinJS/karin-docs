@@ -1,7 +1,16 @@
 <template>
   <div class="pluginList">
     <SearchBar style="margin-bottom: 12px" :author-options="authorOptions" @search="handleSearch" />
-    <el-skeleton style="display: flex; gap: 8px" :loading="loading" animated :count="3">
+    <el-alert
+      v-if="errorMsg"
+      type="error"
+      :title="errorMsg"
+      show-icon
+      closable
+      @close="closeErrMsg()"
+      style="margin-bottom: 12px"
+    />
+    <el-skeleton v-else style="display: flex; gap: 8px" :loading="loading" animated :count="3">
       <template #template>
         <div style="flex: 1">
           <el-skeleton-item variant="text" style="margin-bottom: 6px" />
@@ -32,13 +41,13 @@
 </template>
 
 <script lang="ts" setup>
-import SearchBar from './searchBar.vue'
-import PluginCard from './pluginCard.vue'
+import SearchBar from './SearchBar.vue'
+import PluginCard from './PluginCard.vue'
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
-import { testGithub } from '../utils/test-url'
+import { testGithub, Plugin } from '../utils/test-url'
 import axios from 'axios'
 import { useDark, useToggle } from '@vueuse/core'
-import PluginDetailDrawer from './pluginDetailDrawer.vue'
+import PluginDetailDrawer from './PluginDetailDrawer.vue'
 //暗色模式相关
 const isDark = useDark()
 let observer: MutationObserver | null = null
@@ -53,18 +62,6 @@ const checkDark = () => {
 let githubProxy = null
 //所有插件
 const allPlugins = ref<Plugin[]>([])
-//请求来的插件数据类型
-type Plugin = {
-  author: { home: string; name: string }[]
-  description: string
-  home: string
-  license: { name: string; url: string }[]
-  name: string
-  repo: { branch: string; type: string; url: string }[]
-  time: string
-  type: string
-  official?: boolean
-}
 /** 从 allPlugins 中提取作者列表 */
 const authorOptions = computed<string[]>(() => {
   const authors = new Set<string>()
@@ -98,9 +95,16 @@ const loadPlugins = async () => {
   } catch (err: any) {
     errorMsg.value = err.message || '加载失败'
   } finally {
+    errorMsg.value = '加载失败'
     loading.value = false
-    console.log(allPlugins.value)
   }
+}
+const closeErrMsg = () => {
+  errorMsg.value = ''
+  loading.value = true
+  setTimeout(() => {
+    loadPlugins()
+  }, 200)
 }
 type SearchParams = {
   author: string
@@ -133,8 +137,8 @@ const filteredPlugins = computed<Plugin[]>(() => {
       const kw = keyword.toLowerCase()
       const nameMatch = plugin.name.toLowerCase().includes(kw)
       const descMatch = plugin.description?.toLowerCase().includes(kw)
-      const authorcMatch = plugin.author?.some((a) => a.name === kw)
-      if (!nameMatch && !descMatch && !authorcMatch) return false
+      const authorMatch = plugin.author?.some((a) => a.name?.toLowerCase().includes(kw))
+      if (!nameMatch && !descMatch && !!authorMatch) return false
     }
     // 作者筛选
     if (author && author !== '全部') {

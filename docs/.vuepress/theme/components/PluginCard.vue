@@ -2,7 +2,7 @@
   <el-card shadow="hover">
     <template #header>
       <div class="card-header">
-        <div class="card-header-name" style="cursor: pointer" @click="jumpTo(plugin.home)">
+        <div class="card-header-name" style="cursor: pointer" @click.stop="jumpTo(plugin.home)">
           <el-tooltip effect="dark" :content="replaceName(plugin.name)">
             {{ replaceName(plugin.name) }}
           </el-tooltip>
@@ -16,7 +16,7 @@
       </div>
     </template>
     <div class="card-body" @click="emits('openDetail', plugin)">
-      <div class="card-body-author">
+      <div class="card-body-author" v-if="plugin.author?.length && plugin.author?.length > 0">
         <el-text tag="mark" style="cursor: pointer" @click="jumpTo(plugin.author[0].home)">
           {{ plugin.author[0].name }}
         </el-text>
@@ -31,17 +31,7 @@
 </template>
 
 <script lang="ts" setup>
-type Plugin = {
-  author: { home: string; name: string }[]
-  description: string
-  home: string
-  license: { name: string; url: string }[]
-  name: string
-  repo: { branch: string; type: string; url: string }[]
-  time: string
-  type: string
-  official?: boolean
-}
+import { Plugin } from '../utils/test-url'
 interface Props {
   plugin: Plugin
 }
