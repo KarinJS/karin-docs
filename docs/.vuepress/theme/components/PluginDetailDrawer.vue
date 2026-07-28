@@ -2,6 +2,7 @@
   <el-drawer
     v-model="visible"
     :direction="isMobile ? 'btt' : 'rtl'"
+    :size="isMobile ? '80%' : '50%'"
     resizable
     :title="plugin.name"
     header-class="drawer-header"
