@@ -95,7 +95,6 @@ const loadPlugins = async () => {
   } catch (err: any) {
     errorMsg.value = err.message || '加载失败'
   } finally {
-    errorMsg.value = '加载失败'
     loading.value = false
   }
 }
