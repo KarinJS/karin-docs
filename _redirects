@@ -1,0 +1,3 @@
+# Netlify redirects for 404 handling
+# This file ensures that all non-existent pages are properly redirected to the 404 page
+/* /404.html 404
