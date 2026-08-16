@@ -3,6 +3,7 @@ import { defineClientConfig } from 'vuepress/client'
 import { Layout } from 'vuepress-theme-plume/client'
 import { useRoute } from 'vue-router'
 import './theme/styles/index.css'
+import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
 /** 平滑滚动 */
 import Lenis from 'lenis'
@@ -24,7 +25,7 @@ import FooterWithBadge from './components/FooterWithBadge.vue'
 import Confetti from './theme/components/Confetti.vue'
 
 export default defineClientConfig({
-  enhance ({ app }) {
+  enhance({ app }) {
     // built-in components
     app.component('RepoCard', RepoCard)
     app.component('NodeDownloads', NodeDownloads)
@@ -43,7 +44,7 @@ export default defineClientConfig({
       }
     }),
   },
-  setup () {
+  setup() {
     if (typeof window !== 'undefined') {
       // 有BUG，暂时注释掉
       // 平滑滚动
