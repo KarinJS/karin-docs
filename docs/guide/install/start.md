@@ -62,6 +62,16 @@ Karin 为你准备了一个强大的网页控制台，让机器人管理变得�
 更多平台支持正在马不停蹄开发中~
 </LinkCard>
 
+## 📱 在安卓手机上运行
+
+::: tip 手机也能跑 Karin，不用电脑
+**Karin App** 上线啦～
+:::
+
+<LinkCard title="	⬇️ 获取 Karin App" href="https://github.com/KarinJS/KarinApp/releases">
+前往 Releases 下载 APK 安装即可
+</LinkCard>
+
 ## 🤔 遇到问题？
 
 <div class="help-section">
