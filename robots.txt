@@ -1,0 +1,3 @@
+Sitemap: https://karinjs.com/sitemap.xml
+User-agent:*
+Disallow:

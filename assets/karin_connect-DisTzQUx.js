@@ -1,0 +1,1 @@
+var e=`/web/karin_connect.png`;export{e as t};
